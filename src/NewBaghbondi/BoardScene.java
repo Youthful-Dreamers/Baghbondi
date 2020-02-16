@@ -34,8 +34,13 @@ public class BoardScene {
 
     private void boardDrawer() {
         int skip, skipCounter;
-        int i, j;
+        int i, j = 0;
         for (i = -verticalLine / 2, skip = -horizontalLine / 2; i < verticalLine / 2 + 1; i++, skip++) {
+            // System.out.println(i);
+            /*if(i<verticalLine/2+1) {
+                j = i;
+            }
+            else j-=i+1;*/
             for (skipCounter = 2, j = -Math.abs(i); j < Math.abs(i) + 1; j++) {
                 if (skipCounter < Math.abs(skip) - 1) {
                     skipCounter++;
@@ -70,8 +75,8 @@ public class BoardScene {
         return position;
     }
 
-    private Piece makePiece(PieceType pieceType, int horizontal, int vertical) {
-        Piece piece = new Piece(pieceType, horizontal, vertical);
+    private Piece makePiece(PieceType pieceType, int vertical, int horizontal) {
+        Piece piece = new Piece(pieceType, vertical, horizontal);
         return piece;
     }
 
