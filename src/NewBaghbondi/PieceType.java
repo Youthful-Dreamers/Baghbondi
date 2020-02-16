@@ -7,6 +7,6 @@ public enum PieceType {
 //        {
 //            this.moveDir=moveDir;
 //        }
-    Tiger,Goat
+    TIGER, GOAT
 
 }

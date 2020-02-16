@@ -1,12 +1,10 @@
 package NewBaghbondi;
 
-import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 
 public class BoardScene {
     static final int positionSize = 50;
@@ -49,12 +47,12 @@ public class BoardScene {
                 Position position = createPosition(i, j);
                 Piece piece = null;
                 if (i >= 0) {
-                    piece = makePiece(PieceType.Goat, i + verticalLine / 2, j + horizontalLine / 2);
+                    piece = makePiece(PieceType.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
 
                 }
                 else if(i==-1&&j==0)
                 {
-                    piece = makePiece(PieceType.Tiger,i + verticalLine / 2, j + horizontalLine / 2);
+                    piece = makePiece(PieceType.TIGER,i + verticalLine / 2, j + horizontalLine / 2);
                 }
                 if (piece != null) {
                     position.setPiece(piece);
@@ -77,7 +75,70 @@ public class BoardScene {
 
     private Piece makePiece(PieceType pieceType, int vertical, int horizontal) {
         Piece piece = new Piece(pieceType, vertical, horizontal);
+        piece.setOnMouseReleased(e ->{
+        int newHorizonal = pixelToBoard(piece.getLayoutX());
+        int oldHorizontal= pixelToBoard(piece.getOldHorizontal());
+        int newVertical = pixelToBoard(piece.getLayoutY());
+        int oldvertical = pixelToBoard(piece.getOldVertical());
+        MoveResult result = tryMove(piece,newHorizonal,newVertical);
+
+        switch (result.getType())
+        {
+            case NONE:
+                piece.abortMove();
+                break;
+            case NORMAL:
+                piece.move(newHorizonal,newVertical);
+                board[oldHorizontal][oldvertical].setPiece(null);
+                board[newHorizonal][newVertical].setPiece(piece);
+                break;
+            case KILL:
+                piece.move(newHorizonal,newVertical);
+                board[oldHorizontal][oldvertical].setPiece(null);
+                board[newHorizonal][newVertical].setPiece(piece);
+                Piece killedPiece = result.getPiece();
+                board[pixelToBoard(killedPiece.getOldHorizontal())][pixelToBoard(killedPiece.getOldVertical())].setPiece(null);
+                pieceGroup.getChildren().remove(killedPiece);
+                break;
+
+        }
+        });
         return piece;
+    }
+    private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical)
+    {
+        System.out.println("Try move at "+newHorizontal+", "+newVertical);
+        if(newVertical>4||newHorizontal>4) return new MoveResult((MoveType.NONE));
+        if (board[newHorizontal][newVertical].hasPiece())
+        {
+            return new MoveResult(MoveType.NONE);
+        }
+        int  oldHorizontal= pixelToBoard(piece.getOldHorizontal());
+        int oldVertical= pixelToBoard(piece.getOldVertical());
+        if(Math.abs(newVertical-oldVertical)==1)
+        {
+            return new MoveResult(MoveType.NORMAL);
+        }
+        else if(Math.abs(newHorizontal-oldVertical)==2||Math.abs((newVertical-oldVertical))==2)
+        {
+            int killedX =oldHorizontal + (newHorizontal-oldHorizontal)/2;
+            int killedY = oldVertical  + (newVertical-oldVertical)/2;
+                 if(board[killedX][killedY].hasPiece()
+                    &&board[killedX][killedY].getPiece().getPieceType()!=piece.getPieceType())
+                 {
+                     return new MoveResult(MoveType.KILL,board[killedX][killedY].getPiece());
+                 }
+
+        }
+        return new MoveResult(MoveType.NONE);
+
+
+    }
+
+    private int pixelToBoard(double pixel)
+    {
+        System.out.println("Layout Pixel is:"+pixel);
+        return (int) pixel/(positionSize*2);
     }
 
 
