@@ -6,7 +6,7 @@ import javafx.scene.shape.Circle;
 
 public class Position extends Circle {
     int horizontal ,vertical;
-    int x,y;
+
     private Piece piece;
     boolean hasPiece(){
         return piece!=null;
@@ -24,9 +24,11 @@ public class Position extends Circle {
     {
         this.horizontal =horizontal;
         this.vertical=vertical;
-        setRadius(10);
+        setRadius(40);
         relocate(horizontal*BoardScene.positionSize*2+10,vertical*BoardScene.positionSize*2+10);
-        setFill(Color.BLACK);
+        setFill(Color.VIOLET);
+
+
 
     }
 }

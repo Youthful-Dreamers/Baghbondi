@@ -4,25 +4,31 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+
 public class Piece extends StackPane {
     private double fromMouseVertical,fromMouseHorizontal;
     private double oldVertical,oldHorizontal;
     private PieceType type;
+    private int offset=30;
+
+
 
     public PieceType getPieceType() {
         return type;
     }
 
     public Piece(PieceType type, int vertical, int horizontal) {
-        this.type = type;
      //   relocate(vertical*BoardScene.positionSize*2,horizontal*BoardScene.positionSize*2);
+
         move(horizontal, vertical);
       //  System.out.println("PIECE ");
         Circle pieceCircle = new Circle();
+
         if(type==PieceType.GOAT)
         {
             pieceCircle.setFill(Color.BLUE);
             pieceCircle.setRadius(20);
+
         }
         else {
             pieceCircle.setRadius(20);
@@ -39,9 +45,14 @@ public class Piece extends StackPane {
         });
 
 
+
     }
+
+
+
     public void move(int horizontal, int vertical)
     {
+
         oldHorizontal=horizontal*BoardScene.positionSize*2;
         oldVertical =vertical*BoardScene.positionSize*2;
         System.out.println(("While inserting "+horizontal+" "+vertical));
@@ -59,5 +70,12 @@ public class Piece extends StackPane {
     public void abortMove()
     {
         relocate(oldHorizontal,oldVertical);
+    }
+
+    @Override
+    public void relocate(double x, double y) {
+        x+=offset;
+        y+=offset;
+        super.relocate(x, y);
     }
 }
