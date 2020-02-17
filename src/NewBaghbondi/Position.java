@@ -6,6 +6,7 @@ import javafx.scene.shape.Circle;
 
 public class Position extends Circle {
     int horizontal ,vertical;
+    int x,y;
     private Piece piece;
     boolean hasPiece(){
         return piece!=null;
