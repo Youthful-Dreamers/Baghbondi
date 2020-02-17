@@ -19,18 +19,16 @@ public class Piece extends StackPane {
 
     public Piece(PieceType type, int vertical, int horizontal) {
      //   relocate(vertical*BoardScene.positionSize*2,horizontal*BoardScene.positionSize*2);
-
+        this.type=type;
         move(horizontal, vertical);
       //  System.out.println("PIECE ");
         Circle pieceCircle = new Circle();
-
         if(type==PieceType.GOAT)
         {
             pieceCircle.setFill(Color.BLUE);
             pieceCircle.setRadius(20);
-
         }
-        else {
+        else if(type==PieceType.TIGER) {
             pieceCircle.setRadius(20);
             pieceCircle.setFill(Color.RED);
         }

@@ -125,12 +125,13 @@ public class BoardScene {
         int oldVertical = pixelToBoard(piece.getOldVertical());
         System.out.println("Try move to(" + newHorizontal + ", " + newVertical+") from ("+oldHorizontal+","+oldVertical+")");
 
-        if ((Math.abs(newVertical - oldVertical) == 1)^(Math.abs(newHorizontal-oldHorizontal)==1)) {
+        if ((Math.abs(newVertical - oldVertical) == 1)||(Math.abs(newHorizontal-oldHorizontal)==1)) {
           //  System.out.println((newVertical - oldVertical)+" "+);
             return new MoveResult(MoveType.NORMAL);
 
         } else if (Math.abs(newHorizontal - oldHorizontal) == 2 || Math.abs((newVertical - oldVertical)) == 2) {
-            if(piece.getPieceType()!=PieceType.GOAT)
+            System.out.println(piece.getPieceType());
+            if(piece.getPieceType()==PieceType.TIGER)
             { int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
             System.out.println("Killed");
             int killedY = oldVertical + (newVertical - oldVertical) / 2;
