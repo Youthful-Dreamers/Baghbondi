@@ -17,6 +17,7 @@ public class Piece_Test {
         Assertions.assertEquals(400,goat.getOldVertical());
 
 
+
     }
     @Test
     void tiger_move(){

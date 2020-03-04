@@ -18,8 +18,8 @@ public class BoardScene {
     private Parent createContent() {
         Pane root = new Pane();
         root.setPrefSize(800, 600);
-        boardDrawer();
-
+        drawBoard();
+        drawLine();
         root.getChildren().addAll(positionGroup, pieceGroup,lineGroup.getLineGroup());
         return root;
     }
@@ -31,15 +31,11 @@ public class BoardScene {
         boardStage.show();
     }
 
-    private void boardDrawer() {
+    private void drawBoard() {
+        System.out.println("****************Called drawBoard()****************");
         int skip, skipCounter;
         int i, j = 0;
         for (i = -verticalLine / 2, skip = -horizontalLine / 2; i < verticalLine / 2 + 1; i++, skip++) {
-            // System.out.println(i);
-            /*if(i<verticalLine/2+1) {
-                j = i;
-            }
-            else j-=i+1;*/
             for (skipCounter = 2, j = -Math.abs(i); j < Math.abs(i) + 1; j++) {
                 if (skipCounter < Math.abs(skip) - 1) {
                     skipCounter++;
@@ -55,6 +51,7 @@ public class BoardScene {
                     piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
                 }
                 if (piece != null) {
+                    addMouseReleaseOptions(piece);
                     position.setPiece(piece);
                     pieceGroup.getChildren().add(piece);
                 }
@@ -62,11 +59,12 @@ public class BoardScene {
 
             }
         }
-        drawLine();
+
 
     }
 
     private Position createPosition(int vertical, int horizontal) {
+        System.out.println("****************Called createPosition()****************");
         Position position = new Position(vertical + verticalLine / 2, horizontal + horizontalLine / 2);
         System.out.println("On board " + (horizontal + horizontalLine / 2) + " " + (vertical + verticalLine / 2));
         board[horizontal + horizontalLine / 2][vertical + verticalLine / 2] = position;
@@ -75,8 +73,16 @@ public class BoardScene {
     }
 
     private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal) {
+        System.out.println("-----Called makePiece()-----");
         Piece piece = new Piece(pieceTypeEnum, vertical, horizontal);
+       // addMouseReleaseOptions(piece);
+        return piece;
+
+    }
+
+    private void addMouseReleaseOptions(Piece piece) {
         piece.setOnMouseReleased(e -> {
+            System.out.println("-----Called makePiece() on mouse-----");
             int newHorizontal = pixelToBoard(piece.getLayoutX());
             int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
             int newVertical = pixelToBoard(piece.getLayoutY());
@@ -103,9 +109,8 @@ public class BoardScene {
                     break;
 
             }
-        });
-        return piece;
-
+        }
+        );
     }
 
     private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical) {

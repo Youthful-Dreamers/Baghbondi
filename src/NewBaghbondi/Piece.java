@@ -18,29 +18,31 @@ public class Piece extends StackPane {
     }
 
     public Piece(PieceTypeEnum type, int vertical, int horizontal) {
-     //   relocate(vertical*BoardScene.positionSize*2,horizontal*BoardScene.positionSize*2);
 
         this.type=type;
         move(horizontal, vertical);
         PieceType piece;
-      //  System.out.println("PIECE ");
         Circle pieceCircle = new Circle();
         piece = getPieceType(type);
         definePiece(pieceCircle, piece.getPieceColor());
         getChildren().addAll(pieceCircle);
+        addMousePressBehavior();
+        addMouseDragBehavior();
+    }
+
+
+    private void addMousePressBehavior() {
         setOnMousePressed(e -> {
             fromMouseVertical=e.getSceneY();
             fromMouseHorizontal=e.getSceneX();
         });
+    }
+
+    private void addMouseDragBehavior() {
         setOnMouseDragged(e->{
             pieceRelocate(e.getSceneX()-fromMouseHorizontal+oldHorizontal,
                     e.getSceneY()-fromMouseVertical+oldVertical);
         });
-
-
-
-
-
     }
 
     private PieceType getPieceType(PieceTypeEnum type) {
