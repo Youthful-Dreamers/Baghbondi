@@ -33,7 +33,7 @@ public class Piece extends StackPane {
             fromMouseHorizontal=e.getSceneX();
         });
         setOnMouseDragged(e->{
-            relocatePiece(e.getSceneX()-fromMouseHorizontal+oldHorizontal,
+            pieceRelocate(e.getSceneX()-fromMouseHorizontal+oldHorizontal,
                     e.getSceneY()-fromMouseVertical+oldVertical);
         });
 
@@ -72,7 +72,7 @@ public class Piece extends StackPane {
         oldVertical =vertical*BoardScene.positionSize*2;
         System.out.println(("While inserting "+horizontal+" "+vertical));
         System.out.println(oldHorizontal+" "+oldVertical);
-        relocatePiece(oldHorizontal,oldVertical);
+        pieceRelocate(oldHorizontal,oldVertical);
     }
 
     public double getOldHorizontal() {
@@ -84,11 +84,11 @@ public class Piece extends StackPane {
     }
     public void abortMove()
     {
-        relocatePiece(oldHorizontal,oldVertical);
+        pieceRelocate(oldHorizontal,oldVertical);
     }
 
 
-    public void relocatePiece(double x, double y) {
+    public void pieceRelocate(double x, double y) {
         x+=offset;
         y+=offset;
         super.relocate(x, y);
