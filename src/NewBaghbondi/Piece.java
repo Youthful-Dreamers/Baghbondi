@@ -8,29 +8,32 @@ import javafx.scene.shape.Circle;
 public class Piece extends StackPane {
     private double fromMouseVertical,fromMouseHorizontal;
     private double oldVertical,oldHorizontal;
-    private PieceType type;
+    private PieceTypeEnum type;
     private int offset=30;
 
 
 
-    public PieceType getPieceType() {
+    public PieceTypeEnum getPieceType() {
         return type;
     }
 
-    public Piece(PieceType type, int vertical, int horizontal) {
+    public Piece(PieceTypeEnum type, int vertical, int horizontal) {
      //   relocate(vertical*BoardScene.positionSize*2,horizontal*BoardScene.positionSize*2);
+
         this.type=type;
         move(horizontal, vertical);
       //  System.out.println("PIECE ");
         Circle pieceCircle = new Circle();
-        if(type==PieceType.GOAT)
+        if(type== PieceTypeEnum.GOAT)
         {
-            pieceCircle.setFill(Color.BLUE);
-            pieceCircle.setRadius(20);
+            PieceType piece = new Goat();
+
+            definePiece(pieceCircle, piece.getPieceColor());
         }
-        else if(type==PieceType.TIGER) {
-            pieceCircle.setRadius(20);
-            pieceCircle.setFill(Color.RED);
+        else if(type== PieceTypeEnum.TIGER) {
+            PieceType piece = new Tiger();
+            definePiece(pieceCircle, piece.getPieceColor());
+
         }
         getChildren().addAll(pieceCircle);
         setOnMousePressed(e -> {
@@ -44,8 +47,17 @@ public class Piece extends StackPane {
 
 
 
+
+
     }
 
+    private void definePiece(Circle pieceCircle, Color color) {
+        pieceCircle.setFill(color);
+        pieceCircle.setRadius(20);
+    }
+    public PieceTypeEnum getType(){
+        return type;
+    }
 
 
     public void move(int horizontal, int vertical)

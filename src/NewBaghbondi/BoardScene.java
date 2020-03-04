@@ -48,11 +48,11 @@ public class BoardScene {
                 Position position = createPosition(i, j);
                 Piece piece = null;
                 if (i >= 0) {
-                    piece = makePiece(PieceType.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
+                    piece = makePiece(PieceTypeEnum.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
                     System.out.println("Making piece type :: goat: "+position.getLayoutX()+","+position.getLayoutY());
 
                 } else if (i == -1 && j == 0) {
-                    piece = makePiece(PieceType.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
+                    piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
                 }
                 if (piece != null) {
                     position.setPiece(piece);
@@ -74,8 +74,8 @@ public class BoardScene {
         return position;
     }
 
-    private Piece makePiece(PieceType pieceType, int vertical, int horizontal) {
-        Piece piece = new Piece(pieceType, vertical, horizontal);
+    private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal) {
+        Piece piece = new Piece(pieceTypeEnum, vertical, horizontal);
         piece.setOnMouseReleased(e -> {
             int newHorizontal = pixelToBoard(piece.getLayoutX());
             int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
@@ -131,7 +131,7 @@ public class BoardScene {
 
         } else if (Math.abs(newHorizontal - oldHorizontal) == 2 || Math.abs((newVertical - oldVertical)) == 2) {
             System.out.println(piece.getPieceType());
-            if(piece.getPieceType()==PieceType.TIGER)
+            if(piece.getPieceType()== PieceTypeEnum.TIGER)
             { int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
             System.out.println("Killed");
             int killedY = oldVertical + (newVertical - oldVertical) / 2;

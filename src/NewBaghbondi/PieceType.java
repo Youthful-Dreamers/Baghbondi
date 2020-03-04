@@ -1,12 +1,10 @@
 package NewBaghbondi;
 
-public enum PieceType {
-//        Tiger(1),Goat(-1);
-//        final int moveDir;
-//        PieceType(int moveDir)
-//        {
-//            this.moveDir=moveDir;
-//        }
-    TIGER, GOAT
+
+import javafx.scene.paint.Color;
+
+public interface PieceType{
+   PieceTypeEnum getPieceType();
+   Color getPieceColor();
 
 }
