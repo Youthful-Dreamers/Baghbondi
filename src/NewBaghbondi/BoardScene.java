@@ -130,8 +130,8 @@ public class BoardScene {
             return new MoveResult(MoveType.NORMAL);
 
         } else if (Math.abs(newHorizontal - oldHorizontal) == 2 || Math.abs((newVertical - oldVertical)) == 2) {
-            System.out.println(piece.getPieceType());
-            if(piece.getPieceType()== PieceTypeEnum.TIGER)
+            System.out.println(piece.getPieceTypeEnum());
+            if(piece.getPieceTypeEnum()== PieceTypeEnum.TIGER)
             { int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
             System.out.println("Killed");
             int killedY = oldVertical + (newVertical - oldVertical) / 2;

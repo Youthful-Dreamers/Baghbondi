@@ -13,7 +13,7 @@ public class Piece extends StackPane {
 
 
 
-    public PieceTypeEnum getPieceType() {
+    public PieceTypeEnum getPieceTypeEnum() {
         return type;
     }
 
@@ -22,19 +22,11 @@ public class Piece extends StackPane {
 
         this.type=type;
         move(horizontal, vertical);
+        PieceType piece;
       //  System.out.println("PIECE ");
         Circle pieceCircle = new Circle();
-        if(type== PieceTypeEnum.GOAT)
-        {
-            PieceType piece = new Goat();
-
-            definePiece(pieceCircle, piece.getPieceColor());
-        }
-        else if(type== PieceTypeEnum.TIGER) {
-            PieceType piece = new Tiger();
-            definePiece(pieceCircle, piece.getPieceColor());
-
-        }
+        piece = getPieceType(type);
+        definePiece(pieceCircle, piece.getPieceColor());
         getChildren().addAll(pieceCircle);
         setOnMousePressed(e -> {
             fromMouseVertical=e.getSceneY();
@@ -50,6 +42,19 @@ public class Piece extends StackPane {
 
 
     }
+
+    private PieceType getPieceType(PieceTypeEnum type) {
+        PieceType piece;
+        if(type== PieceTypeEnum.GOAT)
+        {
+             piece = new Goat();
+        }
+        else {
+            piece = new Tiger();
+        }
+        return piece;
+    }
+
 
     private void definePiece(Circle pieceCircle, Color color) {
         pieceCircle.setFill(color);
