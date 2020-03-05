@@ -5,12 +5,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 
-public class Piece extends StackPane {
+public abstract class Piece extends StackPane {
     private double fromMouseVertical,fromMouseHorizontal;
     private double oldVertical,oldHorizontal;
     private PieceTypeEnum type;
     private int offset=30;
-
+    Circle pieceCircle = new Circle();
+    Piece piece;
+    Piece(){}
 
 
     public PieceTypeEnum getPieceTypeEnum() {
@@ -21,10 +23,10 @@ public class Piece extends StackPane {
 
         this.type=type;
         move(horizontal, vertical);
-        PieceType piece;
-        Circle pieceCircle = new Circle();
-        piece = getPieceType(type);
-        definePiece(pieceCircle, piece.getPieceColor());
+
+
+      //  piece = getPieceType(type,vertical, horizontal);
+    //        definePiece(pieceCircle, piece.getPieceColor());
         getChildren().addAll(pieceCircle);
         addMousePressBehavior();
         addMouseDragBehavior();
@@ -45,20 +47,10 @@ public class Piece extends StackPane {
         });
     }
 
-    private PieceType getPieceType(PieceTypeEnum type) {
-        PieceType piece;
-        if(type== PieceTypeEnum.GOAT)
-        {
-             piece = new Goat();
-        }
-        else {
-            piece = new Tiger();
-        }
-        return piece;
-    }
 
 
-    private void definePiece(Circle pieceCircle, Color color) {
+
+     void definePiece(Circle pieceCircle, Color color) {
         pieceCircle.setFill(color);
         pieceCircle.setRadius(20);
     }
@@ -95,4 +87,12 @@ public class Piece extends StackPane {
         y+=offset;
         super.relocate(x, y);
     }
+   int getMoveFactor(){
+        int centralHorizontal = 2;
+        return (int)Math.abs(oldHorizontal/100-centralHorizontal);
+
+    }
+    abstract Color getPieceColor();
+    abstract PieceTypeEnum getPieceType();
+
 }
