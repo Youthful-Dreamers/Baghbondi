@@ -83,7 +83,10 @@ public class BoardScene {
         return piece;
 
     }
+    BoardListener boardListener = new BoardListener(board);
+    private void addListener(){
 
+    }
     private void addMouseReleaseOptions(Piece piece) {
         piece.setOnMouseReleased(e -> {
             System.out.println("-----Called makePiece() on mouse-----");
@@ -134,14 +137,14 @@ public class BoardScene {
         int oldVertical = pixelToBoard(piece.getOldVertical());
         System.out.println("Try move to(" + newHorizontal + ", " + newVertical+") from ("+oldHorizontal+","+oldVertical+")");
 
-        if (Math.abs(newVertical - oldVertical) == 1
-                ||(Math.abs(newHorizontal-oldHorizontal)==1)) {
+        if (!((Math.abs(newVertical - oldVertical) < 2)
+                ^(Math.abs(newHorizontal-oldHorizontal)<2))) {
           //  System.out.println((newVertical - oldVertical)+" "+);
             return new MoveResult(MoveType.NORMAL);
 
 
-        } else if (Math.abs((newVertical - oldVertical))== 2 ||
-                Math.abs(newHorizontal - oldHorizontal) == 2) {
+        } else if (Math.abs((newVertical - oldVertical))== 2 ^
+                Math.abs(newHorizontal - oldHorizontal) ==2) {
             System.out.println(piece.getPieceTypeEnum());
             if(piece.getPieceTypeEnum()== PieceTypeEnum.TIGER)
             { int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
@@ -177,4 +180,12 @@ public class BoardScene {
 
 
 }
+class BoardListener{
+    Position[][] board;
+    BoardListener(Position[][] board){
+        this.board = board;
 
+    }
+    BoardListener(){}
+
+}

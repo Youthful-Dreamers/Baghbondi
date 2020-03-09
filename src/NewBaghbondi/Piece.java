@@ -88,8 +88,8 @@ public abstract class Piece extends StackPane {
         super.relocate(x, y);
     }
    int getMoveFactor(){
-        int centralHorizontal = 2;
-        return (int)Math.abs(oldHorizontal/100-centralHorizontal);
+        int centralVertical = 2;
+        return (int)Math.abs(oldVertical/100-centralVertical);
 
     }
     abstract Color getPieceColor();
