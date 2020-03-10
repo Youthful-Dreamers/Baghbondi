@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class BoardScene {
+
     static final int positionSize = 50;
     private Group positionGroup = new Group();
     private Group pieceGroup = new Group();
@@ -14,7 +15,8 @@ public class BoardScene {
     private Position[][] board = new Position[5][5];
     private int verticalLine = 5;
     private int horizontalLine = 5;
-
+    private int turn = 0;
+    BoardListener listener = new BoardListener(board,pieceGroup);
     private Parent createContent() {
         Pane root = new Pane();
         root.setPrefSize(800, 600);
@@ -34,7 +36,7 @@ public class BoardScene {
     private void drawBoard() {
         System.out.println("****************Called drawBoard()****************");
         int skip, skipCounter;
-        int i, j = 0;
+        int i, j;
         for (i = -verticalLine / 2, skip = -horizontalLine / 2; i < verticalLine / 2 + 1; i++, skip++) {
             for (skipCounter = 2, j = -Math.abs(i); j < Math.abs(i) + 1; j++) {
                 if (skipCounter < Math.abs(skip) - 1) {
@@ -51,7 +53,7 @@ public class BoardScene {
                     piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
                 }
                 if (piece != null) {
-                    addMouseReleaseOptions(piece);
+
                     position.setPiece(piece);
                     pieceGroup.getChildren().add(piece);
                 }
@@ -79,93 +81,12 @@ public class BoardScene {
          piece = new Tiger(vertical, horizontal);
         else
             piece = new Goat(vertical,horizontal);
-
+        listener.addMouseReleaseOptions(piece);
         return piece;
 
     }
-    BoardListener boardListener = new BoardListener(board);
-    private void addListener(){
-
-    }
-    private void addMouseReleaseOptions(Piece piece) {
-        piece.setOnMouseReleased(e -> {
-            System.out.println("-----Called makePiece() on mouse-----");
-            int newHorizontal = pixelToBoard(piece.getLayoutX());
-            int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
-            int newVertical = pixelToBoard(piece.getLayoutY());
-            int oldVertical = pixelToBoard(piece.getOldVertical());
-            MoveResult result = tryMove(piece, newHorizontal, newVertical);
-
-            switch (result.getType()) {
-                case NONE:
-                    piece.abortMove();
-                    break;
-                case NORMAL:
-                    piece.move(newHorizontal, newVertical);
-                    System.out.println("Normal move from:: " + oldHorizontal + ", " + oldVertical);
-                    board[oldHorizontal][oldVertical].setPiece(null);
-                    board[newHorizontal][newVertical].setPiece(piece);
-                    break;
-                case KILL:
-                    piece.move(newHorizontal, newVertical);
-                    board[oldHorizontal][oldVertical].setPiece(null);
-                    board[newHorizontal][newVertical].setPiece(piece);
-                    Piece killedPiece = result.getPiece();
-                    board[pixelToBoard(killedPiece.getOldHorizontal())][pixelToBoard(killedPiece.getOldVertical())].setPiece(null);
-                    pieceGroup.getChildren().remove(killedPiece);
-                    break;
-
-            }
-        }
-        );
-    }
-
-    private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical) {
-
-        if (newVertical > 4 || newHorizontal > 4){
-            System.out.println("Out of board selection");
-            return new MoveResult((MoveType.NONE));}
-        if ((board[newHorizontal][newVertical] == null)) {
-            System.out.println("null Board for"+newHorizontal+", "+newVertical);
-            return new MoveResult(MoveType.NONE);
-        }
-        if (board[newHorizontal][newVertical].hasPiece()) {
-            System.out.println("HAS PIECE, NO MOVE"+ newHorizontal + ", " + newVertical);
-            return new MoveResult(MoveType.NONE);
-        }
-        int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
-        int oldVertical = pixelToBoard(piece.getOldVertical());
-        System.out.println("Try move to(" + newHorizontal + ", " + newVertical+") from ("+oldHorizontal+","+oldVertical+")");
-
-        if (!((Math.abs(newVertical - oldVertical) < 2)
-                ^(Math.abs(newHorizontal-oldHorizontal)<2))) {
-          //  System.out.println((newVertical - oldVertical)+" "+);
-            return new MoveResult(MoveType.NORMAL);
 
 
-        } else if (Math.abs((newVertical - oldVertical))== 2 ^
-                Math.abs(newHorizontal - oldHorizontal) ==2) {
-            System.out.println(piece.getPieceTypeEnum());
-            if(piece.getPieceTypeEnum()== PieceTypeEnum.TIGER)
-            { int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
-            System.out.println("Killed");
-            int killedY = oldVertical + (newVertical - oldVertical)/ 2;
-            if (board[killedX][killedY].hasPiece()) {
-                return new MoveResult(MoveType.KILL, board[killedX][killedY].getPiece());}
-            }
-            else System.out.println("Goat can't kill");
-
-
-        }
-        return new MoveResult(MoveType.NONE);
-
-
-    }
-
-    private int pixelToBoard(double pixel) {
-        //System.out.println("Layout Pixel is:"+pixel);
-        return (int) pixel / (positionSize * 2);
-    }
     private void drawLine()
     {
         lineGroup.setHorizontalLine1(board[0][0],board[4][0]);
@@ -178,14 +99,5 @@ public class BoardScene {
     }
 
 
-
-}
-class BoardListener{
-    Position[][] board;
-    BoardListener(Position[][] board){
-        this.board = board;
-
-    }
-    BoardListener(){}
 
 }

@@ -17,7 +17,7 @@ public class Piece_Test {
         Assertions.assertEquals(300,goat.getOldHorizontal());
         Assertions.assertEquals(400,goat.getOldVertical());
         Assertions.assertEquals(Color.BLUE,goat.getPieceColor());
-        Assertions.assertEquals(1,goat.getMoveFactor());
+       // Assertions.assertEquals(1,goat.getMoveFactor());
 
 
 
@@ -31,7 +31,7 @@ public class Piece_Test {
         Assertions.assertEquals(300,tiger.getOldVertical());
         Assertions.assertEquals(200,tiger.getOldHorizontal());
         Assertions.assertEquals(Color.RED,tiger.getPieceColor());
-        Assertions.assertEquals(0,tiger.getMoveFactor());
+      //  Assertions.assertEquals(0,tiger.getMoveFactor());
     }
 
 }
