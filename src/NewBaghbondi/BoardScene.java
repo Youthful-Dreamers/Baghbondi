@@ -2,15 +2,17 @@ package NewBaghbondi;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class BoardScene implements EventHandler<ActionEvent> {
+public class BoardScene{
 
     static final int positionSize = 50;
     private Group positionGroup = new Group();
@@ -24,6 +26,9 @@ public class BoardScene implements EventHandler<ActionEvent> {
 
     Stage boardStage = new Stage();
     Button button = new Button();
+    Button button0 = new Button();
+    Button button1 = new Button();
+    Button button2 = new Button();
 
     private Parent createContent()
     {
@@ -106,23 +111,65 @@ public class BoardScene implements EventHandler<ActionEvent> {
         lineGroup.setVerticalLine3(board[4][0],board[0][4]);
     }
 
-    private Scene createMain()
+
+    private Scene createLanguageOption()
     {
-        button.setText("Start Game");
-        button.setOnAction(this);
+        Label label= new Label("Please select a language:");
 
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
+        button1.setText("Bengali");
+        button1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boardStage.setScene(new Scene(createContent()));
+            }
+        });
 
-        Scene scene = new Scene(layout, 800,600);
+        button2.setText("English");
+        button2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boardStage.setScene(new Scene(createContent()));
+            }
+        });
+
+        VBox vBox= new VBox(5);
+
+        vBox.setAlignment(Pos.CENTER);
+
+        vBox.getChildren().addAll(label,button1,button2);
+
+
+        Scene scene = new Scene(vBox,800,600);
 
         return scene;
     }
 
-    @Override
-    public void handle(ActionEvent event)
+    private Scene createMain()
     {
-        boardStage.setScene(new Scene(createContent()));
+        Label label= new Label("            Welcome!\nPlease select an option:");
+        button.setText("Start Default Game");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boardStage.setScene(new Scene(createContent()));
+            }
+        });
+
+        button0.setText("Language Options");
+        button0.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boardStage.setScene(createLanguageOption());
+            }
+        });
+
+        VBox layout = new VBox(5);
+        layout.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(label,button,button0);
+
+        Scene scene = new Scene(layout, 800,600);
+
+        return scene;
     }
 
 }
