@@ -1,12 +1,16 @@
 package NewBaghbondi;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class BoardScene {
+public class BoardScene implements EventHandler<ActionEvent> {
 
     static final int positionSize = 50;
     private Group positionGroup = new Group();
@@ -17,7 +21,12 @@ public class BoardScene {
     private int horizontalLine = 5;
     private int turn = 0;
     BoardListener listener = new BoardListener(board,pieceGroup);
-    private Parent createContent() {
+
+    Stage boardStage = new Stage();
+    Button button = new Button();
+
+    private Parent createContent()
+    {
         Pane root = new Pane();
         root.setPrefSize(800, 600);
         drawBoard();
@@ -26,14 +35,15 @@ public class BoardScene {
         return root;
     }
 
-    public void boardSceneView() {
-        Stage boardStage = new Stage();
-        boardStage.setScene(new Scene(createContent()));
+    public void boardSceneView()
+    {
+        boardStage.setScene(createMain());
         boardStage.setTitle("BaghBondi");
         boardStage.show();
     }
 
-    private void drawBoard() {
+    private void drawBoard()
+    {
         System.out.println("****************Called drawBoard()****************");
         int skip, skipCounter;
         int i, j;
@@ -57,15 +67,12 @@ public class BoardScene {
                     position.setPiece(piece);
                     pieceGroup.getChildren().add(piece);
                 }
-
-
             }
         }
-
-
     }
 
-    private Position createPosition(int vertical, int horizontal) {
+    private Position createPosition(int vertical, int horizontal)
+    {
         System.out.println("****************Called createPosition()****************");
         Position position = new Position(vertical + verticalLine / 2, horizontal + horizontalLine / 2);
         System.out.println("On board " + (horizontal + horizontalLine / 2) + " " + (vertical + verticalLine / 2));
@@ -74,7 +81,8 @@ public class BoardScene {
         return position;
     }
 
-    private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal) {
+    private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal)
+    {
         System.out.println("-----Called makePiece()-----");
         Piece piece;
         if(pieceTypeEnum==PieceTypeEnum.TIGER)
@@ -98,6 +106,23 @@ public class BoardScene {
         lineGroup.setVerticalLine3(board[4][0],board[0][4]);
     }
 
+    private Scene createMain()
+    {
+        button.setText("Start Game");
+        button.setOnAction(this);
 
+        StackPane layout = new StackPane();
+        layout.getChildren().add(button);
+
+        Scene scene = new Scene(layout, 800,600);
+
+        return scene;
+    }
+
+    @Override
+    public void handle(ActionEvent event)
+    {
+        boardStage.setScene(new Scene(createContent()));
+    }
 
 }
