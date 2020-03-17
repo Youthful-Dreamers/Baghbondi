@@ -146,7 +146,7 @@ public class BoardScene{
 
     private Scene createMain()
     {
-        Label label= new Label("            Welcome!\nPlease select an option:");
+        Label label= new Label("           Welcome!\nPlease select an option:");
         button.setText("Start Default Game");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
