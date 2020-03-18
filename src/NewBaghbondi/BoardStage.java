@@ -23,28 +23,25 @@ public class BoardStage {
     private int horizontalLine = 5;
     private int turn = 0;
 
-    BoardListener listener = new BoardListener(board,pieceGroup);
+    BoardListener listener = new BoardListener(board, pieceGroup);
     Stage boardStage = new Stage();
 
-    private Parent createContent()
-    {
+    private Parent createContent() {
         Pane root = new Pane();
         root.setPrefSize(800, 600);
         drawBoard();
         drawLine();
-        root.getChildren().addAll(positionGroup, pieceGroup,lineGroup.getLineGroup());
+        root.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
         return root;
     }
 
-    public void boardStage()
-    {
-        boardStage.setScene(createMainScene());
+    public void boardStage() {
+        boardStage.setScene(new Scene(createContent()));
         boardStage.setTitle("BaghBondi");
         boardStage.show();
     }
 
-    private void drawBoard()
-    {
+    private void drawBoard() {
         System.out.println("****************Called drawBoard()****************");
         int skip, skipCounter;
         int i, j;
@@ -58,7 +55,7 @@ public class BoardStage {
                 Piece piece = null;
                 if (i >= 0) {
                     piece = makePiece(PieceTypeEnum.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
-                    System.out.println("Making piece type :: goat: "+position.getLayoutX()+","+position.getLayoutY());
+                    System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
 
                 } else if (i == -1 && j == 0) {
                     piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
@@ -72,8 +69,7 @@ public class BoardStage {
         }
     }
 
-    private Position createPosition(int vertical, int horizontal)
-    {
+    private Position createPosition(int vertical, int horizontal) {
         System.out.println("****************Called createPosition()****************");
         Position position = new Position(vertical + verticalLine / 2, horizontal + horizontalLine / 2);
         System.out.println("On board " + (horizontal + horizontalLine / 2) + " " + (vertical + verticalLine / 2));
@@ -82,38 +78,35 @@ public class BoardStage {
         return position;
     }
 
-    private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal)
-    {
+    private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal) {
         System.out.println("-----Called makePiece()-----");
         Piece piece;
-        if(pieceTypeEnum==PieceTypeEnum.TIGER)
-         piece = new Tiger(vertical, horizontal);
+        if (pieceTypeEnum == PieceTypeEnum.TIGER)
+            piece = new Tiger(vertical, horizontal);
         else
-            piece = new Goat(vertical,horizontal);
+            piece = new Goat(vertical, horizontal);
         listener.addMouseReleaseOptions(piece);
         return piece;
 
     }
 
 
-    private void drawLine()
-    {
-        lineGroup.setHorizontalLine1(board[0][0],board[4][0]);
-        lineGroup.setHorizontalLine2(board[1][1],board[3][1]);
-        lineGroup.setHorizontalLine3(board[1][3],board[3][3]);
-        lineGroup.setHorizontalLine4(board[0][4],board[4][4]);
-        lineGroup.setVerticalLine1(board[0][0],board[4][4]);
-        lineGroup.setVerticalLine2(board[2][0],board[2][4]);
-        lineGroup.setVerticalLine3(board[4][0],board[0][4]);
+    private void drawLine() {
+        lineGroup.setHorizontalLine1(board[0][0], board[4][0]);
+        lineGroup.setHorizontalLine2(board[1][1], board[3][1]);
+        lineGroup.setHorizontalLine3(board[1][3], board[3][3]);
+        lineGroup.setHorizontalLine4(board[0][4], board[4][4]);
+        lineGroup.setVerticalLine1(board[0][0], board[4][4]);
+        lineGroup.setVerticalLine2(board[2][0], board[2][4]);
+        lineGroup.setVerticalLine3(board[4][0], board[0][4]);
     }
 
 
-    private Scene createMainScene()
-    {
+    private Scene createMainScene() {
         Button button = new Button();
         Button button0 = new Button();
 
-        Label label= new Label("           Welcome!\nPlease select an option:");
+        Label label = new Label("           Welcome!\nPlease select an option:");
         button.setText("Start Default Game");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -132,19 +125,18 @@ public class BoardStage {
 
         VBox layout = new VBox(5);
         layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label,button,button0);
+        layout.getChildren().addAll(label, button, button0);
 
-        Scene scene = new Scene(layout, 800,600);
+        Scene scene = new Scene(layout, 800, 600);
 
         return scene;
     }
 
-    private Scene createSceneLanguageOption()
-    {
+    private Scene createSceneLanguageOption() {
         Button button1 = new Button();
         Button button2 = new Button();
 
-        Label label= new Label("Please select a language:");
+        Label label = new Label("Please select a language:");
 
         button1.setText("Bengali");
         button1.setOnAction(new EventHandler<ActionEvent>() {
@@ -162,22 +154,22 @@ public class BoardStage {
             }
         });
 
-        VBox vBox= new VBox(5);
+        VBox vBox = new VBox(5);
 
         vBox.setAlignment(Pos.CENTER);
 
-        vBox.getChildren().addAll(label,button1,button2);
+        vBox.getChildren().addAll(label, button1, button2);
 
 
-        Scene scene = new Scene(vBox,800,600);
+        Scene scene = new Scene(vBox, 800, 600);
 
         return scene;
     }
 
-    private Scene createGameScene()
-    {
+    private Scene createGameScene() {
         Scene gameScene = new Scene(createContent());
         return gameScene;
     }
 
 }
+
