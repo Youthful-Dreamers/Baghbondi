@@ -104,7 +104,10 @@ public class BoardListener{
                 }
                 else if((oldVertical==1) || (oldVertical==3)) {
                     if((oldHorizontal==1) || (oldHorizontal==3)) {
-                        if(newHorizontal==0 || newHorizontal==4) {
+                        if((newHorizontal==2) && (newVertical==2)) {
+                            return new MoveResult(MoveType.NORMAL);
+                        }
+                        else if(newHorizontal==0 || newHorizontal==4) {
                             return new MoveResult(MoveType.NORMAL);
                         }
                     }
