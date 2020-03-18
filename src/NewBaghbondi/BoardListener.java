@@ -119,7 +119,7 @@ public class BoardListener{
             if(piece.getPieceTypeEnum()== PieceTypeEnum.TIGER)
             {
                 System.out.println(line+"  "+killValue);
-                if (line == 2 || line == killValue)
+                if (line == 2 || line == killValue || line==4)
                 {
                     int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
                     int killedY = oldVertical + (newVertical - oldVertical)/ 2;
