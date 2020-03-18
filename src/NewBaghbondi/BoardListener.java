@@ -57,12 +57,11 @@ public class BoardListener{
                     }
                 }
         );
-
-
 }
 
 
-    private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical) {
+    private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical)
+    {
 
         if (newVertical > 4 || newHorizontal > 4){
             System.out.println("Out of board selection");
@@ -82,6 +81,7 @@ public class BoardListener{
 
         double line = Math.sqrt((newVertical - oldVertical) * (newVertical- oldVertical) + (newHorizontal - oldHorizontal) * (newHorizontal - oldHorizontal));
         double value = Math.sqrt(2);
+        double killValue = 2*Math.sqrt(2);
 
         if (oldVertical == 0 || oldVertical == 4) {
             if (oldHorizontal == 0 || oldHorizontal == 4) {
@@ -115,18 +115,23 @@ public class BoardListener{
             }
         }
 
-         /*if (Math.abs((newVertical - oldVertical))== 2 ^
-                Math.abs(newHorizontal - oldHorizontal) ==2) {
-            System.out.println(piece.getPieceTypeEnum());
+            ///System.out.println(piece.getPieceTypeEnum());
             if(piece.getPieceTypeEnum()== PieceTypeEnum.TIGER)
-            { int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
-                System.out.println("Killed");
-                int killedY = oldVertical + (newVertical - oldVertical)/ 2;
-                if (board[killedX][killedY].hasPiece()) {
-                    return new MoveResult(MoveType.KILL, board[killedX][killedY].getPiece());}
+            {
+                System.out.println(line+"  "+killValue);
+                if (line == 2 || line == killValue)
+                {
+                    int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
+                    int killedY = oldVertical + (newVertical - oldVertical)/ 2;
+                    ///System.out.println("Killed");
+
+                    if (board[killedX][killedY].hasPiece())
+                    {
+                        return new MoveResult(MoveType.KILL, board[killedX][killedY].getPiece());
+                    }
+                }
+                else { System.out.println("Goat can't kill"); }
             }
-            else System.out.println("Goat can't kill");
-        }*/
 
         return new MoveResult(MoveType.NONE);
     }
