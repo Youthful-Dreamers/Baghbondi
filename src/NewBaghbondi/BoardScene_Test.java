@@ -3,7 +3,7 @@ package NewBaghbondi;
 import org.junit.jupiter.api.Test;
 
 public class BoardScene_Test {
-    BoardScene boardScene = new BoardScene();
+    BoardStage boardScene = new BoardStage();
     @Test
     private void undefined()
     {

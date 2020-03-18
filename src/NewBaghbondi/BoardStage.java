@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class BoardScene{
+public class BoardStage {
 
     static final int positionSize = 50;
     private Group positionGroup = new Group();
@@ -22,13 +22,9 @@ public class BoardScene{
     private int verticalLine = 5;
     private int horizontalLine = 5;
     private int turn = 0;
-    BoardListener listener = new BoardListener(board,pieceGroup);
 
+    BoardListener listener = new BoardListener(board,pieceGroup);
     Stage boardStage = new Stage();
-    Button button = new Button();
-    Button button0 = new Button();
-    Button button1 = new Button();
-    Button button2 = new Button();
 
     private Parent createContent()
     {
@@ -40,9 +36,9 @@ public class BoardScene{
         return root;
     }
 
-    public void boardSceneView()
+    public void boardStage()
     {
-        boardStage.setScene(createMain());
+        boardStage.setScene(createMainScene());
         boardStage.setTitle("BaghBondi");
         boardStage.show();
     }
@@ -112,15 +108,49 @@ public class BoardScene{
     }
 
 
-    private Scene createLanguageOption()
+    private Scene createMainScene()
     {
+        Button button = new Button();
+        Button button0 = new Button();
+
+        Label label= new Label("           Welcome!\nPlease select an option:");
+        button.setText("Start Default Game");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boardStage.setScene(new Scene(createContent()));
+            }
+        });
+
+        button0.setText("Language Options");
+        button0.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boardStage.setScene(createSceneLanguageOption());
+            }
+        });
+
+        VBox layout = new VBox(5);
+        layout.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(label,button,button0);
+
+        Scene scene = new Scene(layout, 800,600);
+
+        return scene;
+    }
+
+    private Scene createSceneLanguageOption()
+    {
+        Button button1 = new Button();
+        Button button2 = new Button();
+
         Label label= new Label("Please select a language:");
 
         button1.setText("Bengali");
         button1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                boardStage.setScene(new Scene(createContent()));
+                boardStage.setScene(createGameScene());
             }
         });
 
@@ -144,32 +174,10 @@ public class BoardScene{
         return scene;
     }
 
-    private Scene createMain()
+    private Scene createGameScene()
     {
-        Label label= new Label("           Welcome!\nPlease select an option:");
-        button.setText("Start Default Game");
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                boardStage.setScene(new Scene(createContent()));
-            }
-        });
-
-        button0.setText("Language Options");
-        button0.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                boardStage.setScene(createLanguageOption());
-            }
-        });
-
-        VBox layout = new VBox(5);
-        layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label,button,button0);
-
-        Scene scene = new Scene(layout, 800,600);
-
-        return scene;
+        Scene gameScene = new Scene(createContent());
+        return gameScene;
     }
 
 }

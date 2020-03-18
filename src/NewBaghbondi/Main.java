@@ -11,7 +11,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        new BoardScene().boardSceneView();
+        new BoardStage().boardStage();
     }
 
     public static void main(String[] args)

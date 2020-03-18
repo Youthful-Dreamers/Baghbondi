@@ -62,8 +62,8 @@ public abstract class Piece extends StackPane {
     public void move(int horizontal, int vertical)
     {
 
-        oldHorizontal=horizontal*BoardScene.positionSize*2;
-        oldVertical =vertical*BoardScene.positionSize*2;
+        oldHorizontal=horizontal*BoardStage.positionSize*2;
+        oldVertical =vertical*BoardStage.positionSize*2;
         System.out.println(("While inserting "+horizontal+" "+vertical));
         System.out.println(oldHorizontal+" "+oldVertical);
         pieceRelocate(oldHorizontal,oldVertical);

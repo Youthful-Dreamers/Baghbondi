@@ -12,7 +12,7 @@ public class BoardListener{
     }
     private int pixelToBoard(double pixel) {
         //System.out.println("Layout Pixel is:"+pixel);
-        return (int) pixel / (BoardScene.positionSize * 2);
+        return (int) pixel / (BoardStage.positionSize * 2);
     }
 
     public void addMouseReleaseOptions(Piece piece) {

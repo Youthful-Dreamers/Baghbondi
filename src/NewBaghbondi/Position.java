@@ -24,7 +24,7 @@ public class Position extends Circle {
         this.horizontal =horizontal;
         this.vertical=vertical;
         setRadius(40);
-        relocate(horizontal*BoardScene.positionSize*2+10,vertical*BoardScene.positionSize*2+10);
+        relocate(horizontal*BoardStage.positionSize*2+10,vertical*BoardStage.positionSize*2+10);
         setFill(Color.VIOLET);
     }
 }
