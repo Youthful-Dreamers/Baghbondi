@@ -80,12 +80,32 @@ public class BoardListener{
         System.out.println("Try move to(" + newHorizontal + ", " + newVertical+") from ("+oldHorizontal+","+oldVertical+")");
         System.out.println("New Hz - Old Hz = "+ (newHorizontal-oldHorizontal) +"\nNew Vr - Old Vr = "+ (newVertical-oldVertical));
 
-        if (((Math.abs(newVertical - oldVertical) == 1)
-                || (Math.abs(newHorizontal-oldHorizontal) == 1))) {
-            return new MoveResult(MoveType.NORMAL);
+        double line = Math.sqrt((newVertical - oldVertical) * (newVertical- oldVertical) + (newHorizontal - oldHorizontal) * (newHorizontal - oldHorizontal));
+        double value = Math.sqrt(2);
 
+        if (oldVertical == 0 || oldVertical == 4) {
+            if (oldHorizontal == 0 || oldHorizontal == 4) {
+                if (line == 2.0 || line == value) {
+                    return new MoveResult(MoveType.NORMAL);
+                }
+            }
+            else if (oldHorizontal == 2) {
+                if ((Math.abs(newHorizontal - oldHorizontal) == 2.0) || line == 1.0) {
+                    return new MoveResult(MoveType.NORMAL);
+                }
+            }
+        } else {
+            if (line == 1.0) {
+                return new MoveResult(MoveType.NORMAL);
+            }
+            else if(line == value){
+                if((newVertical!=0) && (newVertical!=4)) {
+                    return new MoveResult(MoveType.NORMAL);
+                }
+            }
+        }
 
-        } else if (Math.abs((newVertical - oldVertical))== 2 ^
+         /*if (Math.abs((newVertical - oldVertical))== 2 ^
                 Math.abs(newHorizontal - oldHorizontal) ==2) {
             System.out.println(piece.getPieceTypeEnum());
             if(piece.getPieceTypeEnum()== PieceTypeEnum.TIGER)
@@ -96,11 +116,8 @@ public class BoardListener{
                     return new MoveResult(MoveType.KILL, board[killedX][killedY].getPiece());}
             }
             else System.out.println("Goat can't kill");
+        }*/
 
-
-        }
         return new MoveResult(MoveType.NONE);
-
-
     }
 }
