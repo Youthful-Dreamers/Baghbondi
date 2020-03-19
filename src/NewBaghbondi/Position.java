@@ -8,8 +8,7 @@ public class Position extends Circle {
 
     private Piece piece;
     boolean hasPiece(){
-        if(piece!=null) return  true;
-        else return false;
+        return piece != null;
     }
 
     public Piece getPiece() {
