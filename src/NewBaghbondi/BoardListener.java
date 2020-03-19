@@ -118,8 +118,21 @@ public class BoardListener{
             ///System.out.println(piece.getPieceTypeEnum());
             if(piece.getPieceTypeEnum()== PieceTypeEnum.TIGER)
             {
-                System.out.println(line+"  "+killValue);
-                if (line == 2 || line == killValue || line==4)
+                if(oldVertical==0||oldVertical==4)
+                {
+                    if(line==4)
+                    {
+                        int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
+                        int killedY = oldVertical + (newVertical - oldVertical)/ 2;
+                        ///System.out.println("Killed");
+
+                        if (board[killedX][killedY].hasPiece())
+                        {
+                            return new MoveResult(MoveType.KILL, board[killedX][killedY].getPiece());
+                        }
+                    }
+                }
+                if (line == 2 || line == killValue)
                 {
                     int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
                     int killedY = oldVertical + (newVertical - oldVertical)/ 2;
