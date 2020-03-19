@@ -54,9 +54,8 @@ public abstract class Piece extends StackPane {
         pieceCircle.setFill(color);
         pieceCircle.setRadius(20);
     }
-    public PieceTypeEnum getType(){
-        return type;
-    }
+
+     public PieceTypeEnum getType() {return type;}
 
 
     public void move(int horizontal, int vertical)
