@@ -26,6 +26,7 @@ public class Menu {
             @Override
             public void handle(ActionEvent event) {
                 new BoardStage().boardStage();
+                stage.close();
             }
         });
 
