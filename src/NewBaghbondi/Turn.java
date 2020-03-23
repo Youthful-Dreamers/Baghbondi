@@ -6,15 +6,15 @@ import org.junit.jupiter.api.Test;
 public class Turn{
 
   enum TurnType {
-      PLAYER1,PLAYER2
+      TIGER_TURN,GOAT_TURN
   }
   TurnType turn;
-  Turn(TurnType turn){
-      this.turn = turn;
+  Turn(TurnType firstTurn){
+      turn = firstTurn;
   }
   void changeTurn(){
-      turn = (turn == TurnType.PLAYER1)?
-              TurnType.PLAYER2 : TurnType.PLAYER1;
+      turn = (turn == TurnType.TIGER_TURN)?
+              TurnType.GOAT_TURN : TurnType.TIGER_TURN;
   }
 
     public TurnType getTurn() {
@@ -25,10 +25,10 @@ class TurnTest{
 
     @Test
     void testChangeTurn(){
-        Turn turn = new Turn(Turn.TurnType.PLAYER1);
-        Assertions.assertEquals(Turn.TurnType.PLAYER1,turn.getTurn());
+        Turn turn = new Turn(Turn.TurnType.TIGER_TURN);
+        Assertions.assertEquals(Turn.TurnType.TIGER_TURN,turn.getTurn());
         turn.changeTurn();
-        Assertions.assertEquals(Turn.TurnType.PLAYER2,turn.getTurn());
+        Assertions.assertEquals(Turn.TurnType.GOAT_TURN,turn.getTurn());
     }
 
 }

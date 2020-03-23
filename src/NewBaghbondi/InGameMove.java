@@ -4,7 +4,8 @@ import javafx.scene.Group;
 import javafx.stage.Stage;
 
 public class InGameMove {
-    int turn=0;
+
+    Turn turn = new Turn(Turn.TurnType.GOAT_TURN);
     Position[][] board;
     Group pieceGroup;
     Stage boardStage;
@@ -20,14 +21,16 @@ public class InGameMove {
         int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
         int newVertical = pixelToBoard(piece.getLayoutY());
         int oldVertical = pixelToBoard(piece.getOldVertical());
-        System.out.println("Turn of :: "+turn);
+        System.out.println("Turn of :: "+turn.getTurn());
         MoveResult result = tryMove(piece, newHorizontal, newVertical);
-        if(turn == 0){
+
+        if (turn.getTurn()== Turn.TurnType.GOAT_TURN){
             if (piece.getPieceType()== PieceTypeEnum.TIGER){piece.abortMove(); return false;}
         }
-        else if(turn==1) {
-            if(!(piece.getPieceType()==PieceTypeEnum.TIGER)){piece.abortMove(); return false;}
+        else if(turn.getTurn()==Turn.TurnType.TIGER_TURN){
+            if (piece.getPieceType()== PieceTypeEnum.GOAT){piece.abortMove(); return false;}
         }
+
 
 
         switch (result.getType()) {
@@ -42,9 +45,10 @@ public class InGameMove {
                 System.out.println("Normal move from:: " + oldHorizontal + ", " + oldVertical);
                 board[oldHorizontal][oldVertical].setPiece(null);
                 board[newHorizontal][newVertical].setPiece(piece);
-                System.out.println("Normal move: preturn "+turn);
-                turn = (turn+1)%2;
-                System.out.println("Normal move: turn "+turn);
+                System.out.println("Normal move: preturn "+turn.getTurn());
+                turn.changeTurn();
+              //  turnTy = (turnTy+1)%2;
+                System.out.println("Normal move: turn "+turn.getTurn());
                 return true;
              //   break;
             case KILL:
@@ -55,7 +59,8 @@ public class InGameMove {
                 Piece killedPiece = result.getPiece();
                 board[pixelToBoard(killedPiece.getOldHorizontal())][pixelToBoard(killedPiece.getOldVertical())].setPiece(null);
                 pieceGroup.getChildren().remove(killedPiece);
-                turn = (turn+1)%2;
+                turn.changeTurn();
+                //turnTy = (turnTy+1)%2;
                 return true;
 
 
