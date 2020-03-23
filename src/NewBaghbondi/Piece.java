@@ -11,8 +11,7 @@ public abstract class Piece extends StackPane {
     private PieceTypeEnum type;
     private int offset=30;
     Circle pieceCircle = new Circle();
-    Piece piece;
-    Piece(){}
+
 
 
     public PieceTypeEnum getPieceTypeEnum() {
@@ -86,11 +85,7 @@ public abstract class Piece extends StackPane {
         y+=offset;
         super.relocate(x, y);
     }
-   int getMoveFactor(){
-        int centralVertical = 2;
-        return (int)Math.abs(oldVertical/100-centralVertical);
 
-    }
     abstract Color getPieceColor();
     abstract PieceTypeEnum getPieceType();
 
