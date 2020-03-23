@@ -3,15 +3,18 @@ package NewBaghbondi;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Menu {
+public class BoardScene {
     Stage stage;
-    Menu(Stage stage){
+    BoardScene(Stage stage){
         this.stage = stage;
 
     }
@@ -34,7 +37,7 @@ public class Menu {
         button0.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               stage.setScene(createSceneLanguageOption());
+                stage.setScene(createSceneLanguageOption());
             }
         });
 
@@ -83,4 +86,33 @@ public class Menu {
         return scene;
     }
 
+    public Scene gameOverScene()
+    {
+        Label label= new Label("Game Over!");
+        label.setFont(new Font("Arial",30));
+        label.setTextFill(Color.web("#228b22",1.0));
+
+        String type;
+
+        if(true){
+            type = "Tiger";
+        }
+        else{
+            type = "Goat";
+        }
+
+        Label label2 = new Label(type+" has won the game!!");
+        label2.setFont(new Font("Arial",35));
+        label2.setTextFill(Color.web("#ff4500",1.0));
+
+        VBox vBox= new VBox(5);
+
+        vBox.setAlignment(Pos.CENTER);
+
+        vBox.getChildren().addAll(label, label2);
+
+        Scene scene = new Scene(vBox,800,600);
+
+        return scene;
+    }
 }

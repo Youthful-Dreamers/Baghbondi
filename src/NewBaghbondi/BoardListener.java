@@ -9,23 +9,21 @@ public class BoardListener{
     Group pieceGroup;
     InGameMove inGameMove;
 
-    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup){
-    this.board = board;
-    this.pieceGroup = pieceGroup;
+    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup)
+    {
+        this.board = board;
+        this.pieceGroup = pieceGroup;
 
-    inGameMove = new InGameMove(this.board,this.pieceGroup,boardStage);
-
+        inGameMove = new InGameMove(this.board,this.pieceGroup,boardStage);
     }
-
 
 
     public void addMouseReleaseOptions(Piece piece) {
         piece.setOnMouseReleased(e -> {
                   inGameMove.makeMove(piece);
-
                 }
         );
-}
+    }
 
 }
 
