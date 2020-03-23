@@ -1,15 +1,18 @@
 package NewBaghbondi;
 
 import javafx.scene.Group;
+import javafx.stage.Stage;
 
 public class InGameMove {
     int turn=0;
     Position[][] board;
     Group pieceGroup;
+    Stage boardStage;
 
-    InGameMove(Position[][] board, Group pieceGroup){
+    InGameMove(Position[][] board, Group pieceGroup, Stage boardStage){
         this.board = board;
         this.pieceGroup = pieceGroup;
+        this.boardStage = boardStage;
     }
     public boolean makeMove(Piece piece) {
         System.out.println("-----Called makePiece() on mouse-----");
@@ -263,3 +266,4 @@ public class InGameMove {
         return false;
     }
 }
+
