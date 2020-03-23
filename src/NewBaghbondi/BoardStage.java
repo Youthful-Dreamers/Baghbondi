@@ -23,8 +23,9 @@ public class BoardStage {
     private int horizontalLine = 5;
     private int turn = 0;
 
-    BoardListener listener = new BoardListener(board, pieceGroup);
     Stage boardStage = new Stage();
+    BoardListener listener = new BoardListener(boardStage,board, pieceGroup);
+
 
     private Parent createContent() {
         Pane root = new Pane();

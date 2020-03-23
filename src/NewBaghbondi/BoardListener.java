@@ -1,24 +1,28 @@
 package NewBaghbondi;
 
 import javafx.scene.Group;
-import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class BoardListener{
-    int turn=0;
+
     Position[][] board;
     Group pieceGroup;
+    InGameMove inGameMove;
 
-    BoardListener(Position[][] board, Group pieceGroup){
+    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup){
     this.board = board;
     this.pieceGroup = pieceGroup;
+
+    inGameMove = new InGameMove(this.board,this.pieceGroup,boardStage);
+
     }
 
 
 
     public void addMouseReleaseOptions(Piece piece) {
         piece.setOnMouseReleased(e -> {
-                   if(new InGame(board,pieceGroup).makeMove(piece,turn))
-                       turn=(turn+1)%2;
+                  inGameMove.makeMove(piece);
+
                 }
         );
 }
