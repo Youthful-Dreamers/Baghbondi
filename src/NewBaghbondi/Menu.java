@@ -12,9 +12,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class BoardScene {
+public class Menu {
     Stage stage;
-    BoardScene(Stage stage){
+    Menu(Stage stage){
         this.stage = stage;
 
     }
