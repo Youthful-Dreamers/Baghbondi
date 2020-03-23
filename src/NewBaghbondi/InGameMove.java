@@ -2,16 +2,16 @@ package NewBaghbondi;
 
 import javafx.scene.Group;
 
-public class InGame{
-   // int turn=0;
+public class InGameMove {
+    int turn=0;
     Position[][] board;
     Group pieceGroup;
 
-    InGame(Position[][] board, Group pieceGroup){
+    InGameMove(Position[][] board, Group pieceGroup){
         this.board = board;
         this.pieceGroup = pieceGroup;
     }
-    public boolean makeMove(Piece piece, int turn) {
+    public boolean makeMove(Piece piece) {
         System.out.println("-----Called makePiece() on mouse-----");
         int newHorizontal = pixelToBoard(piece.getLayoutX());
         int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
@@ -52,6 +52,7 @@ public class InGame{
                 Piece killedPiece = result.getPiece();
                 board[pixelToBoard(killedPiece.getOldHorizontal())][pixelToBoard(killedPiece.getOldVertical())].setPiece(null);
                 pieceGroup.getChildren().remove(killedPiece);
+                turn = (turn+1)%2;
                 return true;
 
 
