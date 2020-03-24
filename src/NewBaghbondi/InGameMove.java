@@ -85,9 +85,8 @@ public class InGameMove {
                 //turnTy = (turnTy+1)%2;
                 movementMade = true;
                 break;
-
-
         }
+
         if (gameOverWorks.tigerWinCase()) return false;
         return movementMade;
     }
@@ -244,10 +243,13 @@ class GameOverWorks {
                 }
                 return k;
             } else if (horizontal == 2 && (vertical == 0 || vertical == 4)) {
-                k = board[0][vertical].hasPiece() && board[4][vertical].hasPiece();
+                //System.out.println("label3");
+                k = (board[0][vertical].hasPiece() && board[4][vertical].hasPiece())&& board[2][2].hasPiece();
 
                 if (vertical == 0) k = k && board[2][1].hasPiece();
                 else k = k && board[2][3].hasPiece();
+
+                //System.out.println("label3");
 
                 return k;
 

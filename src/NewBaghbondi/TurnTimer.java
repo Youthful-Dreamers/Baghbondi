@@ -33,8 +33,5 @@ class TestTimer{
         System.out.println("ok ok");
        // Scanner sc = new Scanner(System.in);
         //sc.nextInt();
-
-
-
     }
 }

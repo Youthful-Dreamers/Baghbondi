@@ -85,34 +85,4 @@ public class Menu {
 
         return scene;
     }
-
-    public Scene gameOverScene()
-    {
-        Label label= new Label("Game Over!");
-        label.setFont(new Font("Arial",30));
-        label.setTextFill(Color.web("#228b22",1.0));
-
-        String type;
-
-        if(true){
-            type = "Tiger";
-        }
-        else{
-            type = "Goat";
-        }
-
-        Label label2 = new Label(type+" has won the game!!");
-        label2.setFont(new Font("Arial",35));
-        label2.setTextFill(Color.web("#ff4500",1.0));
-
-        VBox vBox= new VBox(5);
-
-        vBox.setAlignment(Pos.CENTER);
-
-        vBox.getChildren().addAll(label, label2);
-
-        Scene scene = new Scene(vBox,800,600);
-
-        return scene;
-    }
 }
