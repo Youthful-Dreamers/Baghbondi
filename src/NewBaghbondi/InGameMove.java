@@ -48,12 +48,15 @@ public class InGameMove {
 
         // if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
         if (gameOverWorks.goatWinCase(piece)) return false;
+
+        boolean movementMade = false;
+
         switch (result.getType()) {
             case NONE:
                 System.out.println("MoveResult : None ");
                 //if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                 piece.abortMove();
-                return false;
+                break;
             //break
             case NORMAL:
                 System.out.println("MoveResult : Normal ");
@@ -66,8 +69,8 @@ public class InGameMove {
                 turn.changeTurn();
                 //  turnTy = (turnTy+1)%2;
                 System.out.println("Normal move: turn " + turn.getTurn());
-                return true;
-            //   break;
+                movementMade = true;
+                break;
             case KILL:
                 System.out.println("MoveResult : Kill ");
                 piece.move(newHorizontal, newVertical);
@@ -78,13 +81,15 @@ public class InGameMove {
                 pieceGroup.getChildren().remove(killedPiece);
                 //    if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                 turn.changeTurn();
-                Goat.goatEliminate();
+                gameOverWorks.killGoat();
                 //turnTy = (turnTy+1)%2;
-                return true;
+                movementMade = true;
+                break;
 
 
         }
-        return false;
+        if (gameOverWorks.tigerWinCase()) return false;
+        return movementMade;
     }
 
     private int pixelToBoard(double pixel) {
