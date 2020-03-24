@@ -15,11 +15,12 @@ public class InGameMove {
     Position[][] board;
     Group pieceGroup;
     Stage boardStage;
-
+    GameOverWorks gameOverWorks;
     InGameMove(Position[][] board, Group pieceGroup, Stage boardStage) {
         this.board = board;
         this.pieceGroup = pieceGroup;
         this.boardStage = boardStage;
+        gameOverWorks = new GameOverWorks(boardStage, board);
     }
 
     public boolean makeMove(Piece piece) {
@@ -46,7 +47,7 @@ public class InGameMove {
         }
 
         // if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
-        if (new GameOver(boardStage, board).goatWinCase(piece)) return false;
+        if (gameOverWorks.goatWinCase(piece)) return false;
         switch (result.getType()) {
             case NONE:
                 System.out.println("MoveResult : None ");
@@ -184,11 +185,13 @@ public class InGameMove {
     }
 }
 
-class GameOver {
+class GameOverWorks {
     Stage boardStage;
     Position[][] board;
+    int numberOfGoat = 7;
+    int minimumNumberOfGoats = 1;
 
-    GameOver(Stage boardStage, Position[][] board) {
+    GameOverWorks(Stage boardStage, Position[][] board) {
         this.boardStage = boardStage;
         this.board = board;
     }
@@ -200,7 +203,16 @@ class GameOver {
         }
         return false;
     }
-
+    public void killGoat(){
+        numberOfGoat--;
+    }
+    public boolean tigerWinCase(){
+        if (numberOfGoat<minimumNumberOfGoats) {
+            boardStage.setScene(gameOverScene(true));
+            return true;
+        }
+        return false;
+    }
     private boolean endTigerGame(Piece piece) {
         int i, j, horizontal, vertical, vertical0, horizontal0;
         boolean k = true, k1 = true;
