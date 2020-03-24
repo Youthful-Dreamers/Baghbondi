@@ -236,7 +236,7 @@ public class InGameMove {
                 else {vertical0=1;}
 
 
-                /// System.out.println(board[horizontal0][vertical0].hasPiece());
+
 
                 k = (board[horizontal0][vertical0].hasPiece() && board[2][vertical].hasPiece()) && board[2][2].hasPiece() ;
 
