@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 public class BoardStage {
 
     static final int positionSize = 50;
@@ -27,9 +28,10 @@ public class BoardStage {
     BoardListener listener = new BoardListener(boardStage,board, pieceGroup);
 
 
-    private Parent createContent() {
+    private Parent createContent()
+    {
         Pane root = new Pane();
-        root.setPrefSize(800, 600);
+        root.setPrefSize(800, 700);
         drawBoard();
         drawLine();
         root.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
