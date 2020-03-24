@@ -60,16 +60,19 @@ public class InGameMove {
                 board[pixelToBoard(killedPiece.getOldHorizontal())][pixelToBoard(killedPiece.getOldVertical())].setPiece(null);
                 pieceGroup.getChildren().remove(killedPiece);
                 turn.changeTurn();
-                //turnTy = (turnTy+1)%2;
+                Goat.goatEliminate();
+            //turnTy = (turnTy+1)%2;
                 return true;
 
 
         }
         return false;
     }
+
     private int pixelToBoard(double pixel) {
         return (int) pixel / (BoardStage.positionSize * 2);
     }
+
     private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical) {
 
         if (newVertical > 4 || newHorizontal > 4){
