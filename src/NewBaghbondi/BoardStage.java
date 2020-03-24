@@ -1,15 +1,9 @@
 package NewBaghbondi;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -31,7 +25,7 @@ public class BoardStage {
     private Parent createContent()
     {
         Pane root = new Pane();
-        root.setPrefSize(800, 700);
+        root.setPrefSize(500, 500);
         drawBoard();
         drawLine();
         root.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());

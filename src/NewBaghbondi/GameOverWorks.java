@@ -43,7 +43,7 @@ public class GameOverWorks {
         horizontal = (int) piece.getOldHorizontal() / 100;
         vertical = (int) piece.getOldVertical() / 100;
 
-        System.out.println(horizontal + " ,hi " + vertical);
+        //System.out.println(horizontal + " ,hi " + vertical);
 
         if (piece.getPieceTypeEnum() == PieceTypeEnum.TIGER) {
             //System.out.println("label1");
@@ -128,9 +128,10 @@ public class GameOverWorks {
         return false;
     }
 
+
     private Scene gameOverScene(boolean tigerWin) {
         Label label = new Label("Game Over!");
-        label.setFont(new Font("Arial", 30));
+        label.setFont(new Font("Arial", 25));
         label.setTextFill(Color.web("#228b22", 1.0));
 
         String type;
@@ -142,7 +143,7 @@ public class GameOverWorks {
         }
 
         Label label2 = new Label(type + " has won the game!!");
-        label2.setFont(new Font("Arial", 35));
+        label2.setFont(new Font("Arial", 30));
         label2.setTextFill(Color.web("#ff4500", 1.0));
 
         VBox vBox = new VBox(5);
@@ -151,10 +152,9 @@ public class GameOverWorks {
 
         vBox.getChildren().addAll(label, label2);
 
-        Scene scene = new Scene(vBox, 800, 600);
+        Scene scene = new Scene(vBox, 500, 500);
 
         return scene;
     }
-
 
 }
