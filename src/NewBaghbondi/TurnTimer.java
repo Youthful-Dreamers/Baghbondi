@@ -1,37 +1,49 @@
 package NewBaghbondi;
 
-import org.junit.jupiter.api.Test;
 
-import java.util.Scanner;
+import javafx.stage.Stage;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TurnTimer{
-                Turn turn;
-                Timer goatTimer = new Timer();
-                Timer tigerTimer = new Timer();
-                TimerTask task = new TimeCounter();
-                void runGoatTimer(){
-                    System.out.println("..........aaaaaaaa");
-                    goatTimer.schedule(task,100,1000);
-                }
+public class TurnTimer {
+    Turn turn;
+    Stage boardStage;
+    int maximumTime = 5;
 
+    TurnTimer(Stage boardStage, Turn turn) {
+        this.boardStage = boardStage;
+        this.turn = turn;
+        startTimer();
+    }
 
-        }
-class TimeCounter extends TimerTask{
+    Timer timer = new Timer();
+    TimerTask task = new TimerTask() {
+        int goatTime = maximumTime;
+        int tigerTime = maximumTime;
 
         @Override
         public void run() {
-            System.out.println("..........");
+            if (turn.getTurn() == Turn.TurnType.GOAT_TURN) {
+                goatTime--;
+
+                System.out.println("Goat Timer says "+goatTime);
+            }
+            else if (turn.getTurn() == Turn.TurnType.TIGER_TURN) tigerTime--;
+            if (goatTime == 1) {
+            //    boardStage.setScene(new GameOverWorks(boardStage).gameOverScene(true));
+               // task.cancel();
+            } else if (tigerTime == 1) {
+             //  boardStage.setScene(new GameOverWorks(boardStage).gameOverScene(false));
+              //  task.cancel();
+            }
         }
-}
-class TestTimer{
-    @Test
-    void testTimer(){
-        TurnTimer timer = new TurnTimer();
-        timer.runGoatTimer();
-        System.out.println("ok ok");
-       // Scanner sc = new Scanner(System.in);
-        //sc.nextInt();
+    };
+
+    public void startTimer(){
+        timer.schedule(task,0,1000);
     }
 }
+
+
+
