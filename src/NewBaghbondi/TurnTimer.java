@@ -15,14 +15,13 @@ import java.util.TimerTask;
 public class TurnTimer {
     Turn turn;
     Stage boardStage;
-    int maximumTime = 10;
+
     GameOverWorks gameOverWorks;
 
     TurnTimer(Stage boardStage, Turn turn,GameOverWorks gameOverWorks) {
         this.boardStage = boardStage;
         this.turn = turn;
-        gameOverWorks.tigerTime = maximumTime;
-        gameOverWorks.goatTime = maximumTime;
+
         this.gameOverWorks = gameOverWorks;
 
         startTimer();

@@ -1,12 +1,6 @@
 package NewBaghbondi;
 
-import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class InGameMove {
@@ -92,7 +86,7 @@ public class InGameMove {
     }
 
     private int pixelToBoard(double pixel) {
-        return (int) pixel / (BoardStage.positionSize * 2);
+        return (int) pixel / (StageCreator.positionSize * 2);
     }
 
     private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical) {
