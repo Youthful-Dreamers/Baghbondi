@@ -15,7 +15,7 @@ public class BoardListener{
         this.pieceGroup = pieceGroup;
 
         inGameMove = new InGameMove(this.board,this.pieceGroup,boardStage);
-        turnTimer = new TurnTimer(boardStage,inGameMove.turn);
+        turnTimer = new TurnTimer(boardStage,inGameMove.turn,inGameMove.gameOverWorks);
     }
 
 

@@ -14,7 +14,12 @@ public class GameOverWorks {
     Position[][] board;
 
     int minimumNumberOfGoats = 1;
+    int tigerTime;
+    int goatTime;
+
     private int numberOfGoat = 7;
+
+
     GameOverWorks(Stage boardStage, Position[][] board) {
         this.boardStage = boardStage;
         this.board = board;
@@ -25,7 +30,7 @@ public class GameOverWorks {
     }
 
     public boolean goatWinCase(Piece piece) {
-        if (endTigerGame(piece)) {
+        if (endTigerGame(piece)||tigerTime<=0) {
             boardStage.setScene(gameOverScene(false));
             return true;
         }
@@ -35,7 +40,7 @@ public class GameOverWorks {
         numberOfGoat--;
     }
     public boolean tigerWinCase(){
-        if (numberOfGoat<minimumNumberOfGoats) {
+        if (numberOfGoat<minimumNumberOfGoats||goatTime<=0) {
             boardStage.setScene(gameOverScene(true));
             return true;
         }

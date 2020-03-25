@@ -1,6 +1,12 @@
 package NewBaghbondi;
 
 
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.Timer;
@@ -9,34 +15,65 @@ import java.util.TimerTask;
 public class TurnTimer {
     Turn turn;
     Stage boardStage;
-    int maximumTime = 5;
+    int maximumTime = 10;
+    GameOverWorks gameOverWorks;
 
-    TurnTimer(Stage boardStage, Turn turn) {
+    TurnTimer(Stage boardStage, Turn turn,GameOverWorks gameOverWorks) {
         this.boardStage = boardStage;
         this.turn = turn;
+        gameOverWorks.tigerTime = maximumTime;
+        gameOverWorks.goatTime = maximumTime;
+        this.gameOverWorks = gameOverWorks;
+
         startTimer();
+
     }
 
     Timer timer = new Timer();
     TimerTask task = new TimerTask() {
-        int goatTime = maximumTime;
-        int tigerTime = maximumTime;
+
 
         @Override
         public void run() {
             if (turn.getTurn() == Turn.TurnType.GOAT_TURN) {
-                goatTime--;
+                gameOverWorks.goatTime--;
+            }
+            else if (turn.getTurn() == Turn.TurnType.TIGER_TURN) gameOverWorks.tigerTime--;
 
-                System.out.println("Goat Timer says "+goatTime);
+            System.out.println("TigerTime: "+gameOverWorks.tigerTime+"|| GoatTime: "+gameOverWorks.goatTime);
+            if (gameOverWorks.goatTime == 0) {
+               //boardStage.setScene(gameOverScene(true));
+               cancel();
+            } else if (gameOverWorks.tigerTime == 0) {
+               cancel();
             }
-            else if (turn.getTurn() == Turn.TurnType.TIGER_TURN) tigerTime--;
-            if (goatTime == 1) {
-            //    boardStage.setScene(new GameOverWorks(boardStage).gameOverScene(true));
-               // task.cancel();
-            } else if (tigerTime == 1) {
-             //  boardStage.setScene(new GameOverWorks(boardStage).gameOverScene(false));
-              //  task.cancel();
+        }
+        private Scene gameOverScene(boolean tigerWin) {
+            Label label = new Label("Game Over!");
+            label.setFont(new Font("Arial", 25));
+            label.setTextFill(Color.web("#228b22", 1.0));
+
+            String type;
+
+            if (tigerWin) {
+                type = "Tiger";
+            } else {
+                type = "Goat";
             }
+
+            Label label2 = new Label(type + " has won the game!!");
+            label2.setFont(new Font("Arial", 30));
+            label2.setTextFill(Color.web("#ff4500", 1.0));
+
+            VBox vBox = new VBox(5);
+
+            vBox.setAlignment(Pos.CENTER);
+
+            vBox.getChildren().addAll(label, label2);
+
+            Scene scene = new Scene(vBox, 500, 500);
+
+            return scene;
         }
     };
 
