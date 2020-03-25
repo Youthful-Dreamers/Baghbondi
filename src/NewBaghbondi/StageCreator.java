@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-public class BoardStage {
+public class StageCreator {
 
     static final int positionSize = 50;
     private Group positionGroup = new Group();

@@ -14,8 +14,10 @@ public class GameOverWorks {
     Position[][] board;
 
     int minimumNumberOfGoats = 1;
-    int tigerTime;
-    int goatTime;
+    int maximumTime =100;
+
+    int tigerTime = maximumTime;
+    int goatTime = maximumTime;
 
     private int numberOfGoat = 7;
 
