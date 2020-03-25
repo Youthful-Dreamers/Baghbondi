@@ -9,6 +9,7 @@ public class Turn{
       TIGER_TURN,GOAT_TURN
   }
   TurnType turn;
+
   Turn(TurnType firstTurn){
       turn = firstTurn;
   }

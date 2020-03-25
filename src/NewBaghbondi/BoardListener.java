@@ -8,13 +8,14 @@ public class BoardListener{
     Position[][] board;
     Group pieceGroup;
     InGameMove inGameMove;
-
+    TurnTimer turnTimer ;
     BoardListener(Stage boardStage, Position[][] board, Group pieceGroup)
     {
         this.board = board;
         this.pieceGroup = pieceGroup;
 
         inGameMove = new InGameMove(this.board,this.pieceGroup,boardStage);
+        turnTimer = new TurnTimer(boardStage,inGameMove.turn,inGameMove.gameOverWorks);
     }
 
 

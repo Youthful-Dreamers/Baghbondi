@@ -12,16 +12,25 @@ public class GameOverWorks {
 
     Stage boardStage;
     Position[][] board;
-    int numberOfGoat = 7;
+
     int minimumNumberOfGoats = 1;
+    int tigerTime;
+    int goatTime;
+
+    private int numberOfGoat = 7;
+
 
     GameOverWorks(Stage boardStage, Position[][] board) {
         this.boardStage = boardStage;
         this.board = board;
     }
 
+    GameOverWorks(Stage boardStage){
+        this.boardStage = boardStage;
+    }
+
     public boolean goatWinCase(Piece piece) {
-        if (endTigerGame(piece)) {
+        if (endTigerGame(piece)||tigerTime<=0) {
             boardStage.setScene(gameOverScene(false));
             return true;
         }
@@ -31,7 +40,7 @@ public class GameOverWorks {
         numberOfGoat--;
     }
     public boolean tigerWinCase(){
-        if (numberOfGoat<minimumNumberOfGoats) {
+        if (numberOfGoat<minimumNumberOfGoats||goatTime<=0) {
             boardStage.setScene(gameOverScene(true));
             return true;
         }
@@ -129,7 +138,7 @@ public class GameOverWorks {
     }
 
 
-    private Scene gameOverScene(boolean tigerWin) {
+    public Scene gameOverScene(boolean tigerWin) {
         Label label = new Label("Game Over!");
         label.setFont(new Font("Arial", 25));
         label.setTextFill(Color.web("#228b22", 1.0));

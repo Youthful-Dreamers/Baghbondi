@@ -98,5 +98,8 @@ public class BoardStage {
         lineGroup.setVerticalLine3(board[4][0], board[0][4]);
     }
 
+    public Stage getStage(){
+        return boardStage;
+    }
 }
 
