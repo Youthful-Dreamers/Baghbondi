@@ -14,25 +14,18 @@ public class GameOverWorks {
     Position[][] board;
 
     int minimumNumberOfGoats = 1;
-    int maximumTime =100;
-
-    int tigerTime = maximumTime;
-    int goatTime = maximumTime;
 
     private int numberOfGoat = 7;
+    private TurnManager turnManager;
 
-
-    GameOverWorks(Stage boardStage, Position[][] board) {
+    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager) {
         this.boardStage = boardStage;
         this.board = board;
-    }
-
-    GameOverWorks(Stage boardStage){
-        this.boardStage = boardStage;
+        this.turnManager = turnManager;
     }
 
     public boolean goatWinCase(Piece piece) {
-        if (endTigerGame(piece)||tigerTime<=0) {
+        if (endTigerGame(piece)) {
             boardStage.setScene(gameOverScene(false));
             return true;
         }
@@ -42,7 +35,7 @@ public class GameOverWorks {
         numberOfGoat--;
     }
     public boolean tigerWinCase(){
-        if (numberOfGoat<minimumNumberOfGoats||goatTime<=0) {
+        if (numberOfGoat<minimumNumberOfGoats) {
             boardStage.setScene(gameOverScene(true));
             return true;
         }
@@ -138,7 +131,15 @@ public class GameOverWorks {
         }
         return false;
     }
-
+    public boolean gameOver(Piece piece){
+        if(goatWinCase(piece)) return true;
+        if(tigerWinCase()) return true;
+        if (turnManager.timerUp()) {
+            if(turnManager.getTurnType() == TurnType.TIGER_TURN) boardStage.setScene(gameOverScene(false));
+            if(turnManager.getTurnType() == TurnType.GOAT_TURN) boardStage.setScene(gameOverScene(true));
+        }
+        return false;
+    }
 
     public Scene gameOverScene(boolean tigerWin) {
         Label label = new Label("Game Over!");

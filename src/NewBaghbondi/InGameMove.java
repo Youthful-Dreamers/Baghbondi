@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 public class InGameMove {
 
-    Turn turn = new Turn(Turn.TurnType.GOAT_TURN);
+    TurnManager turnManager = new TurnManager(TurnType.GOAT_TURN);
     Position[][] board;
     Group pieceGroup;
     Stage boardStage;
@@ -14,7 +14,7 @@ public class InGameMove {
         this.board = board;
         this.pieceGroup = pieceGroup;
         this.boardStage = boardStage;
-        gameOverWorks = new GameOverWorks(boardStage, board);
+        gameOverWorks = new GameOverWorks(boardStage, board, turnManager);
     }
 
     public boolean makeMove(Piece piece) {
@@ -23,16 +23,16 @@ public class InGameMove {
         int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
         int newVertical = pixelToBoard(piece.getLayoutY());
         int oldVertical = pixelToBoard(piece.getOldVertical());
-        System.out.println("Turn of :: " + turn.getTurn());
+        System.out.println("Turn of :: " + turnManager.getTurnType());
         MoveResult result = tryMove(piece, newHorizontal, newVertical);
 
-        if (turn.getTurn() == Turn.TurnType.GOAT_TURN) {
+        if (turnManager.getTurnType() == TurnType.GOAT_TURN) {
             if (piece.getPieceType() == PieceTypeEnum.TIGER) {
                 piece.abortMove();
                 return false;
             }
 
-        } else if (turn.getTurn() == Turn.TurnType.TIGER_TURN) {
+        } else if (turnManager.getTurnType() == TurnType.TIGER_TURN) {
             if (piece.getPieceType() == PieceTypeEnum.GOAT) {
                 piece.abortMove();
                 return false;
@@ -41,28 +41,26 @@ public class InGameMove {
         }
 
         // if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
-        if (gameOverWorks.goatWinCase(piece)) return false;
+      //  if (gameOverWorks.goatWinCase(piece)) return false;
 
         boolean movementMade = false;
 
         switch (result.getType()) {
             case NONE:
                 System.out.println("MoveResult : None ");
-                //if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                 piece.abortMove();
                 break;
-            //break
+
             case NORMAL:
                 System.out.println("MoveResult : Normal ");
                 piece.move(newHorizontal, newVertical);
                 System.out.println("Normal move from:: " + oldHorizontal + ", " + oldVertical);
                 board[oldHorizontal][oldVertical].setPiece(null);
                 board[newHorizontal][newVertical].setPiece(piece);
-                System.out.println("Normal move: preturn " + turn.getTurn());
-                //    if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
-                turn.changeTurn();
-                //  turnTy = (turnTy+1)%2;
-                System.out.println("Normal move: turn " + turn.getTurn());
+                System.out.println("Normal move: preturn " + turnManager.getTurnType());
+                turnManager.changeTurn();
+
+                System.out.println("Normal move: turn " + turnManager.getTurnType());
                 movementMade = true;
                 break;
             case KILL:
@@ -73,15 +71,13 @@ public class InGameMove {
                 Piece killedPiece = result.getPiece();
                 board[pixelToBoard(killedPiece.getOldHorizontal())][pixelToBoard(killedPiece.getOldVertical())].setPiece(null);
                 pieceGroup.getChildren().remove(killedPiece);
-                //    if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
-                turn.changeTurn();
+                turnManager.changeTurn();
                 gameOverWorks.killGoat();
-                //turnTy = (turnTy+1)%2;
                 movementMade = true;
                 break;
         }
 
-        if (gameOverWorks.tigerWinCase()) return false;
+        if (gameOverWorks.gameOver(piece)) return false;
         return movementMade;
     }
 
