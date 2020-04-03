@@ -3,18 +3,24 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.stage.Stage;
 
-public class InGameMove {
+public class MovementManager {
 
-    TurnManager turnManager = new TurnManager(TurnType.GOAT_TURN);
+    TurnManager turnManager;
     Position[][] board;
     Group pieceGroup;
     Stage boardStage;
     GameOverWorks gameOverWorks;
-    InGameMove(Position[][] board, Group pieceGroup, Stage boardStage) {
+
+    MovementManager(Position[][] board,
+                    Group pieceGroup,
+                    Stage boardStage,
+                    TurnManager turnManager,
+                    GameOverWorks gameOverWorks) {
         this.board = board;
         this.pieceGroup = pieceGroup;
         this.boardStage = boardStage;
-        gameOverWorks = new GameOverWorks(boardStage, board, turnManager);
+        this.gameOverWorks = gameOverWorks;
+        this.turnManager = turnManager;
     }
 
     public boolean makeMove(Piece piece) {

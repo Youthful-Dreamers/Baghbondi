@@ -15,6 +15,8 @@ public class BoardLines {
     public void setVerticalLine1(Circle circle1,Circle circle2) {
         this.verticalLine1 = makeLine(circle1,circle2);
         lineGroup.getChildren().add(verticalLine1);
+
+
     }
 
     public void setVerticalLine2(Circle circle1,Circle circle2) {
