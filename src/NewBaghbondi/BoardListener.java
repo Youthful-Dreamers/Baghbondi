@@ -3,25 +3,31 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.stage.Stage;
 
-public class BoardListener{
+public class BoardListener {
 
     Position[][] board;
+    Stage boardStage;
     Group pieceGroup;
-    InGameMove inGameMove;
 
-    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup)
-    {
+    TurnManager turnManager;
+    GameOverWorks gameOverWorks;
+    MovementManager movementManager;
+
+    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup) {
         this.board = board;
         this.pieceGroup = pieceGroup;
+        this.boardStage = boardStage;
 
-        inGameMove = new InGameMove(this.board,this.pieceGroup,boardStage);
+        turnManager = new TurnManager(TurnType.GOAT_TURN);
+        gameOverWorks = new GameOverWorks(boardStage, board, turnManager);
+        movementManager = new MovementManager(board, pieceGroup, boardStage, turnManager, gameOverWorks);
 
     }
 
 
     public void addMouseReleaseOptions(Piece piece) {
         piece.setOnMouseReleased(e -> {
-                  inGameMove.makeMove(piece);
+            movementManager.makeMove(piece);
                 }
         );
     }

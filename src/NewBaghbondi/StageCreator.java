@@ -3,7 +3,10 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -14,27 +17,35 @@ public class StageCreator {
     private Group pieceGroup = new Group();
     private BoardLines lineGroup = new BoardLines();
     private Position[][] board = new Position[5][5];
+    private Scene gameScene;
     private int verticalLine = 5;
     private int horizontalLine = 5;
-    private int turn = 0;
 
     Stage boardStage = new Stage();
-    BoardListener listener = new BoardListener(boardStage,board, pieceGroup);
+    BoardListener listener = new BoardListener(boardStage, board, pieceGroup);
 
-
-    private Parent createContent()
-    {
-        Pane root = new Pane();
-        root.setPrefSize(500, 500);
+    private Parent createContent() {
+        Pane gamePane = new Pane();
+        gamePane.setPrefSize(500, 500);
         drawBoard();
         drawLine();
-        root.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
-        return root;
+        configureParent(gamePane);
+        Pane rootPane = new Pane();
+        rootPane.getChildren().addAll(gamePane);
+        return rootPane;
+    }
+
+    private void configureParent(Pane gamePane) {
+        gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
+        gamePane.setLayoutX(0);
+        gamePane.setLayoutY(0);
     }
 
     public void boardStage() {
-        boardStage.setScene(new Scene(createContent()));
+        gameScene = new Scene(createContent());
+        boardStage.setScene(gameScene);
         boardStage.setTitle("BaghBondi");
+        //   boardStage.setFullScreen(true);
         boardStage.show();
     }
 

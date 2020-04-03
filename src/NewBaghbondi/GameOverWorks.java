@@ -24,23 +24,26 @@ public class GameOverWorks {
         this.turnManager = turnManager;
     }
 
-    public boolean goatWinCase(Piece piece) {
+    private boolean goatWinCase(Piece piece) {
         if (endTigerGame(piece)) {
             boardStage.setScene(gameOverScene(false));
             return true;
         }
         return false;
     }
-    public void killGoat(){
+
+    public void killGoat() {
         numberOfGoat--;
     }
-    public boolean tigerWinCase(){
-        if (numberOfGoat<minimumNumberOfGoats) {
+
+    private boolean tigerWinCase() {
+        if (numberOfGoat < minimumNumberOfGoats) {
             boardStage.setScene(gameOverScene(true));
             return true;
         }
         return false;
     }
+
     private boolean endTigerGame(Piece piece) {
         int i, j, horizontal, vertical, vertical0, horizontal0;
         boolean k = true, k1 = true;
