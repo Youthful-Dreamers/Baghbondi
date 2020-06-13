@@ -23,7 +23,8 @@ public class TurnManager {
     TurnManager(TurnType firstTurn, Pane rootPane, Position[][] board) {
         turnType = firstTurn;
         createTurn(firstTurn);
-
+        clock = new ClockText(rootPane, board);
+        // clock.drawClock();
 
         startTimer();
     }

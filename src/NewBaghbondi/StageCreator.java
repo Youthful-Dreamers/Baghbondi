@@ -30,29 +30,30 @@ public class StageCreator {
     ClockText clockText;
 
     Stage boardStage = new Stage();
-    BoardListener listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
+    BoardListener listener;
 
     private Parent createContent() {
         Pane gamePane = new Pane();
         gamePane.setPrefSize(500, 500);
         drawBoard();
         drawLine();
-        drawClock();
-
         configureParent(gamePane);
-
         rootPane.getChildren().addAll(gamePane);
+
+
+        listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
+
+        addPieceToPosition();
+
+
         return rootPane;
     }
 
-    private void drawClock() {
-        clockText = new ClockText(rootPane, board);
-        clockText.drawClock();
-    }
+
 
 
     private void configureParent(Pane gamePane) {
-        gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup(), clockText.getClockGroup());
+        gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
         gamePane.setLayoutX(0);
         gamePane.setLayoutY(0);
     }
@@ -75,35 +76,41 @@ public class StageCreator {
                     skipCounter++;
                     continue;
                 } else skipCounter = 0;
-                Position position = createPosition(i, j);
-                addPieceToPosition(i, j, position);
+                createPosition(i, j);
+
             }
         }
     }
 
-    private void addPieceToPosition(int i, int j, Position position) {
-        Piece piece = null;
-        if (i >= 0) {
-            piece = makePiece(PieceTypeEnum.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
-            System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
+    private void addPieceToPosition() {
 
-        } else if (i == -1 && j == 0) {
-            piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
-        }
-        if (piece != null) {
+        for (int i = 0; i < verticalLine; i++)
+            for (int j = 0; j < horizontalLine; j++) {
+                Position position = board[i][j];
+                if (position == null) continue;
+                Piece piece = null;
+                if (j >= 2) {
+                    piece = makePiece(PieceTypeEnum.GOAT, position.getVertical(), position.getHorizontal());
+                    System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
 
-            position.setPiece(piece);
-            pieceGroup.getChildren().add(piece);
-        }
+                } else if (i == 2 && j == 1) {
+                    piece = makePiece(PieceTypeEnum.TIGER, position.getVertical(), position.getHorizontal());
+                }
+                if (piece != null) {
+
+                    position.setPiece(piece);
+                    pieceGroup.getChildren().add(piece);
+                }
+            }
     }
 
-    private Position createPosition(int vertical, int horizontal) {
+    private void createPosition(int vertical, int horizontal) {
         System.out.println("****************Called createPosition()****************");
         Position position = new Position(vertical + verticalLine / 2, horizontal + horizontalLine / 2);
         System.out.println("On board " + (horizontal + horizontalLine / 2) + " " + (vertical + verticalLine / 2));
         board[horizontal + horizontalLine / 2][vertical + verticalLine / 2] = position;
         positionGroup.getChildren().add(position);
-        return position;
+
     }
 
     private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal) {

@@ -32,6 +32,7 @@ public class ClockText {
 
     public void drawClock() {
         clockGroup = new Group();
+
         drawTigerClock();
         drawGoatClock();
     }
