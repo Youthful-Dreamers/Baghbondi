@@ -24,7 +24,7 @@ public class TurnManager {
         turnType = firstTurn;
         createTurn(firstTurn);
         clock = new ClockText(rootPane, board);
-        // clock.drawClock();
+        clock.drawClock();
 
         startTimer();
     }

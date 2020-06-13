@@ -35,6 +35,9 @@ public class ClockText {
 
         drawTigerClock();
         drawGoatClock();
+
+        rootPane.getChildren().add(clockGroup);
+
     }
 
     private void drawTigerClock() {
