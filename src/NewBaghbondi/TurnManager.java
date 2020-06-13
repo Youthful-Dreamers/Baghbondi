@@ -50,7 +50,9 @@ public class TurnManager {
         public void run() {
             turn.decreaseTime();
             System.out.println("TigerTime: " + tigerTurn.time + "  || GoatTime: " + goatTurn.time);
-            if(turn.timeUp()) cancel();
+            clock.setGoatClockTime(String.valueOf(goatTurn.time));
+            clock.setTigerClockTime(String.valueOf(tigerTurn.time));
+            if (turn.timeUp()) cancel();
 
         }
 
