@@ -3,11 +3,15 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+
 
 
 public class StageCreator {
@@ -21,22 +25,34 @@ public class StageCreator {
     private int verticalLine = 5;
     private int horizontalLine = 5;
 
+
+    Pane rootPane = new Pane();
+    ClockText clockText;
+
     Stage boardStage = new Stage();
-    BoardListener listener = new BoardListener(boardStage, board, pieceGroup);
+    BoardListener listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
 
     private Parent createContent() {
         Pane gamePane = new Pane();
         gamePane.setPrefSize(500, 500);
         drawBoard();
         drawLine();
+        drawClock();
+
         configureParent(gamePane);
-        Pane rootPane = new Pane();
+
         rootPane.getChildren().addAll(gamePane);
         return rootPane;
     }
 
+    private void drawClock() {
+        clockText = new ClockText(rootPane, board);
+        clockText.drawClock();
+    }
+
+
     private void configureParent(Pane gamePane) {
-        gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
+        gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup(), clockText.getClockGroup());
         gamePane.setLayoutX(0);
         gamePane.setLayoutY(0);
     }
@@ -60,20 +76,24 @@ public class StageCreator {
                     continue;
                 } else skipCounter = 0;
                 Position position = createPosition(i, j);
-                Piece piece = null;
-                if (i >= 0) {
-                    piece = makePiece(PieceTypeEnum.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
-                    System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
-
-                } else if (i == -1 && j == 0) {
-                    piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
-                }
-                if (piece != null) {
-
-                    position.setPiece(piece);
-                    pieceGroup.getChildren().add(piece);
-                }
+                addPieceToPosition(i, j, position);
             }
+        }
+    }
+
+    private void addPieceToPosition(int i, int j, Position position) {
+        Piece piece = null;
+        if (i >= 0) {
+            piece = makePiece(PieceTypeEnum.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
+            System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
+
+        } else if (i == -1 && j == 0) {
+            piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
+        }
+        if (piece != null) {
+
+            position.setPiece(piece);
+            pieceGroup.getChildren().add(piece);
         }
     }
 

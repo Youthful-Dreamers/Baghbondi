@@ -1,5 +1,6 @@
 package NewBaghbondi;
 
+import javafx.scene.layout.Pane;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,17 +9,22 @@ import java.util.TimerTask;
 
 public class TurnManager {
 
+
     int maximumTime = 100;
 
     private GoatTurn goatTurn;
     private TigerTurn tigerTurn;
     Turn turn;
+    ClockText clock;
+
 
     TurnType turnType;
 
-    TurnManager(TurnType firstTurn) {
+    TurnManager(TurnType firstTurn, Pane rootPane, Position[][] board) {
         turnType = firstTurn;
         createTurn(firstTurn);
+
+
         startTimer();
     }
 
@@ -44,6 +50,7 @@ public class TurnManager {
             turn.decreaseTime();
             System.out.println("TigerTime: " + tigerTurn.time + "  || GoatTime: " + goatTurn.time);
             if(turn.timeUp()) cancel();
+
         }
 
     };
@@ -131,18 +138,3 @@ enum TurnType {
 }
 
 
-class TurnManagerTest {
-
-    @Test
-    void testChangeTurn() {
-        TurnManager turnManager = new TurnManager(TurnType.TIGER_TURN);
-        Assertions.assertEquals(TurnType.TIGER_TURN, turnManager.getTurnType());
-        turnManager.changeTurn();
-        Assertions.assertEquals(TurnType.GOAT_TURN, turnManager.getTurnType());
-        turnManager.changeTurn();
-        Assertions.assertEquals(TurnType.TIGER_TURN, turnManager.getTurnType());
-
-        Assertions.assertEquals(false, turnManager.timerUp());
-    }
-
-}

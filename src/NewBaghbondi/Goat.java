@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 
 public class Goat extends Piece
 {
+
     private Color pieceColor = Color.BLUE;
 
     PieceTypeEnum type = PieceTypeEnum.GOAT;
@@ -22,5 +23,6 @@ public class Goat extends Piece
     public Color getPieceColor() {
         return pieceColor;
     }
+
 
 }

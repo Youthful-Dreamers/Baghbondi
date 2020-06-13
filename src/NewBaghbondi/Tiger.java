@@ -20,4 +20,5 @@ public class Tiger extends Piece{
         return pieceColor;
     }
 
+
 }
