@@ -24,8 +24,6 @@ public abstract class Piece extends StackPane {
         move(horizontal, vertical);
 
 
-      //  piece = getPieceType(type,vertical, horizontal);
-    //        definePiece(pieceCircle, piece.getPieceColor());
         getChildren().addAll(pieceCircle);
         addMousePressBehavior();
         addMouseDragBehavior();

@@ -3,12 +3,7 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -27,7 +22,7 @@ public class StageCreator {
 
 
     Pane rootPane = new Pane();
-    ClockText clockText;
+
 
     Stage boardStage = new Stage();
     BoardListener listener;

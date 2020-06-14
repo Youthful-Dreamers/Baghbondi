@@ -15,7 +15,7 @@ public class TurnManager {
     private GoatTurn goatTurn;
     private TigerTurn tigerTurn;
     Turn turn;
-    ClockText clock;
+    ClockInterface clock;
 
 
     TurnType turnType;
@@ -23,9 +23,8 @@ public class TurnManager {
     TurnManager(TurnType firstTurn, Pane rootPane, Position[][] board) {
         turnType = firstTurn;
         createTurn(firstTurn);
-        clock = new ClockText(rootPane, board);
+        clock = new ClockInterface(rootPane, board);
         clock.drawClock();
-
         startTimer();
     }
 
@@ -50,8 +49,8 @@ public class TurnManager {
         public void run() {
             turn.decreaseTime();
             System.out.println("TigerTime: " + tigerTurn.time + "  || GoatTime: " + goatTurn.time);
-            clock.setGoatClockTime(String.valueOf(goatTurn.time));
-            clock.setTigerClockTime(String.valueOf(tigerTurn.time));
+            clock.setGoatClockTime(goatTurn.time);
+            clock.setTigerClockTime(tigerTurn.time);
             if (turn.timeUp()) cancel();
 
         }
