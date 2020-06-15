@@ -78,10 +78,8 @@ public abstract class Piece extends StackPane {
     }
 
     public void addMouseDragBehavior() {
-        setOnMouseDragged(e -> {
-            pieceRelocate(e.getSceneX() - fromMouseHorizontal + oldHorizontal,
-                    e.getSceneY() - fromMouseVertical + oldVertical);
-        });
+        setOnMouseDragged(e -> pieceRelocate(e.getSceneX() - fromMouseHorizontal + oldHorizontal,
+                e.getSceneY() - fromMouseVertical + oldVertical));
     }
 
 }

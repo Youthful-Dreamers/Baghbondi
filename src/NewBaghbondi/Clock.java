@@ -5,11 +5,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Clock {
     private double layoutX = 0;
     private double layoutY = 0;
-    private int timer;
+    private int timer = 0;
     private Color color = Color.BLACK;
+    Task task = null;
 
     private Group clockGroup = new Group();
 
@@ -35,6 +39,29 @@ public class Clock {
         clockText.setText("LIMITED");
         clockGroup.getChildren().add(clockText);
 
+    }
+
+    private Timer clockTimer = new Timer();
+    private TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            timer--;
+            setClockTime(timer);
+            task.performWhenClockRuns();
+        }
+    };
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+
+    public void resumeTimer() {
+        clockTimer.schedule(timerTask, 0, 1000);
+    }
+
+    public void pause() {
+        clockTimer.cancel();
     }
 
     public void setColor(Color color) {
@@ -71,5 +98,10 @@ public class Clock {
 
     public int getRemainingTime() {
         return timer;
+    }
+
+    public interface Task {
+        void performWhenClockRuns();
+
     }
 }
