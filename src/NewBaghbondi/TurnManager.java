@@ -48,7 +48,7 @@ public class TurnManager {
         @Override
         public void run() {
             turn.decreaseTime();
-            System.out.println("TigerTime: " + tigerTurn.time + "  || GoatTime: " + goatTurn.time);
+          //  System.out.println("TigerTime: " + tigerTurn.time + "  || GoatTime: " + goatTurn.time);
             clock.setGoatClockTime(goatTurn.time);
             clock.setTigerClockTime(tigerTurn.time);
             if (turn.timeUp()) cancel();

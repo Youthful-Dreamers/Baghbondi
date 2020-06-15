@@ -1,21 +1,17 @@
 package NewBaghbondi;
 
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.util.function.ToDoubleBiFunction;
-
-
 public class ClockInterface {
     private Position[][] board;
     private Pane rootPane;
 
-    GoatClock goatClock;
-    TigerClock tigerClock;
+    Clock goatClock;
+    Clock tigerClock;
 
 
     public void setTigerClockTime(int time) {
@@ -34,72 +30,83 @@ public class ClockInterface {
 
 
     public void drawClock() {
-        tigerClock = new TigerClock(rootPane);
-        goatClock = new GoatClock(rootPane);
-        tigerClock.drawClock(board);
-        goatClock.drawClock(board);
+        tigerClock = new Clock();
+        tigerClock.setLayoutX(((board[1][3].getLayoutX() + board[0][4].getLayoutX()) / 2));
+        tigerClock.setLayoutY(board[2][2].getLayoutY());
+        tigerClock.setColor(Color.RED);
+        rootPane.getChildren().add(tigerClock.getClockGroup());
+        goatClock = new Clock();
+        goatClock.setLayoutX(board[3][3].getLayoutX());
+        goatClock.setLayoutY((board[2][2].getLayoutY()));
+        goatClock.setColor(Color.BLUE);
+        tigerClock.drawClock();
+        goatClock.drawClock();
+        rootPane.getChildren().add(goatClock.getClockGroup());
 
     }
 
 
 }
 
-class GoatClock {
+class Clock {
+    private double layoutX = 0;
+    private double layoutY = 0;
+    private Color color = Color.BLACK;
 
-    private Pane drawingPane;
+    private Group clockGroup = new Group();
 
     Text clockText = new Text();
 
-    public void setClockTime(int time) {
-        clockText.setText(time + " s");
-    }
-
-    public GoatClock(Pane drawingPane) {
-        this.drawingPane = drawingPane;
-    }
-
-    private void configClockInterface() {
-        clockText.setFont(new Font("Agency FB", 32));
-        clockText.setFill(Color.BLUE);
-    }
-
-    protected void drawClock(Position[][] board) {
-        configClockInterface();
-        clockText.setLayoutX(board[3][3].getLayoutX()); //offset 30px left
-        clockText.setLayoutY((board[2][2].getLayoutY()));  //offset 10px up
-        clockText.setText("INFINITY GOAT");
-        drawingPane.getChildren().add(clockText);
-
-    }
-
-}
-
-class TigerClock {
-    Text clockText = new Text();
-    Pane drawingPane;
 
     public void setClockTime(int time) {
         clockText.setText(time + " s");
     }
 
 
-    TigerClock(Pane drawingPane) {
-        this.drawingPane = drawingPane;
-    }
 
     private void configClockInterface() {
         clockText.setFont(new Font("Agency FB", 32));
-        clockText.setFill(Color.RED);
+        clockText.setFill(color);
     }
 
-    protected void drawClock(Position[][] board) {
+    protected void drawClock() {
         configClockInterface();
-        clockText.setLayoutX(
-                (board[1][3].getLayoutX() + board[0][4].getLayoutX()) / 2); //offset 50px bit left
-        clockText.setLayoutY((board[2][2].getLayoutY())); //offset 10px up
-        clockText.setText("INFINITY");
-        drawingPane.getChildren().add(clockText);
+
+        clockText.setLayoutX(getLayoutX());
+        clockText.setLayoutY(getLayoutY());
+
+        clockText.setText("LIMITED");
+        clockGroup.getChildren().add(clockText);
 
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setLayoutX(double layoutX) {
+        this.layoutX = layoutX;
+    }
+
+    public void setLayoutY(double layoutY) {
+        this.layoutY = layoutY;
+    }
+
+    public double getLayoutX() {
+        return layoutX;
+    }
+
+    public double getLayoutY() {
+        return layoutY;
+    }
+
+    public Group getClockGroup() {
+        return clockGroup;
+    }
 }
+
+
