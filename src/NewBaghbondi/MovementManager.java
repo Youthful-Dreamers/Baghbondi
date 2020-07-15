@@ -46,6 +46,7 @@ public class MovementManager {
 
         }
 
+
         // if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
       //  if (gameOverWorks.goatWinCase(piece)) return false;
 

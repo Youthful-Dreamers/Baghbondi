@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ClockInterface {
+public class ClockUI {
     private Position[][] board;
     private Pane rootPane;
 
@@ -23,7 +23,7 @@ public class ClockInterface {
     }
 
 
-    public ClockInterface(Pane drawingPane, Position[][] board) {
+    public ClockUI(Pane drawingPane, Position[][] board) {
         this.rootPane = drawingPane;
         this.board = board;
     }

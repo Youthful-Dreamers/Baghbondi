@@ -42,25 +42,32 @@ public class Clock {
     }
 
     private Timer clockTimer = new Timer();
-    private TimerTask timerTask = new TimerTask() {
-        @Override
-        public void run() {
-            timer--;
-            setClockTime(timer);
-            task.performWhenClockRuns();
-        }
-    };
+    private TimerTask timerTask;
 
     public void setTask(Task task) {
         this.task = task;
     }
 
 
-    public void resumeTimer() {
-        clockTimer.schedule(timerTask, 0, 1000);
+    public void start() {
+
+        clockTimer = new Timer();
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                timer--;
+                setClockTime(timer);
+                if (task != null)
+                    task.performWhenClockRuns();
+
+            }
+        };
+        clockTimer.schedule(timerTask, 1000, 1000);
+
     }
 
-    public void pause() {
+    public void cancel() {
+        timerTask.cancel();
         clockTimer.cancel();
     }
 
@@ -99,7 +106,22 @@ public class Clock {
     public int getRemainingTime() {
         return timer;
     }
+    //Constructors
 
+    Clock() {
+    }
+
+    Clock(double layoutX, double layoutY) {
+        setLayoutX(layoutX);
+        setLayoutY(layoutY);
+    }
+
+    Clock(int timer) {
+        setTimer(timer);
+    }
+
+
+    //Listener Interface
     public interface Task {
         void performWhenClockRuns();
 
