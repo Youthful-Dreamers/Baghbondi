@@ -44,9 +44,6 @@ public class Clock {
     private Timer clockTimer = new Timer();
     private TimerTask timerTask;
 
-    public void setTask(Task task) {
-        this.task = task;
-    }
 
 
     public void start() {
