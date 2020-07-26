@@ -14,8 +14,8 @@ public class Menu {
     Stage stage;
     Menu(Stage stage){
         this.stage = stage;
-
     }
+    
     public Scene createMainScene()
     {
         Button button = new Button();
@@ -45,7 +45,7 @@ public class Menu {
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(label,button,button0);
 
-        Scene scene = new Scene(layout, 500,500);
+        Scene scene = new Scene(layout, 700,700);
 
         return scene;
     }
@@ -76,13 +76,10 @@ public class Menu {
         });
 
         VBox vBox= new VBox(5);
-
         vBox.setAlignment(Pos.CENTER);
-
         vBox.getChildren().addAll(label,button1,button2);
 
-
-        Scene scene = new Scene(vBox,500,500);
+        Scene scene = new Scene(vBox, 700,700);
 
         return scene;
     }

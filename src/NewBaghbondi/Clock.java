@@ -125,6 +125,5 @@ public class Clock {
     //Listener Interface
     public interface Task {
         void performWhenClockRuns();
-
     }
 }

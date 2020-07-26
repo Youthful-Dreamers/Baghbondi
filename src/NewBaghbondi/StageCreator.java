@@ -3,7 +3,6 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -30,21 +29,17 @@ public class StageCreator {
 
     private Parent createContent() {
         Pane gamePane = new Pane();
-        rootPane.setPrefSize(1000, 1000);
+        rootPane.setPrefSize(700, 700);
         gamePane.setPrefSize(500, 500);
-        Group group = new Group();
-        group.getChildren().addAll(pieceGroup, positionGroup, lineGroup.getLineGroup());
 
         drawBoard();
         drawLine();
         configureParent(gamePane);
-        rootPane.getChildren().addAll(gamePane);
+        rootPane.getChildren().add(gamePane);
 
         listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
 
         addPieceToPosition();
-
-
         return rootPane;
     }
 
@@ -53,8 +48,8 @@ public class StageCreator {
 
     private void configureParent(Pane gamePane) {
         gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
-        gamePane.setLayoutX(0);
-        gamePane.setLayoutY(0);
+        gamePane.setLayoutX(100);
+        gamePane.setLayoutY(100);
     }
 
     public void boardStage() {
