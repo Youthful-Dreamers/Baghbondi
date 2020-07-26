@@ -6,12 +6,12 @@ import javafx.scene.shape.Circle;
 
 
 public abstract class Piece extends StackPane {
-    private double fromMouseVertical,fromMouseHorizontal;
-    private double oldVertical,oldHorizontal;
-    private PieceTypeEnum type;
-    private int offset=30;
-    Circle pieceCircle = new Circle();
+    protected double fromMouseVertical, fromMouseHorizontal;
+    protected double oldVertical, oldHorizontal;
 
+    private PieceTypeEnum type;
+    private int offset = 30;
+    Circle pieceCircle = new Circle();
 
 
     public PieceTypeEnum getPieceTypeEnum() {
@@ -22,32 +22,10 @@ public abstract class Piece extends StackPane {
 
         this.type=type;
         move(horizontal, vertical);
-
-
-      //  piece = getPieceType(type,vertical, horizontal);
-    //        definePiece(pieceCircle, piece.getPieceColor());
         getChildren().addAll(pieceCircle);
         addMousePressBehavior();
         addMouseDragBehavior();
     }
-
-
-    private void addMousePressBehavior() {
-        setOnMousePressed(e -> {
-            fromMouseVertical=e.getSceneY();
-            fromMouseHorizontal=e.getSceneX();
-        });
-    }
-
-    private void addMouseDragBehavior() {
-        setOnMouseDragged(e->{
-            pieceRelocate(e.getSceneX()-fromMouseHorizontal+oldHorizontal,
-                    e.getSceneY()-fromMouseVertical+oldVertical);
-        });
-    }
-
-
-
 
      void definePiece(Circle pieceCircle, Color color) {
         pieceCircle.setFill(color);
@@ -81,12 +59,25 @@ public abstract class Piece extends StackPane {
 
 
     public void pieceRelocate(double x, double y) {
-        x+=offset;
-        y+=offset;
+        x += offset;
+        y += offset;
         super.relocate(x, y);
     }
 
     abstract Color getPieceColor();
+
     abstract PieceTypeEnum getPieceType();
+
+    public void addMousePressBehavior() {
+        setOnMousePressed(e -> {
+            fromMouseVertical = e.getSceneY();
+            fromMouseHorizontal = e.getSceneX();
+        });
+    }
+
+    public void addMouseDragBehavior() {
+        setOnMouseDragged(e -> pieceRelocate(e.getSceneX() - fromMouseHorizontal + oldHorizontal,
+                e.getSceneY() - fromMouseVertical + oldVertical));
+    }
 
 }

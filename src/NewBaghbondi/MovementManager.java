@@ -11,6 +11,7 @@ public class MovementManager {
     Stage boardStage;
     GameOverWorks gameOverWorks;
 
+
     MovementManager(Position[][] board,
                     Group pieceGroup,
                     Stage boardStage,
@@ -46,8 +47,7 @@ public class MovementManager {
 
         }
 
-        // if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
-      //  if (gameOverWorks.goatWinCase(piece)) return false;
+
 
         boolean movementMade = false;
 
@@ -68,6 +68,7 @@ public class MovementManager {
 
                 System.out.println("Normal move: turn " + turnManager.getTurnType());
                 movementMade = true;
+
                 break;
             case KILL:
                 System.out.println("MoveResult : Kill ");
@@ -80,6 +81,7 @@ public class MovementManager {
                 turnManager.changeTurn();
                 gameOverWorks.killGoat();
                 movementMade = true;
+
                 break;
         }
 
@@ -119,36 +121,24 @@ public class MovementManager {
         if (oldVertical == 0 || oldVertical == 4) {
             if (oldHorizontal == 0 || oldHorizontal == 4) {
                 if (line == 2.0 || line == value) {
-                    //  System.out.println(endTigerGame(piece));
-                    //  if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                     return new MoveResult(MoveType.NORMAL);
                 }
             } else if (oldHorizontal == 2) {
                 if ((Math.abs(newHorizontal - oldHorizontal) == 2.0) || line == 1.0) {
-                    //    System.out.println(endTigerGame(piece));
-                    //      if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                     return new MoveResult(MoveType.NORMAL);
                 }
             }
         } else {
             if (line == 1.0) {
-                // System.out.println(endTigerGame(piece));
-                // if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                 return new MoveResult(MoveType.NORMAL);
             } else if (line == value) {
                 if ((oldVertical == 2) && (oldHorizontal == 2)) {
-                    //   System.out.println(endTigerGame(piece));
-                    //    if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                     return new MoveResult(MoveType.NORMAL);
                 } else if ((oldVertical == 1) || (oldVertical == 3)) {
                     if ((oldHorizontal == 1) || (oldHorizontal == 3)) {
                         if ((newHorizontal == 2) && (newVertical == 2)) {
-                            //            System.out.println(endTigerGame(piece));
-                            //            if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                             return new MoveResult(MoveType.NORMAL);
                         } else if (newHorizontal == 0 || newHorizontal == 4) {
-                            //           System.out.println(endTigerGame(piece));
-                            //           if (endTigerGame(piece)) boardStage.setScene(gameOverScene(false));
                             return new MoveResult(MoveType.NORMAL);
                         }
                     }
@@ -156,13 +146,11 @@ public class MovementManager {
             }
         }
 
-        ///System.out.println(piece.getPieceTypeEnum());
         if (piece.getPieceTypeEnum() == PieceTypeEnum.TIGER) {
             if (oldVertical == 0 || oldVertical == 4) {
                 if (line == 4) {
                     int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
                     int killedY = oldVertical + (newVertical - oldVertical) / 2;
-                    ///System.out.println("Killed");
 
                     if (board[killedX][killedY].hasPiece()) {
                         return new MoveResult(MoveType.KILL, board[killedX][killedY].getPiece());
@@ -172,8 +160,6 @@ public class MovementManager {
             if (line == 2 || line == killValue) {
                 int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
                 int killedY = oldVertical + (newVertical - oldVertical) / 2;
-                ///System.out.println("Killed");
-
                 if (board[killedX][killedY].hasPiece()) {
                     return new MoveResult(MoveType.KILL, board[killedX][killedY].getPiece());
                 }

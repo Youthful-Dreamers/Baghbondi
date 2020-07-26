@@ -4,10 +4,10 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+
 
 
 public class StageCreator {
@@ -21,19 +21,35 @@ public class StageCreator {
     private int verticalLine = 5;
     private int horizontalLine = 5;
 
+
+    Pane rootPane = new Pane();
+
+
     Stage boardStage = new Stage();
-    BoardListener listener = new BoardListener(boardStage, board, pieceGroup);
+    BoardListener listener;
 
     private Parent createContent() {
         Pane gamePane = new Pane();
+        rootPane.setPrefSize(1000, 1000);
         gamePane.setPrefSize(500, 500);
+        Group group = new Group();
+        group.getChildren().addAll(pieceGroup, positionGroup, lineGroup.getLineGroup());
+
         drawBoard();
         drawLine();
         configureParent(gamePane);
-        Pane rootPane = new Pane();
         rootPane.getChildren().addAll(gamePane);
+
+        listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
+
+        addPieceToPosition();
+
+
         return rootPane;
     }
+
+
+
 
     private void configureParent(Pane gamePane) {
         gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
@@ -59,14 +75,25 @@ public class StageCreator {
                     skipCounter++;
                     continue;
                 } else skipCounter = 0;
-                Position position = createPosition(i, j);
+                createPosition(i, j);
+
+            }
+        }
+    }
+
+    private void addPieceToPosition() {
+
+        for (int i = 0; i < verticalLine; i++)
+            for (int j = 0; j < horizontalLine; j++) {
+                Position position = board[i][j];
+                if (position == null) continue;
                 Piece piece = null;
-                if (i >= 0) {
-                    piece = makePiece(PieceTypeEnum.GOAT, i + verticalLine / 2, j + horizontalLine / 2);
+                if (j >= 2) {
+                    piece = makePiece(PieceTypeEnum.GOAT, position.getVertical(), position.getHorizontal());
                     System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
 
-                } else if (i == -1 && j == 0) {
-                    piece = makePiece(PieceTypeEnum.TIGER, i + verticalLine / 2, j + horizontalLine / 2);
+                } else if (i == 2 && j == 1) {
+                    piece = makePiece(PieceTypeEnum.TIGER, position.getVertical(), position.getHorizontal());
                 }
                 if (piece != null) {
 
@@ -74,16 +101,15 @@ public class StageCreator {
                     pieceGroup.getChildren().add(piece);
                 }
             }
-        }
     }
 
-    private Position createPosition(int vertical, int horizontal) {
+    private void createPosition(int vertical, int horizontal) {
         System.out.println("****************Called createPosition()****************");
         Position position = new Position(vertical + verticalLine / 2, horizontal + horizontalLine / 2);
         System.out.println("On board " + (horizontal + horizontalLine / 2) + " " + (vertical + verticalLine / 2));
         board[horizontal + horizontalLine / 2][vertical + verticalLine / 2] = position;
         positionGroup.getChildren().add(position);
-        return position;
+
     }
 
     private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal) {

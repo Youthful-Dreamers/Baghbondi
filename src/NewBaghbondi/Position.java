@@ -4,10 +4,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class Position extends Circle {
-    private int horizontal ,vertical;
+    private int horizontal, vertical;
+
+    public int getHorizontal() {
+        return horizontal;
+    }
+
+    public int getVertical() {
+        return vertical;
+    }
 
     private Piece piece;
-    boolean hasPiece(){
+
+    boolean hasPiece() {
         return piece != null;
     }
 
