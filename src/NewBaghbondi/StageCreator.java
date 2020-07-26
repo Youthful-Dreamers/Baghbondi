@@ -3,10 +3,9 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-
 
 
 public class StageCreator {
@@ -36,14 +35,19 @@ public class StageCreator {
         drawLine();
         configureParent(gamePane);
         rootPane.getChildren().add(gamePane);
-
+        rootPane.setBackground(setPicBackgournd("file:backgorundPic.jpg"));
         listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
-
         addPieceToPosition();
         return rootPane;
     }
 
+    private Background setPicBackgournd(String string){
+        Image image = new Image(string);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
+        Background background = new Background(backgroundImage);
+        return background;
+    }
 
 
     private void configureParent(Pane gamePane) {
@@ -56,7 +60,6 @@ public class StageCreator {
         gameScene = new Scene(createContent());
         boardStage.setScene(gameScene);
         boardStage.setTitle("BaghBondi");
-        //   boardStage.setFullScreen(true);
         boardStage.show();
     }
 

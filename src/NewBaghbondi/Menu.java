@@ -49,6 +49,7 @@ public class Menu {
 
         return scene;
     }
+
     public Scene createSceneLanguageOption()
     {
         Button button1 = new Button();
