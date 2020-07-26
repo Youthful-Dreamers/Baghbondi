@@ -1,8 +1,8 @@
 package NewBaghbondi;
 
+import NewBaghbondi.Clock;
+import NewBaghbondi.Position;
 import javafx.scene.layout.Pane;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,7 +17,6 @@ public class TurnManager {
     private Clock goatClock;
     private Clock tigerClock;
     Turn turn;
-//   ClockInterface clock;
 
 
     TurnType turnType;
@@ -25,17 +24,31 @@ public class TurnManager {
     TurnManager(TurnType firstTurn, Pane rootPane, Position[][] board) {
         turnType = firstTurn;
         createTurn(firstTurn);
-        //     clock = new ClockInterface(rootPane, board);
-        //    clock.drawClock();
-        tigerClock = new Clock(((board[1][3].getLayoutX() + board[0][4].getLayoutX()) / 2), board[2][2].getLayoutY());
-        tigerClock.setTimer(50);
-        tigerClock.drawClock();
-        goatClock = new Clock(board[3][3].getLayoutX(), board[2][2].getLayoutY());
-        goatClock.setTimer(70);
-        goatClock.drawClock();
+        manageTigerClock(board);
+        manageGoatClock(board);
         rootPane.getChildren().add(goatClock.getClockGroup());
         rootPane.getChildren().add(tigerClock.getClockGroup());
         startTimer();
+    }
+
+    private void manageTigerClock(Position[][] board) {
+        tigerClock = new Clock(((board[1][3].getLayoutX() + board[0][4].getLayoutX()) / 2), board[2][2].getLayoutY());
+        tigerClock.setTimer(3);
+        tigerClock.drawClock();
+    }
+
+    private void manageGoatClock(Position[][] board) {
+        goatClock = new Clock(board[3][3].getLayoutX(), board[2][2].getLayoutY());
+        goatClock.setTimer(5);
+        goatClock.drawClock();
+    }
+
+    public Clock getGoatClock() {
+        return goatClock;
+    }
+
+    public Clock getTigerClock() {
+        return tigerClock;
     }
 
     void createTurn(TurnType type) {
@@ -45,12 +58,6 @@ public class TurnManager {
                 goatTurn : tigerTurn;
     }
 
-
-    //    void changeTurn() {
-//
-//        turn = (turn.getType() == TurnType.TIGER_TURN) ?
-//                goatTurn : tigerTurn;
-//    }
     void changeTurn() {
         turn = (turn.getType() == TurnType.TIGER_TURN) ?
                 runGoatTurn() : runTigerTurn();
@@ -68,19 +75,6 @@ public class TurnManager {
         return tigerTurn;
     }
 
-//    Timer timer = new Timer();
-//    TimerTask task = new TimerTask() {
-//        @Override
-//        public void run() {
-//            turn.decreaseTime();
-//          //  System.out.println("TigerTime: " + tigerTurn.time + "  || GoatTime: " + goatTurn.time);
-//            clock.setGoatClockTime(goatTurn.time);
-//            clock.setTigerClockTime(tigerTurn.time);
-//            if (turn.timeUp()) cancel();
-//
-//        }
-//
-//    };
 
     private void startTimer() {
         //timer.schedule(task, 0, 1000);
@@ -103,7 +97,6 @@ interface Turn {
 
     boolean timeUp();
 
-    void decreaseTime();
 }
 
 class GoatTurn implements Turn {
@@ -126,11 +119,7 @@ class GoatTurn implements Turn {
         return type;
     }
 
-    @Override
-    public void decreaseTime() {
-        time--;
 
-    }
 
 
 }
@@ -154,11 +143,7 @@ class TigerTurn implements Turn {
     public TurnType getType() {
         return type;
     }
-    @Override
-    public void decreaseTime() {
-        time--;
 
-    }
 }
 
 

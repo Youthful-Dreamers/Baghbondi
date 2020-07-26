@@ -30,7 +30,7 @@ public class Clock {
         clockText.setFill(color);
     }
 
-    protected void drawClock() {
+    public void drawClock() {
         configClockInterface();
 
         clockText.setLayoutX(getLayoutX());
@@ -100,15 +100,21 @@ public class Clock {
         this.timer = timer;
     }
 
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
     public int getRemainingTime() {
         return timer;
     }
+
+
     //Constructors
 
     Clock() {
     }
 
-    Clock(double layoutX, double layoutY) {
+    public Clock(double layoutX, double layoutY) {
         setLayoutX(layoutX);
         setLayoutY(layoutY);
     }

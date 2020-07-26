@@ -1,5 +1,6 @@
 package NewBaghbondi;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -22,11 +23,44 @@ public class GameOverWorks {
         this.boardStage = boardStage;
         this.board = board;
         this.turnManager = turnManager;
+        onTimeUp();
+    }
+
+    private void onTimeUp() {
+        Clock goatClock = turnManager.getGoatClock();
+        goatClock.setTask(new Clock.Task() {
+            @Override
+            public void performWhenClockRuns() {
+                if (goatClock.getRemainingTime() <= 0) {
+                    setGameOverSceneAndMakeTheTigerWin(true);
+                }
+
+            }
+        });
+        Clock tigerClock = turnManager.getTigerClock();
+        tigerClock.setTask(new Clock.Task() {
+            @Override
+            public void performWhenClockRuns() {
+                if (tigerClock.getRemainingTime() <= 0) {
+                    setGameOverSceneAndMakeTheTigerWin(false);
+
+                }
+            }
+        });
+    }
+
+    private void setGameOverSceneAndMakeTheTigerWin(boolean b) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                boardStage.setScene(makeGameOverScene(b));
+            }
+        });
     }
 
     private boolean goatWinCase(Piece piece) {
         if (endTigerGame(piece)) {
-            boardStage.setScene(gameOverScene(false));
+            boardStage.setScene(makeGameOverScene(false));
             return true;
         }
         return false;
@@ -38,7 +72,7 @@ public class GameOverWorks {
 
     private boolean tigerWinCase() {
         if (numberOfGoat < minimumNumberOfGoats) {
-            boardStage.setScene(gameOverScene(true));
+            boardStage.setScene(makeGameOverScene(true));
             return true;
         }
         return false;
@@ -138,13 +172,13 @@ public class GameOverWorks {
         if(goatWinCase(piece)) return true;
         if(tigerWinCase()) return true;
         if (turnManager.timerUp()) {
-            if(turnManager.getTurnType() == TurnType.TIGER_TURN) boardStage.setScene(gameOverScene(false));
-            if(turnManager.getTurnType() == TurnType.GOAT_TURN) boardStage.setScene(gameOverScene(true));
+            if (turnManager.getTurnType() == TurnType.TIGER_TURN) boardStage.setScene(makeGameOverScene(false));
+            if (turnManager.getTurnType() == TurnType.GOAT_TURN) boardStage.setScene(makeGameOverScene(true));
         }
         return false;
     }
 
-    public Scene gameOverScene(boolean tigerWin) {
+    public Scene makeGameOverScene(boolean tigerWin) {
         Label label = new Label("Game Over!");
         label.setFont(new Font("Arial", 25));
         label.setTextFill(Color.web("#228b22", 1.0));
