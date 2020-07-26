@@ -19,11 +19,9 @@ public class Clock {
 
     Text clockText = new Text();
 
-
     public void setClockTime(int time) {
         clockText.setText(time + " s");
     }
-
 
     private void configClockInterface() {
         clockText.setFont(new Font("Agency FB", 32));

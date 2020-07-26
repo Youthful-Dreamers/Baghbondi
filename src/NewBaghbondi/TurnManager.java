@@ -3,6 +3,7 @@ package NewBaghbondi;
 import NewBaghbondi.Clock;
 import NewBaghbondi.Position;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,14 +34,17 @@ public class TurnManager {
 
     private void manageTigerClock(Position[][] board) {
         tigerClock = new Clock(((board[1][3].getLayoutX() + board[0][4].getLayoutX()) / 2), board[2][2].getLayoutY());
-        tigerClock.setTimer(3);
+        tigerClock.setTimer(50);
+        tigerClock.setColor(Color.RED);
         tigerClock.drawClock();
     }
 
     private void manageGoatClock(Position[][] board) {
         goatClock = new Clock(board[3][3].getLayoutX(), board[2][2].getLayoutY());
-        goatClock.setTimer(5);
+        goatClock.setTimer(80);
+        goatClock.setColor(Color.BLUE);
         goatClock.drawClock();
+
     }
 
     public Clock getGoatClock() {
