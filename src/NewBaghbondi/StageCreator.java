@@ -28,25 +28,24 @@ public class StageCreator {
 
     private Parent createContent() {
         Pane gamePane = new Pane();
-        rootPane.setPrefSize(700, 700);
+        rootPane.setPrefSize(700, 650);
         gamePane.setPrefSize(500, 500);
 
         drawBoard();
         drawLine();
         configureParent(gamePane);
         rootPane.getChildren().add(gamePane);
-        rootPane.setBackground(setPicBackgournd("file:backgorundPic.jpg"));
+        rootPane.setBackground(setBackgroundPicture("resources/backgroundPic.png"));
         listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
         addPieceToPosition();
         return rootPane;
     }
 
-    private Background setPicBackgournd(String string){
-        Image image = new Image(string);
+    private Background setBackgroundPicture(String string){
+        Image image = new Image(string,true);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
-        Background background = new Background(backgroundImage);
-        return background;
+        return new Background(backgroundImage);
     }
 
 

@@ -3,6 +3,7 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.stage.Stage;
 
+
 public class MovementManager {
 
     TurnManager turnManager;
@@ -83,6 +84,7 @@ public class MovementManager {
                 movementMade = true;
 
                 break;
+
         }
 
         if (gameOverWorks.gameOver(piece)) return false;
@@ -169,4 +171,6 @@ public class MovementManager {
         }
         return new MoveResult(MoveType.NONE);
     }
+
+
 }
