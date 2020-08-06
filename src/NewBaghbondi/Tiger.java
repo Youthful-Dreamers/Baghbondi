@@ -4,14 +4,14 @@ import javafx.scene.paint.Color;
 
 public class Tiger extends Piece{
     private Color pieceColor = Color.RED;
-    private PieceTypeEnum type = PieceTypeEnum.TIGER;
+    private PlayerType type = PlayerType.TIGER;
 
     Tiger( int vertical, int horizontal){
-        super(PieceTypeEnum.TIGER,vertical,horizontal);
+        super(PlayerType.TIGER,vertical,horizontal);
         definePiece(pieceCircle,pieceColor);
     }
     @Override
-    public PieceTypeEnum getPieceType() {
+    public PlayerType getPieceType() {
         return type;
     }
 

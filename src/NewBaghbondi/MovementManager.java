@@ -31,17 +31,17 @@ public class MovementManager {
         int oldHorizontal = pixelToBoard(piece.getOldHorizontal());
         int newVertical = pixelToBoard(piece.getLayoutY());
         int oldVertical = pixelToBoard(piece.getOldVertical());
-        System.out.println("Turn of :: " + turnManager.getTurnType());
+        System.out.println("Turn of :: " + turnManager.getPlayerType());
         MoveResult result = tryMove(piece, newHorizontal, newVertical);
 
-        if (turnManager.getTurnType() == TurnType.GOAT_TURN) {
-            if (piece.getPieceType() == PieceTypeEnum.TIGER) {
+        if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) {
+            if (piece.getPieceType() == PlayerType.TIGER) {
                 piece.abortMove();
                 return false;
             }
 
-        } else if (turnManager.getTurnType() == TurnType.TIGER_TURN) {
-            if (piece.getPieceType() == PieceTypeEnum.GOAT) {
+        } else if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) {
+            if (piece.getPieceType() == PlayerType.GOAT) {
                 piece.abortMove();
                 return false;
             }
@@ -64,10 +64,10 @@ public class MovementManager {
                 System.out.println("Normal move from:: " + oldHorizontal + ", " + oldVertical);
                 board[oldHorizontal][oldVertical].setPiece(null);
                 board[newHorizontal][newVertical].setPiece(piece);
-                System.out.println("Normal move: preturn " + turnManager.getTurnType());
+                System.out.println("Normal move: preturn " + turnManager.getPlayerType());
                 turnManager.changeTurn();
 
-                System.out.println("Normal move: turn " + turnManager.getTurnType());
+                System.out.println("Normal move: turn " + turnManager.getPlayerType());
                 movementMade = true;
 
                 break;
@@ -82,7 +82,6 @@ public class MovementManager {
                 turnManager.changeTurn();
                 gameOverWorks.killGoat();
                 movementMade = true;
-
                 break;
 
         }
@@ -148,7 +147,7 @@ public class MovementManager {
             }
         }
 
-        if (piece.getPieceTypeEnum() == PieceTypeEnum.TIGER) {
+        if (piece.getPieceTypeEnum() == PlayerType.TIGER) {
             if (oldVertical == 0 || oldVertical == 4) {
                 if (line == 4) {
                     int killedX = oldHorizontal + (newHorizontal - oldHorizontal) / 2;
@@ -174,3 +173,4 @@ public class MovementManager {
 
 
 }
+

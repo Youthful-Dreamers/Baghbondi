@@ -9,16 +9,16 @@ public abstract class Piece extends StackPane {
     protected double fromMouseVertical, fromMouseHorizontal;
     protected double oldVertical, oldHorizontal;
 
-    private PieceTypeEnum type;
+    private PlayerType type;
     private int offset = 30;
     Circle pieceCircle = new Circle();
 
 
-    public PieceTypeEnum getPieceTypeEnum() {
+    public PlayerType getPieceTypeEnum() {
         return type;
     }
 
-    public Piece(PieceTypeEnum type, int vertical, int horizontal) {
+    public Piece(PlayerType type, int vertical, int horizontal) {
 
         this.type=type;
         move(horizontal, vertical);
@@ -32,7 +32,7 @@ public abstract class Piece extends StackPane {
         pieceCircle.setRadius(20);
     }
 
-     public PieceTypeEnum getType() {return type;}
+     public PlayerType getType() {return type;}
 
 
     public void move(int horizontal, int vertical)
@@ -66,7 +66,7 @@ public abstract class Piece extends StackPane {
 
     abstract Color getPieceColor();
 
-    abstract PieceTypeEnum getPieceType();
+    abstract PlayerType getPieceType();
 
     public void addMousePressBehavior() {
         setOnMousePressed(e -> {

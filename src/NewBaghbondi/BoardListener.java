@@ -17,15 +17,13 @@ public class BoardListener {
         this.board = board;
         this.pieceGroup = pieceGroup;
         this.boardStage = boardStage;
-        turnManager = new TurnManager(TurnType.GOAT_TURN, rootPane, board);
+        turnManager = new TurnManager(PlayerType.GOAT, rootPane, board);
         gameOverWorks = new GameOverWorks(boardStage, board, turnManager);
         movementManager = new MovementManager(board, pieceGroup, boardStage, turnManager, gameOverWorks);
     }
 
     public void addMouseReleaseOptions(Piece piece) {
-        piece.setOnMouseReleased(e -> {
-            movementManager.makeMove(piece);
-                }
+        piece.setOnMouseReleased(e -> movementManager.makeMove(piece)
         );
     }
 

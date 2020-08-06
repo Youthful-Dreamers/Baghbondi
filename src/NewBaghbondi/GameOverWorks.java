@@ -28,34 +28,23 @@ public class GameOverWorks {
 
     private void onTimeUp() {
         Clock goatClock = turnManager.getGoatClock();
-        goatClock.setTask(new Clock.Task() {
-            @Override
-            public void performWhenClockRuns() {
-                if (goatClock.getRemainingTime() <= 0) {
-                    setGameOverSceneAndMakeTheTigerWin(true);
-                }
-
+        goatClock.setTask(() -> {
+            if (goatClock.getRemainingTime() <= 0) {
+                setGameOverSceneAndMakeTheTigerWin(true);
             }
+
         });
         Clock tigerClock = turnManager.getTigerClock();
-        tigerClock.setTask(new Clock.Task() {
-            @Override
-            public void performWhenClockRuns() {
-                if (tigerClock.getRemainingTime() <= 0) {
-                    setGameOverSceneAndMakeTheTigerWin(false);
+        tigerClock.setTask(() -> {
+            if (tigerClock.getRemainingTime() <= 0) {
+                setGameOverSceneAndMakeTheTigerWin(false);
 
-                }
             }
         });
     }
 
     private void setGameOverSceneAndMakeTheTigerWin(boolean b) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                boardStage.setScene(makeGameOverScene(b));
-            }
-        });
+        Platform.runLater(() -> boardStage.setScene(makeGameOverScene(b)));
     }
 
     private boolean goatWinCase(Piece piece) {
@@ -86,7 +75,7 @@ public class GameOverWorks {
 
         //System.out.println(horizontal + " ,hi " + vertical);
 
-        if (piece.getPieceTypeEnum() == PieceTypeEnum.TIGER) {
+        if (piece.getPieceTypeEnum() == PlayerType.TIGER) {
             //System.out.println("label1");
 
             //k=board[0][4].hasPiece() && board[4][0].hasPiece();
@@ -115,8 +104,8 @@ public class GameOverWorks {
                 //System.out.println("label3 hghghg");
                 if (k) {
                     // System.out.println("label4");
-                    if (vertical == 1) k = k && board[horizontal][vertical + 2].hasPiece();
-                    else k = k && board[horizontal][vertical - 2].hasPiece();
+                    if (vertical == 1) k = board[horizontal][vertical + 2].hasPiece();
+                    else k = board[horizontal][vertical - 2].hasPiece();
                     return k;
                 } else {// System.out.println("label2");
                     return false;
@@ -172,8 +161,8 @@ public class GameOverWorks {
         if(goatWinCase(piece)) return true;
         if(tigerWinCase()) return true;
         if (turnManager.timerUp()) {
-            if (turnManager.getTurnType() == TurnType.TIGER_TURN) boardStage.setScene(makeGameOverScene(false));
-            if (turnManager.getTurnType() == TurnType.GOAT_TURN) boardStage.setScene(makeGameOverScene(true));
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) boardStage.setScene(makeGameOverScene(false));
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) boardStage.setScene(makeGameOverScene(true));
         }
         return false;
     }
@@ -201,9 +190,7 @@ public class GameOverWorks {
 
         vBox.getChildren().addAll(label, label2);
 
-        Scene scene = new Scene(vBox, 500, 500);
-
-        return scene;
+        return new Scene(vBox, 500, 500);
     }
 
 }

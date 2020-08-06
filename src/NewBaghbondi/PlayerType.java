@@ -1,6 +1,6 @@
 package NewBaghbondi;
 
-public enum PieceTypeEnum {
+public enum PlayerType {
 
     TIGER, GOAT
 

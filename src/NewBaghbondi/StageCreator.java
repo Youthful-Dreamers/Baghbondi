@@ -86,11 +86,11 @@ public class StageCreator {
                 if (position == null) continue;
                 Piece piece = null;
                 if (j >= 2) {
-                    piece = makePiece(PieceTypeEnum.GOAT, position.getVertical(), position.getHorizontal());
+                    piece = makePiece(PlayerType.GOAT, position.getVertical(), position.getHorizontal());
                     System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
 
                 } else if (i == 2 && j == 1) {
-                    piece = makePiece(PieceTypeEnum.TIGER, position.getVertical(), position.getHorizontal());
+                    piece = makePiece(PlayerType.TIGER, position.getVertical(), position.getHorizontal());
                 }
                 if (piece != null) {
 
@@ -109,10 +109,10 @@ public class StageCreator {
 
     }
 
-    private Piece makePiece(PieceTypeEnum pieceTypeEnum, int vertical, int horizontal) {
+    private Piece makePiece(PlayerType playerType, int vertical, int horizontal) {
         System.out.println("-----Called makePiece()-----");
         Piece piece;
-        if (pieceTypeEnum == PieceTypeEnum.TIGER)
+        if (playerType == PlayerType.TIGER)
             piece = new Tiger(vertical, horizontal);
         else
             piece = new Goat(vertical, horizontal);

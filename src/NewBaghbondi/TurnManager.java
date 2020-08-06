@@ -14,10 +14,10 @@ public class TurnManager {
     Turn turn;
 
 
-    TurnType turnType;
+    PlayerType playerType;
 
-    TurnManager(TurnType firstTurn, Pane rootPane, Position[][] board) {
-        turnType = firstTurn;
+    TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board) {
+        playerType = firstTurn;
         createTurn(firstTurn);
         manageTigerClock(board);
         manageGoatClock(board);
@@ -49,15 +49,15 @@ public class TurnManager {
         return tigerClock;
     }
 
-    void createTurn(TurnType type) {
+    void createTurn(PlayerType type) {
         goatTurn = new GoatTurn(maximumTime);
         tigerTurn = new TigerTurn(maximumTime);
-        turn = (type == TurnType.GOAT_TURN) ?
+        turn = (type == PlayerType.GOAT) ?
                 goatTurn : tigerTurn;
     }
 
     void changeTurn() {
-        turn = (turn.getType() == TurnType.TIGER_TURN) ?
+        turn = (turn.getType() == PlayerType.TIGER) ?
                 runGoatTurn() : runTigerTurn();
     }
 
@@ -79,7 +79,7 @@ public class TurnManager {
         goatClock.start();
     }
 
-    public TurnType getTurnType() {
+    public PlayerType getPlayerType() {
         return turn.getType();
     }
 
@@ -91,14 +91,14 @@ public class TurnManager {
 }
 
 interface Turn {
-    TurnType getType();
+    PlayerType getType();
 
     boolean timeUp();
 
 }
 
 class GoatTurn implements Turn {
-    TurnType type = TurnType.GOAT_TURN;
+    PlayerType type = PlayerType.GOAT;
 
     int time;
 
@@ -113,7 +113,7 @@ class GoatTurn implements Turn {
     }
 
     @Override
-    public TurnType getType() {
+    public PlayerType getType() {
         return type;
     }
 
@@ -125,7 +125,7 @@ class GoatTurn implements Turn {
 class TigerTurn implements Turn {
     int time;
 
-    TurnType type = TurnType.TIGER_TURN;
+    PlayerType type = PlayerType.TIGER;
 
     TigerTurn(int time) {
 
@@ -138,15 +138,12 @@ class TigerTurn implements Turn {
     }
 
     @Override
-    public TurnType getType() {
+    public PlayerType getType() {
         return type;
     }
 
 }
 
 
-enum TurnType {
-    TIGER_TURN, GOAT_TURN
-}
 
 
