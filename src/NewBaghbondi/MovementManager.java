@@ -34,20 +34,11 @@ public class MovementManager {
         System.out.println("Turn of :: " + turnManager.getPlayerType());
         MoveResult result = tryMove(piece, newHorizontal, newVertical);
 
-        if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) {
-            if (piece.getPieceType() == PlayerType.TIGER) {
-                piece.abortMove();
-                return false;
-            }
-
-        } else if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) {
-            if (piece.getPieceType() == PlayerType.GOAT) {
-                piece.abortMove();
-                return false;
-            }
-
+        if(turnManager.getPlayerType() != piece.getPieceType()){
+            piece.abortMove();
+            System.out.println(1);
+            return false;
         }
-
 
 
         boolean movementMade = false;
