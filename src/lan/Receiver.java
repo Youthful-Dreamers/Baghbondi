@@ -7,9 +7,8 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class Receiver {
-    Position[][] positions;
-    Socket receiverSocket;
-    ObjectInputStream objectInputStream;
+    private TransferablePosition packagedPosition;
+    private Socket receiverSocket;
 
     Receiver(String proxy, int port){
         try {
@@ -20,15 +19,16 @@ public class Receiver {
     }
 
 
-    public Position[][] getPositions() {
+    public TransferablePosition getPackagedPosition() {
         getFromStream();
-        return positions;
+        return packagedPosition;
     }
 
     private void getFromStream()  {
-        try{objectInputStream = new ObjectInputStream(receiverSocket.getInputStream());
-        TransferablePosition packagedPosition = (TransferablePosition) objectInputStream.readObject();
-        positions = packagedPosition.getPositions();}
+        try{
+            ObjectInputStream objectInputStream = new ObjectInputStream(receiverSocket.getInputStream());
+        packagedPosition = (TransferablePosition) objectInputStream.readObject();
+        }
         catch (ClassNotFoundException | IOException e){
             e.printStackTrace();
         }
