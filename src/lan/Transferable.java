@@ -4,11 +4,7 @@ import NewBaghbondi.Position;
 
 import java.io.Serializable;
 
-public interface Transferable extends Serializable {
-
-}
-
-class TransferablePosition implements Transferable,Serializable {
+class TransferablePosition implements Serializable {
     private Position[][] positions;
 
     public TransferablePosition(Position[][] positions) {

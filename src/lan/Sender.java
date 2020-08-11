@@ -22,7 +22,7 @@ import java.net.Socket;
 
     }
 
-    public void send(Transferable packagedPosition) {
+    public void send(TransferablePosition packagedPosition) {
         try {
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(packagedPosition);

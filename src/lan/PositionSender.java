@@ -3,7 +3,7 @@ package lan;
 import NewBaghbondi.Position;
 
 public class PositionSender {
-    Transferable packagedPositions;
+    TransferablePosition packagedPositions;
     Sender sender;
     PositionSender(Position[][] positions, int port){
         packagedPositions = new TransferablePosition(positions);
