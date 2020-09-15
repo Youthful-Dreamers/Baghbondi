@@ -13,12 +13,12 @@ public class BoardListener {
     GameOverWorks gameOverWorks;
     MovementManager movementManager;
 
-    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup, Pane rootPane) {
+    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup, Pane rootPane, int languageOption) {
         this.board = board;
         this.pieceGroup = pieceGroup;
         this.boardStage = boardStage;
-        turnManager = new TurnManager(PlayerType.GOAT, rootPane, board);
-        gameOverWorks = new GameOverWorks(boardStage, board, turnManager);
+        turnManager = new TurnManager(PlayerType.GOAT, rootPane, board, languageOption);
+        gameOverWorks = new GameOverWorks(boardStage, board, turnManager, languageOption);
         movementManager = new MovementManager(board, pieceGroup, boardStage, turnManager, gameOverWorks);
     }
 

@@ -3,28 +3,39 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Clock {
+
+    private Task task = null;
+    private int languageOption;
+    private int timer = 0;
     private double layoutX = 0;
     private double layoutY = 0;
-    private int timer = 0;
     private Color color = Color.BLACK;
-    Task task = null;
-
+    private Text clockText = new Text();
     private Group clockGroup = new Group();
 
-    Text clockText = new Text();
+    private EnglishToBengali englishToBengali;
 
-    public void setClockTime(int time) {
-        clockText.setText(time + " s");
+    public void setClockTime(int time, int languageOption) {
+        String clockTime;
+        if(languageOption == 1){
+            clockTime = englishToBengali.getStringInBengali(String.valueOf(time));
+            clockTime = clockTime+" সেকেন্ড";
+        }else{
+            clockTime = String.valueOf(time);
+            clockTime = clockTime+" seconds";
+        }
+        clockText.setText(clockTime);
     }
 
     private void configClockInterface() {
-        clockText.setFont(new Font("Agency FB", 32));
+        clockText.setFont(Font.font("Agency FB", FontWeight.BOLD, 28));
         clockText.setFill(color);
     }
 
@@ -34,7 +45,8 @@ public class Clock {
         clockText.setLayoutX(getLayoutX());
         clockText.setLayoutY(getLayoutY());
 
-        clockText.setText("LIMITED");
+        if(languageOption==1) clockText.setText("লিমিটেড");
+        else clockText.setText("Limited");
         clockGroup.getChildren().add(clockText);
 
     }
@@ -51,7 +63,7 @@ public class Clock {
             @Override
             public void run() {
                 timer--;
-                setClockTime(timer);
+                setClockTime(timer, languageOption);
                 if (task != null)
                     task.performWhenClockRuns();
 
@@ -68,10 +80,6 @@ public class Clock {
 
     public void setColor(Color color) {
         this.color = color;
-    }
-
-    public Color getColor() {
-        return color;
     }
 
     public void setLayoutX(double layoutX) {
@@ -106,23 +114,13 @@ public class Clock {
         return timer;
     }
 
-
-    //Constructors
-
-    Clock() {
-    }
-
-    public Clock(double layoutX, double layoutY) {
+    public Clock(double layoutX, double layoutY, int languageOption) {
+        this.languageOption = languageOption;
+        englishToBengali = new EnglishToBengali();
         setLayoutX(layoutX);
         setLayoutY(layoutY);
     }
 
-    Clock(int timer) {
-        setTimer(timer);
-    }
-
-
-    //Listener Interface
     public interface Task {
         void performWhenClockRuns();
     }

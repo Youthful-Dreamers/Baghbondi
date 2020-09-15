@@ -18,11 +18,13 @@ public class GameOverWorks {
 
     private int numberOfGoat = 7;
     private TurnManager turnManager;
+    int languaOption;
 
-    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager) {
+    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption) {
         this.boardStage = boardStage;
         this.board = board;
         this.turnManager = turnManager;
+        this.languaOption= languageOption;
         onTimeUp();
     }
 
@@ -44,12 +46,12 @@ public class GameOverWorks {
     }
 
     private void setGameOverSceneAndMakeTheTigerWin(boolean b) {
-        Platform.runLater(() -> boardStage.setScene(makeGameOverScene(b)));
+        Platform.runLater(() -> boardStage.setScene(makeGameOverScene(b, languaOption)));
     }
 
     private boolean goatWinCase(Piece piece) {
         if (endTigerGame(piece)) {
-            boardStage.setScene(makeGameOverScene(false));
+            boardStage.setScene(makeGameOverScene(false, languaOption));
             return true;
         }
         return false;
@@ -61,7 +63,7 @@ public class GameOverWorks {
 
     private boolean tigerWinCase() {
         if (numberOfGoat < minimumNumberOfGoats) {
-            boardStage.setScene(makeGameOverScene(true));
+            boardStage.setScene(makeGameOverScene(true, languaOption));
             return true;
         }
         return false;
@@ -161,36 +163,55 @@ public class GameOverWorks {
         if(goatWinCase(piece)) return true;
         if(tigerWinCase()) return true;
         if (turnManager.timerUp()) {
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) boardStage.setScene(makeGameOverScene(false));
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) boardStage.setScene(makeGameOverScene(true));
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) boardStage.setScene(makeGameOverScene(false, languaOption));
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) boardStage.setScene(makeGameOverScene(true, languaOption));
         }
         return false;
     }
 
-    public Scene makeGameOverScene(boolean tigerWin) {
-        Label label = new Label("Game Over!");
-        label.setFont(new Font("Arial", 25));
-        label.setTextFill(Color.web("#228b22", 1.0));
+    public Scene makeGameOverScene(boolean tigerWin, int languageOption) {
+        String labelOneString;
+        String labelTwoString;
 
-        String type;
+        labelOneString = determineLabelOneString(languageOption);
+        labelTwoString = determineLabelTwoString(tigerWin, languageOption);
 
-        if (tigerWin) {
-            type = "Tiger";
-        } else {
-            type = "Goat";
-        }
+        Label labelOne = new Label(labelOneString);
+        labelOne.setFont(new Font("Arial", 25));
+        labelOne.setTextFill(Color.web("#228b22", 1.0));
 
-        Label label2 = new Label(type + " has won the game!!");
-        label2.setFont(new Font("Arial", 30));
-        label2.setTextFill(Color.web("#ff4500", 1.0));
+        Label labelTwo = new Label(labelTwoString);
+        labelTwo.setFont(new Font("Arial", 30));
+        labelTwo.setTextFill(Color.web("#ff4500", 1.0));
 
         VBox vBox = new VBox(5);
-
         vBox.setAlignment(Pos.CENTER);
-
-        vBox.getChildren().addAll(label, label2);
+        vBox.getChildren().addAll(labelOne, labelTwo);
 
         return new Scene(vBox, 500, 500);
     }
 
+    private String determineLabelOneString(int languageOption){
+        String labelOneString;
+        if(languaOption == 1) labelOneString = "খেলা সমাপ্ত!";
+        else labelOneString = "Game Over!";
+        return  labelOneString;
+    }
+
+    private String determineLabelTwoString(boolean tigerWin, int languageOption){
+        String type;
+        String labelTwoString;
+        if (tigerWin) {
+            if(languaOption == 1) type = "বাঘ";
+            else type = "Tiger";
+        } else {
+            if(languageOption == 2) type = "ছাগল";
+            else type = "Goat";
+        }
+
+        if(languageOption == 1) labelTwoString = type+" জিতেছে!!";
+        else labelTwoString = type+" has own the game!!";
+
+        return labelTwoString;
+    }
 }

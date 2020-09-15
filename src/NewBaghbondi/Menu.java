@@ -9,7 +9,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Menu {
+
     Stage stage;
+    int languageOption;
     Menu(Stage stage){
         this.stage = stage;
     }
@@ -38,7 +40,7 @@ public class Menu {
 
         buttonForDefaultGame.setText(buttonForDefaultGameString);
         buttonForDefaultGame.setOnAction( e-> {
-                new StageCreator().boardStage();
+                new StageCreator(languageOption).boardStage();
                 stage.close();
         });
 
@@ -61,10 +63,16 @@ public class Menu {
         label.setFont(new Font("Arial", 14));
 
         button1.setText("বাংলা");
-        button1.setOnAction( e-> stage.setScene(createMenuScene(1)));
+        button1.setOnAction( e-> {
+            stage.setScene(createMenuScene(1));
+            languageOption = 1;
+        });
 
         button2.setText("English");
-        button2.setOnAction( e->stage.setScene(createMenuScene(2)));
+        button2.setOnAction( e->{
+            stage.setScene(createMenuScene(2));
+            languageOption= 2;
+        });
 
         VBox vBox= new VBox(5);
         vBox.setAlignment(Pos.CENTER);

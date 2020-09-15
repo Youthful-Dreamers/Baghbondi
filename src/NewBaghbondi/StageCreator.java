@@ -18,6 +18,11 @@ public class StageCreator {
     private Scene gameScene;
     private int verticalLine = 5;
     private int horizontalLine = 5;
+    private int languageOption;
+
+    protected StageCreator(int languageOption){
+        this.languageOption = languageOption;
+    }
 
 
     Pane rootPane = new Pane();
@@ -36,7 +41,7 @@ public class StageCreator {
         configureParent(gamePane);
         rootPane.getChildren().add(gamePane);
         rootPane.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
-        listener = new BoardListener(boardStage, board, pieceGroup, rootPane);
+        listener = new BoardListener(boardStage, board, pieceGroup, rootPane, languageOption);
         addPieceToPosition();
         return rootPane;
     }

@@ -11,12 +11,14 @@ public class TurnManager {
     private TigerTurn tigerTurn;
     private Clock goatClock;
     private Clock tigerClock;
+    private int languageOption;
     Turn turn;
 
 
     PlayerType playerType;
 
-    TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board) {
+    TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board, int languageOption) {
+        this.languageOption = languageOption;
         playerType = firstTurn;
         createTurn(firstTurn);
         manageTigerClock(board);
@@ -27,16 +29,16 @@ public class TurnManager {
     }
 
     private void manageTigerClock(Position[][] board) {
-        tigerClock = new Clock( 450, 45);
+        tigerClock = new Clock( 400, 45, languageOption);
         tigerClock.setTimer(50);
-        tigerClock.setColor(Color.RED);
+        tigerClock.setColor(Color.WHITE);
         tigerClock.drawClock();
     }
 
     private void manageGoatClock(Position[][] board) {
-        goatClock = new Clock(550, 45);
+        goatClock = new Clock(550, 45, languageOption);
         goatClock.setTimer(80);
-        goatClock.setColor(Color.BLUE);
+        goatClock.setColor(Color.YELLOW);
         goatClock.drawClock();
 
     }
