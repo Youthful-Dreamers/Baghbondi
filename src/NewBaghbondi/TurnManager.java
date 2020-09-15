@@ -80,6 +80,11 @@ public class TurnManager {
         //timer.schedule(task, 0, 1000);
         goatClock.start();
     }
+    public void stopTimer(){
+        goatClock.cancel();
+        tigerClock.cancel();
+    }
+
 
     public PlayerType getPlayerType() {
         return turn.getType();

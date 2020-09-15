@@ -82,6 +82,7 @@ public class Clock {
     }
 
     public void cancel() {
+        if(timerTask!=null)
         timerTask.cancel();
         clockTimer.cancel();
     }
