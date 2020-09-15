@@ -38,22 +38,18 @@ public class MovementManager {
             return false;
         }
 
-
         boolean movementMade = false;
 
         switch (result.getType()) {
             case NONE:
                 piece.abortMove();
                 break;
-
             case NORMAL:
                 piece.move(newHorizontal, newVertical);
                 board[oldHorizontal][oldVertical].setPiece(null);
                 board[newHorizontal][newVertical].setPiece(piece);
                 turnManager.changeTurn();
-
                 movementMade = true;
-
                 break;
             case KILL:
                 piece.move(newHorizontal, newVertical);
@@ -67,7 +63,6 @@ public class MovementManager {
                 movementMade = true;
                 break;
         }
-
         if (gameOverWorks.gameOver(piece)) return false;
         return movementMade;
     }
