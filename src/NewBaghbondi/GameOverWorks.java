@@ -193,7 +193,7 @@ public class GameOverWorks {
 
     private String determineLabelOneString(int languageOption){
         String labelOneString;
-        if(languaOption == 1) labelOneString = "খেলা সমাপ্ত!";
+        if(languageOption == 1) labelOneString = "খেলা সমাপ্ত!";
         else labelOneString = "Game Over!";
         return  labelOneString;
     }
@@ -202,10 +202,10 @@ public class GameOverWorks {
         String type;
         String labelTwoString;
         if (tigerWin) {
-            if(languaOption == 1) type = "বাঘ";
+            if(languageOption == 1) type = "বাঘ";
             else type = "Tiger";
         } else {
-            if(languageOption == 2) type = "ছাগল";
+            if(languageOption == 1) type = "ছাগল";
             else type = "Goat";
         }
 
