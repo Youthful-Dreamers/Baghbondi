@@ -3,6 +3,8 @@ package NewBaghbondi;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -19,43 +21,38 @@ public class StageCreator {
     private int verticalLine = 5;
     private int horizontalLine = 5;
     private int languageOption;
+    private TextArea messages;
+    private TextField input;
+
+    Pane rootPane = new Pane();
+    Stage boardStage = new Stage();
+    BoardListener listener;
 
     protected StageCreator(int languageOption){
         this.languageOption = languageOption;
     }
 
-
-    Pane rootPane = new Pane();
-
-
-    Stage boardStage = new Stage();
-    BoardListener listener;
-
     private Parent createContent() {
-        Pane gamePane = new Pane();
         rootPane.setPrefSize(950, 650);
-        gamePane.setPrefSize(500, 500);
+        getMessagesInputFromChatBox();
 
-        drawBoard();
-        drawLine();
+        Pane gamePane = new Pane();
         configureParent(gamePane);
-        rootPane.getChildren().add(gamePane);
+
+        rootPane.getChildren().addAll(gamePane, messages, input);
         rootPane.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
+
         listener = new BoardListener(boardStage, board, pieceGroup, rootPane, languageOption);
         addPieceToPosition();
+
         return rootPane;
     }
 
-    private Background setBackgroundPicture(String string){
-        Image image = new Image(string, 950, 650, false, false, true);
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
-        return new Background(backgroundImage);
-    }
-
-
     private void configureParent(Pane gamePane) {
+        drawBoard();
+        drawLine();
         gamePane.getChildren().addAll(positionGroup, pieceGroup, lineGroup.getLineGroup());
+        gamePane.setPrefSize(500, 500);
         gamePane.setLayoutX(100);
         gamePane.setLayoutY(100);
     }
@@ -65,6 +62,19 @@ public class StageCreator {
         boardStage.setScene(gameScene);
         boardStage.setTitle("BaghBondi");
         boardStage.show();
+    }
+
+    private void getMessagesInputFromChatBox(){
+        ChatBox chatBox = new ChatBox();
+        messages = chatBox.getMessages();
+        input = chatBox.getInput();
+    }
+
+    private Background setBackgroundPicture(String string){
+        Image image = new Image(string, 950, 650, false, false, true);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+        return new Background(backgroundImage);
     }
 
     private void drawBoard() {
