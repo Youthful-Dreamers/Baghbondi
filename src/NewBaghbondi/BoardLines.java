@@ -1,6 +1,5 @@
 package NewBaghbondi;
 
-
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

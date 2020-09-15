@@ -18,13 +18,13 @@ public class GameOverWorks {
 
     private int numberOfGoat = 7;
     private TurnManager turnManager;
-    int languaOption;
+    int languageOption;
 
     GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption) {
         this.boardStage = boardStage;
         this.board = board;
         this.turnManager = turnManager;
-        this.languaOption= languageOption;
+        this.languageOption = languageOption;
         onTimeUp();
     }
 
@@ -49,12 +49,12 @@ public class GameOverWorks {
     }
 
     private void setGameOverSceneAndMakeTheTigerWin(boolean b) {
-        Platform.runLater(() -> boardStage.setScene(makeGameOverScene(b, languaOption)));
+        Platform.runLater(() -> boardStage.setScene(makeGameOverScene(b)));
     }
 
     private boolean goatWinCase(Piece piece) {
         if (endTigerGame(piece)) {
-            boardStage.setScene(makeGameOverScene(false, languaOption));
+            boardStage.setScene(makeGameOverScene(false));
             return true;
         }
         return false;
@@ -66,7 +66,7 @@ public class GameOverWorks {
 
     private boolean tigerWinCase() {
         if (numberOfGoat < minimumNumberOfGoats) {
-            boardStage.setScene(makeGameOverScene(true, languaOption));
+            boardStage.setScene(makeGameOverScene(true));
             return true;
         }
         return false;
@@ -166,18 +166,18 @@ public class GameOverWorks {
         if(goatWinCase(piece)) return true;
         if(tigerWinCase()) return true;
         if (turnManager.timerUp()) {
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) boardStage.setScene(makeGameOverScene(false, languaOption));
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) boardStage.setScene(makeGameOverScene(true, languaOption));
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) boardStage.setScene(makeGameOverScene(false));
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) boardStage.setScene(makeGameOverScene(true));
         }
         return false;
     }
 
-    public Scene makeGameOverScene(boolean tigerWin, int languageOption) {
+    public Scene makeGameOverScene(boolean tigerWin) {
         String labelOneString;
         String labelTwoString;
 
-        labelOneString = determineLabelOneString(languageOption);
-        labelTwoString = determineLabelTwoString(tigerWin, languageOption);
+        labelOneString = determineLabelOneString();
+        labelTwoString = determineLabelTwoString(tigerWin);
 
         Label labelOne = new Label(labelOneString);
         labelOne.setFont(new Font("Arial", 25));
@@ -194,16 +194,17 @@ public class GameOverWorks {
         return new Scene(vBox, 500, 500);
     }
 
-    private String determineLabelOneString(int languageOption){
+    private String determineLabelOneString(){
         String labelOneString;
         if(languageOption == 1) labelOneString = "খেলা সমাপ্ত!";
         else labelOneString = "Game Over!";
         return  labelOneString;
     }
 
-    private String determineLabelTwoString(boolean tigerWin, int languageOption){
+    private String determineLabelTwoString(boolean tigerWin){
         String type;
         String labelTwoString;
+
         if (tigerWin) {
             if(languageOption == 1) type = "বাঘ";
             else type = "Tiger";
