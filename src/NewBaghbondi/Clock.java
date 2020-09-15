@@ -18,7 +18,6 @@ public class Clock {
     private double layoutY = 0;
     private Color color = Color.BLACK;
     private Text clockText = new Text();
-    private Text playerText = new Text();
     private Group clockGroup = new Group();
     private int playerIndicator;
 
