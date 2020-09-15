@@ -2,8 +2,7 @@ package NewBaghbondi;
 
 import javafx.scene.paint.Color;
 
-public class Goat extends Piece
-{
+public class Goat extends Piece {
     private PlayerType type = PlayerType.GOAT;
     private Color pieceColor = Color.BLUE;
 

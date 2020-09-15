@@ -33,34 +33,16 @@ public abstract class Piece extends StackPane {
 
     public void move(int horizontal, int vertical)
     {
-
-        oldHorizontal=horizontal* GameStage.positionSize*2;
-        oldVertical =vertical* GameStage.positionSize*2;
-        System.out.println(("While inserting "+horizontal+" "+vertical));
-        System.out.println(oldHorizontal+" "+oldVertical);
+        oldHorizontal=horizontal*Position.positionSize*2;
+        oldVertical =vertical*Position.positionSize*2;
         pieceRelocate(oldHorizontal,oldVertical);
     }
-
-    public double getOldHorizontal() {
-        return oldHorizontal;
-    }
-
-    public double getOldVertical() {
-        return oldVertical;
-    }
-    public void abortMove()
-    {
-        pieceRelocate(oldHorizontal,oldVertical);
-    }
-
 
     public void pieceRelocate(double x, double y) {
         x += offset;
         y += offset;
         super.relocate(x, y);
     }
-
-    abstract PlayerType getPieceType();
 
     public void addMousePressBehavior() {
         setOnMousePressed(e -> {
@@ -74,4 +56,16 @@ public abstract class Piece extends StackPane {
                 e.getSceneY() - fromMouseVertical + oldVertical));
     }
 
+    public double getOldHorizontal() {
+        return oldHorizontal;
+    }
+    public double getOldVertical() {
+        return oldVertical;
+    }
+    public void abortMove()
+    {
+        pieceRelocate(oldHorizontal,oldVertical);
+    }
+
+    abstract PlayerType getPieceType();
 }

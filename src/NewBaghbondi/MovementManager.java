@@ -11,6 +11,7 @@ public class MovementManager {
     Group pieceGroup;
     Stage boardStage;
     GameOverWorks gameOverWorks;
+    int positionSize = 50;
 
 
     MovementManager(Position[][] board,
@@ -68,7 +69,7 @@ public class MovementManager {
     }
 
     private int pixelToBoard(double pixel) {
-        return (int) pixel / (GameStage.positionSize * 2);
+        return (int) pixel / (Position.positionSize*2);
     }
 
     private MoveResult tryMove(Piece piece, int newHorizontal, int newVertical) {

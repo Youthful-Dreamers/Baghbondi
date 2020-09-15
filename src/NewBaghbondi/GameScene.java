@@ -9,9 +9,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
-public class GameStage {
-
-    static final int positionSize = 50;
+public class GameScene {
 
     private int languageOption;
     private TextArea messages;
@@ -23,11 +21,13 @@ public class GameStage {
 
     private GameBoard gameBoard;
 
-    protected GameStage(int languageOption){
+    protected GameScene(Stage stage, int languageOption){
         this.languageOption = languageOption;
-        paneOfGame = new Pane();
-        stageOfGame = new Stage();
         gameBoard = new GameBoard();
+
+        stageOfGame = stage;
+        paneOfGame = new Pane();
+        sceneOfGame = createSceneOfGame();
     }
 
     private Parent createContent() {
@@ -52,11 +52,10 @@ public class GameStage {
         return gamePane;
     }
 
-    public void boardStage() {
+    public Scene createSceneOfGame() {
         sceneOfGame = new Scene(createContent());
         stageOfGame.setScene(sceneOfGame);
-        stageOfGame.setTitle("BaghBondi");
-        stageOfGame.show();
+        return sceneOfGame;
     }
 
     private void getMessagesInputFromChatBox(){
@@ -70,5 +69,7 @@ public class GameStage {
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         return new Background(backgroundImage);
     }
+
+    protected Scene getSceneOfGame() { return sceneOfGame; }
 }
 

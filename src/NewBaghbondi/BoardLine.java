@@ -16,11 +16,6 @@ public class BoardLine {
     private Line horizontalLine4 = new Line();
 
     private Group lineGroup = new Group();
-    private Position[][] board;
-
-    protected BoardLine(Position[][] board){
-        this.board = board;
-    }
 
     public void setVerticalLine1(Circle circle1,Circle circle2) {
         this.verticalLine1 = makeLine(circle1,circle2);
@@ -63,19 +58,6 @@ public class BoardLine {
         line.setEndX(circle2.getLayoutX());
         line.setEndY(circle2.getLayoutY());
         line.setFill(Color.BLACK);
-        System.out.println("Drawing line: "+circle1.getLayoutX()+","+circle1.getLayoutY()+" "+circle2.getLayoutX()+","+circle1.getLayoutY());
         return line;
     }
-
-    protected void drawLineInBoard() {
-        setHorizontalLine1(board[0][0], board[4][0]);
-        setHorizontalLine2(board[1][1], board[3][1]);
-        setHorizontalLine3(board[1][3], board[3][3]);
-        setHorizontalLine4(board[0][4], board[4][4]);
-        setVerticalLine1(board[0][0], board[4][4]);
-        setVerticalLine2(board[2][0], board[2][4]);
-        setVerticalLine3(board[4][0], board[0][4]);
-    }
-
-    public Group getLineGroup() { return lineGroup; }
 }

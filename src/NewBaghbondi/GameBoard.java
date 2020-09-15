@@ -16,9 +16,8 @@ public class GameBoard {
     private BoardLine boardLine;
     private BoardListener boardListener;
 
-
     protected GameBoard(){
-        boardLine = new BoardLine(positions);
+        boardLine = new BoardLine();
     }
 
     protected void drawBoardAndBoardLine(){
@@ -74,24 +73,22 @@ public class GameBoard {
     }
 
     private void addPieceToPosition() {
-        for (int i = 0; i < verticalLine; i++)
+        for (int i = 0; i < verticalLine; i++){
             for (int j = 0; j < horizontalLine; j++) {
                 Position position = positions[i][j];
                 if (position == null) continue;
                 Piece piece = null;
                 if (j >= 2) {
                     piece = makePiece(PlayerType.GOAT, position.getVertical(), position.getHorizontal());
-                    System.out.println("Making piece type :: goat: " + position.getLayoutX() + "," + position.getLayoutY());
-
                 } else if (i == 2 && j == 1) {
                     piece = makePiece(PlayerType.TIGER, position.getVertical(), position.getHorizontal());
                 }
                 if (piece != null) {
-
                     position.setPiece(piece);
                     pieceGroup.getChildren().add(piece);
                 }
             }
+        }
     }
 
     protected Group getPieceGroup(){ return pieceGroup; }

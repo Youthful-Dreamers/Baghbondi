@@ -80,8 +80,8 @@ public class Menu {
         Button button = new Button();
         button.setText(string);
         button.setOnAction( e-> {
-            new GameStage(languageOption).boardStage();
-            stage.close();
+            GameScene gameScene = new GameScene(stage, languageOption);
+            stage.setScene(gameScene.getSceneOfGame());
         });
         return button;
     }
