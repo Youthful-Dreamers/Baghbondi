@@ -18,7 +18,9 @@ public class Clock {
     private double layoutY = 0;
     private Color color = Color.BLACK;
     private Text clockText = new Text();
+    private Text playerText = new Text();
     private Group clockGroup = new Group();
+    private int playerIndicator;
 
     private EnglishToBengali englishToBengali;
 
@@ -26,10 +28,12 @@ public class Clock {
         String clockTime;
         if(languageOption == 1){
             clockTime = englishToBengali.getStringInBengali(String.valueOf(time));
-            clockTime = clockTime+" সেকেন্ড";
+            if(playerIndicator == 1) clockTime = "বাঘঃ"+clockTime+"সেকেন্ড";
+            else clockTime = "ছাগলঃ"+clockTime+"সেকেন্ড";
         }else{
             clockTime = String.valueOf(time);
-            clockTime = clockTime+" seconds";
+            if(playerIndicator == 1) clockTime = "Tiger"+clockTime+"seconds";
+            clockTime = "Goat"+clockTime+"seconds";
         }
         clockText.setText(clockTime);
     }
@@ -41,14 +45,19 @@ public class Clock {
 
     public void drawClock() {
         configClockInterface();
-
         clockText.setLayoutX(getLayoutX());
         clockText.setLayoutY(getLayoutY());
 
-        if(languageOption==1) clockText.setText("লিমিটেড");
-        else clockText.setText("Limited");
-        clockGroup.getChildren().add(clockText);
+        if (languageOption == 1){
+            if(playerIndicator==1) clockText.setText("বাঘঃ"+"লিমিটেড");
+            else clockText.setText("ছাগলঃ"+"লিমিটেড");
+        }
+        else {
+            if(playerIndicator==1) clockText.setText("Tiger"+"Limited");
+            else clockText.setText("Goat"+"Limited");
+        }
 
+        clockGroup.getChildren().addAll(clockText);
     }
 
     private Timer clockTimer = new Timer();
@@ -114,8 +123,9 @@ public class Clock {
         return timer;
     }
 
-    public Clock(double layoutX, double layoutY, int languageOption) {
+    public Clock(double layoutX, double layoutY, int languageOption, int playerIndicator) {
         this.languageOption = languageOption;
+        this.playerIndicator = playerIndicator;
         englishToBengali = new EnglishToBengali();
         setLayoutX(layoutX);
         setLayoutY(layoutY);

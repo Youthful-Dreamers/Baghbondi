@@ -29,14 +29,14 @@ public class TurnManager {
     }
 
     private void manageTigerClock(Position[][] board) {
-        tigerClock = new Clock( 180, 45, languageOption);
+        tigerClock = new Clock( 115, 45, languageOption, 1);
         tigerClock.setTimer(50);
         tigerClock.setColor(Color.WHITE);
         tigerClock.drawClock();
     }
 
     private void manageGoatClock(Position[][] board) {
-        goatClock = new Clock(550, 45, languageOption);
+        goatClock = new Clock(365, 45, languageOption, 2);
         goatClock.setTimer(80);
         goatClock.setColor(Color.YELLOW);
         goatClock.drawClock();
