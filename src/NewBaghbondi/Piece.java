@@ -19,7 +19,6 @@ public abstract class Piece extends StackPane {
     }
 
     public Piece(PlayerType type, int vertical, int horizontal) {
-
         this.type=type;
         move(horizontal, vertical);
         getChildren().addAll(pieceCircle);
@@ -32,14 +31,11 @@ public abstract class Piece extends StackPane {
         pieceCircle.setRadius(20);
     }
 
-     public PlayerType getType() {return type;}
-
-
     public void move(int horizontal, int vertical)
     {
 
-        oldHorizontal=horizontal* StageCreator.positionSize*2;
-        oldVertical =vertical* StageCreator.positionSize*2;
+        oldHorizontal=horizontal* GameStage.positionSize*2;
+        oldVertical =vertical* GameStage.positionSize*2;
         System.out.println(("While inserting "+horizontal+" "+vertical));
         System.out.println(oldHorizontal+" "+oldVertical);
         pieceRelocate(oldHorizontal,oldVertical);
@@ -63,8 +59,6 @@ public abstract class Piece extends StackPane {
         y += offset;
         super.relocate(x, y);
     }
-
-    abstract Color getPieceColor();
 
     abstract PlayerType getPieceType();
 

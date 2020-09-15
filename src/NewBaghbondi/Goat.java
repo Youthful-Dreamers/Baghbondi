@@ -4,10 +4,8 @@ import javafx.scene.paint.Color;
 
 public class Goat extends Piece
 {
-
+    private PlayerType type = PlayerType.GOAT;
     private Color pieceColor = Color.BLUE;
-
-    PlayerType type = PlayerType.GOAT;
 
     Goat( int vertical, int horizontal) {
         super(PlayerType.GOAT,vertical,horizontal);
@@ -18,11 +16,4 @@ public class Goat extends Piece
     public PlayerType getPieceType() {
         return type;
     }
-
-    @Override
-    public Color getPieceColor() {
-        return pieceColor;
-    }
-
-
 }

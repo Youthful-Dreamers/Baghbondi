@@ -33,7 +33,7 @@ public class Position extends Circle {
         this.horizontal =horizontal;
         this.vertical=vertical;
         setRadius(40);
-        relocate(horizontal* StageCreator.positionSize*2+10,vertical* StageCreator.positionSize*2+10);
+        relocate(horizontal* GameStage.positionSize*2+10,vertical* GameStage.positionSize*2+10);
         setFill(Color.SKYBLUE);
         setOpacity(.45);
     }

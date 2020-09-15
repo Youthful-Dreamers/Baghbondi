@@ -23,9 +23,7 @@ public class BoardListener {
     }
 
     public void addMouseReleaseOptions(Piece piece) {
-        piece.setOnMouseReleased(e -> movementManager.makeMove(piece)
-        );
+        piece.setOnMouseReleased(e -> movementManager.makeMove(piece));
     }
-
 }
 

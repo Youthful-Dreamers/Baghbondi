@@ -14,11 +14,4 @@ public class Tiger extends Piece{
     public PlayerType getPieceType() {
         return type;
     }
-
-    @Override
-    public Color getPieceColor(){
-        return pieceColor;
-    }
-
-
 }
