@@ -1,7 +1,5 @@
 package NewBaghbondi;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,38 +14,42 @@ public class Menu {
         this.stage = stage;
     }
     
-    public Scene createMainScene()
+    public Scene createMenuScene(int selectedLanguage)
     {
-        Button button = new Button();
-        Button button0 = new Button();
+        String welcomeLabelString;
+        String buttonForDefaultGameString;
+        String buttonForLanGameString;
 
-        Label label= new Label("           Welcome!\nPlease select an option:");
-        label.setFont(new Font("Arial", 14));
+        Button buttonForDefaultGame = new Button();
+        Button buttonForLanGame = new Button();
 
-        button.setText("Start Default Game");
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        if(selectedLanguage == 1){
+            welcomeLabelString = "স্বাগতম!";
+            buttonForDefaultGameString = "ডিফল্ট গেম";
+            buttonForLanGameString = "ল্যান হেম";
+        } else {
+            welcomeLabelString = "Welcome!";
+            buttonForDefaultGameString = "Default Game";
+            buttonForLanGameString = "LAN Game";
+        }
+
+        Label welcomeLabel = new Label(welcomeLabelString);
+        welcomeLabel.setFont(new Font("Arial", 14));
+
+        buttonForDefaultGame.setText(buttonForDefaultGameString);
+        buttonForDefaultGame.setOnAction( e-> {
                 new StageCreator().boardStage();
                 stage.close();
-            }
         });
 
-        button0.setText("Language Options");
-        button0.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                stage.setScene(createSceneLanguageOption());
-            }
-        });
+        buttonForLanGame.setText(buttonForLanGameString);
+        buttonForLanGame.setOnAction( e-> System.out.println("Not developed yet"));
 
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label,button,button0);
+        layout.getChildren().addAll(welcomeLabel, buttonForDefaultGame, buttonForLanGame);
 
-        Scene scene = new Scene(layout, 700,700);
-
-        return scene;
+        return new Scene(layout, 700,700);
     }
 
     public Scene createSceneLanguageOption()
@@ -55,33 +57,19 @@ public class Menu {
         Button button1 = new Button();
         Button button2 = new Button();
 
-        Label label= new Label("Please select a language:");
+        Label label= new Label("ভাষা পছন্দ করুনঃ\nSelect a language:");
         label.setFont(new Font("Arial", 14));
 
-        button1.setText("Bengali");
-        button1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("button1.setOnAction()");
-                //boardStage.setScene(createGameScene());
-            }
-        });
+        button1.setText("বাংলা");
+        button1.setOnAction( e-> stage.setScene(createMenuScene(1)));
 
         button2.setText("English");
-        button2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("button2.setOnAction()");
-                //boardStage.setScene(new Scene(createContent()));
-            }
-        });
+        button2.setOnAction( e->stage.setScene(createMenuScene(2)));
 
         VBox vBox= new VBox(5);
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(label,button1,button2);
 
-        Scene scene = new Scene(vBox, 700,700);
-
-        return scene;
+        return new Scene(vBox, 700,700);
     }
 }

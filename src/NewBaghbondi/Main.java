@@ -7,10 +7,10 @@ public class Main extends Application{
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         Stage boardStage = new Stage();
         Menu mainMenu = new Menu(boardStage);
-        boardStage.setScene(mainMenu.createMainScene());
+        boardStage.setScene(mainMenu.createSceneLanguageOption());
         boardStage.setTitle("BaghBondi");
         boardStage.show();
     }
