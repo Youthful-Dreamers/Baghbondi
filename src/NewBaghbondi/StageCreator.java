@@ -146,9 +146,5 @@ public class StageCreator {
         lineGroup.setVerticalLine2(board[2][0], board[2][4]);
         lineGroup.setVerticalLine3(board[4][0], board[0][4]);
     }
-
-    public Stage getStage(){
-        return boardStage;
-    }
 }
 
