@@ -33,16 +33,19 @@ public class GameOverWorks {
         goatClock.setTask(() -> {
             if (goatClock.getRemainingTime() <= 0) {
                 setGameOverSceneAndMakeTheTigerWin(true);
+                turnManager.stopTimer();
             }
+
 
         });
         Clock tigerClock = turnManager.getTigerClock();
         tigerClock.setTask(() -> {
             if (tigerClock.getRemainingTime() <= 0) {
                 setGameOverSceneAndMakeTheTigerWin(false);
-
+                turnManager.stopTimer();
             }
         });
+
     }
 
     private void setGameOverSceneAndMakeTheTigerWin(boolean b) {
