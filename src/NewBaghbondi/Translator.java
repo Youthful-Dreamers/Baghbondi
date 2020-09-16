@@ -1,6 +1,6 @@
 package NewBaghbondi;
 
-public class EnglishToBengali {
+public class Translator {
 
     protected String getStringInBengali(String string) {
         Character[] bengaliNumber = {'০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'};

@@ -11,28 +11,37 @@ import java.util.TimerTask;
 
 public class Clock {
 
-    private Task task = null;
+    private int timer;
+    private double layoutX;
+    private double layoutY;
+    private Task task;
+    private Color color;
+    private int playerIndicator;
     private int languageOption;
-    private int timer = 0;
-    private double layoutX = 0;
-    private double layoutY = 0;
-    private Color color = Color.BLACK;
+    private TimerTask timerTask;
     private Text clockText = new Text();
     private Group clockGroup = new Group();
-    private int playerIndicator;
+    private Timer clockTimer = new Timer();
+    private Translator translator;
 
-    private EnglishToBengali englishToBengali;
+    public Clock(double layoutX, double layoutY, int languageOption, int playerIndicator) {
+        this.languageOption = languageOption;
+        this.playerIndicator = playerIndicator;
+        translator = new Translator();
+        setLayoutX(layoutX);
+        setLayoutY(layoutY);
+    }
 
     public void setClockTime(int time, int languageOption) {
         String clockTime;
         if(languageOption == 1){
-            clockTime = englishToBengali.getStringInBengali(String.valueOf(time));
+            clockTime = translator.getStringInBengali(String.valueOf(time));
             if(playerIndicator == 1) clockTime = "বাঘঃ"+clockTime+"সেকেন্ড";
             else clockTime = "ছাগলঃ"+clockTime+"সেকেন্ড";
         }else{
             clockTime = String.valueOf(time);
-            if(playerIndicator == 1) clockTime = "Tiger"+clockTime+"seconds";
-            clockTime = "Goat"+clockTime+"seconds";
+            if(playerIndicator == 1) clockTime = "Tiger:"+clockTime+"seconds";
+            else clockTime = "Goat:"+clockTime+"seconds";
         }
         clockText.setText(clockTime);
     }
@@ -52,20 +61,13 @@ public class Clock {
             else clockText.setText("ছাগলঃ"+"লিমিটেড");
         }
         else {
-            if(playerIndicator==1) clockText.setText("Tiger"+"Limited");
-            else clockText.setText("Goat"+"Limited");
+            if(playerIndicator==1) clockText.setText("Tiger:"+"Limited");
+            else clockText.setText("Goat:"+"Limited");
         }
-
         clockGroup.getChildren().addAll(clockText);
     }
 
-    private Timer clockTimer = new Timer();
-    private TimerTask timerTask;
-
-
-
     public void start() {
-
         clockTimer = new Timer();
         timerTask = new TimerTask() {
             @Override
@@ -78,7 +80,6 @@ public class Clock {
             }
         };
         clockTimer.schedule(timerTask, 1000, 1000);
-
     }
 
     public void cancel() {
@@ -90,45 +91,29 @@ public class Clock {
     public void setColor(Color color) {
         this.color = color;
     }
-
     public void setLayoutX(double layoutX) {
         this.layoutX = layoutX;
     }
-
     public void setLayoutY(double layoutY) {
         this.layoutY = layoutY;
     }
-
     public double getLayoutX() {
         return layoutX;
     }
-
     public double getLayoutY() {
         return layoutY;
     }
-
     public Group getClockGroup() {
         return clockGroup;
     }
-
     public void setTimer(int timer) {
         this.timer = timer;
     }
-
     public void setTask(Task task) {
         this.task = task;
     }
-
     public int getRemainingTime() {
         return timer;
-    }
-
-    public Clock(double layoutX, double layoutY, int languageOption, int playerIndicator) {
-        this.languageOption = languageOption;
-        this.playerIndicator = playerIndicator;
-        englishToBengali = new EnglishToBengali();
-        setLayoutX(layoutX);
-        setLayoutY(layoutY);
     }
 
     public interface Task {

@@ -12,14 +12,12 @@ public class TurnManager {
     private Clock goatClock;
     private Clock tigerClock;
     private int languageOption;
-    Turn turn;
+    private Turn turn;
+    protected PlayerType playerType;
 
-
-    PlayerType playerType;
-
-    TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board, int languageOption) {
+    protected TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board, int languageOption) {
         this.languageOption = languageOption;
-        playerType = firstTurn;
+        this.playerType = firstTurn;
         createTurn(firstTurn);
         manageTigerClock(board);
         manageGoatClock(board);
@@ -46,7 +44,6 @@ public class TurnManager {
     public Clock getGoatClock() {
         return goatClock;
     }
-
     public Clock getTigerClock() {
         return tigerClock;
     }
@@ -63,92 +60,65 @@ public class TurnManager {
                 runGoatTurn() : runTigerTurn();
     }
 
-    Turn runGoatTurn() {
+    protected Turn runGoatTurn() {
         tigerClock.cancel();
         goatClock.start();
         return goatTurn;
     }
 
-    Turn runTigerTurn() {
+    protected Turn runTigerTurn() {
         goatClock.cancel();
         tigerClock.start();
         return tigerTurn;
     }
 
-
     private void startTimer() {
-        //timer.schedule(task, 0, 1000);
         goatClock.start();
     }
+
     public void stopTimer(){
         goatClock.cancel();
         tigerClock.cancel();
     }
 
-
     public PlayerType getPlayerType() {
         return turn.getType();
     }
-
     public boolean timerUp() {
-        //  System.out.println("Timerup for " +type+" but happened to be -> "+getTurnType());
         return turn.timeUp();
-
     }
 }
+
 
 interface Turn {
     PlayerType getType();
-
     boolean timeUp();
-
 }
 
 class GoatTurn implements Turn {
+    int time;
     PlayerType type = PlayerType.GOAT;
 
-    int time;
-
-    GoatTurn(int time) {
-
-        this.time = time;
-    }
-
-    @Override
+    GoatTurn(int time) { this.time = time; }
     public boolean timeUp() {
         return (time <= 0);
     }
-
-    @Override
     public PlayerType getType() {
         return type;
     }
-
-
-
-
 }
 
 class TigerTurn implements Turn {
     int time;
-
     PlayerType type = PlayerType.TIGER;
 
-    TigerTurn(int time) {
-
-        this.time = time;
-    }
-
-    @Override
+    TigerTurn(int time) { this.time = time; }
     public boolean timeUp() {
         return (time <= 0);
     }
-
-    @Override
     public PlayerType getType() {
         return type;
     }
-
 }
 
 
