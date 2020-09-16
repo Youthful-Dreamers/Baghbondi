@@ -14,6 +14,7 @@ public class GameAudio {
         Media media=new Media(Paths.get(path).toUri().toString());
         mediaPlayer=new MediaPlayer(media);
         mediaPlayer.play();
+
     }
 
 }
