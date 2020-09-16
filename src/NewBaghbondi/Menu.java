@@ -16,7 +16,6 @@ public class Menu {
 
     Stage stage;
     int languageOption;
-    GameAudio gameAudio;
     Menu(Stage stage){
         this.stage = stage;
     }

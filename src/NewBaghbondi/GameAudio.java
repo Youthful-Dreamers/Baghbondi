@@ -10,22 +10,20 @@ import java.nio.file.Paths;
 
 public class GameAudio {
 
-        public void introAudio(int status){
-            String path="src/resources/gameIntroMusic.mp3";
+        public void inGameAudio(){
+            String path="src/resources/inGameAudio.mp3";
             Media media=new Media(new File(path).toURI().toString());
             MediaPlayer mediaPlayer=new MediaPlayer(media);
-            if(status==0) {
                 mediaPlayer.setOnEndOfMedia(new Runnable() {
                     @Override
                     public void run() {
                         mediaPlayer.seek(Duration.ZERO);
                     }
                 });
+                mediaPlayer.setVolume(0.5);
                 mediaPlayer.play();
-            }
-            else if(status==1){
-                if(mediaPlayer.getStatus()!=null)mediaPlayer.stop();
-            }
+                System.out.println(mediaPlayer.isMute());
         }
-    }
+
+}
 

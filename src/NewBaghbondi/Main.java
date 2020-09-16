@@ -19,7 +19,7 @@ public class Main extends Application{
         GameAudio gameAudio=new GameAudio();
         primaryStage.setScene(mainMenu.createSceneLanguageOption());
         primaryStage.setTitle("BaghBondi");
-        gameAudio.introAudio(0);
+        gameAudio.inGameAudio();
         primaryStage.show();
     }
 
@@ -27,4 +27,5 @@ public class Main extends Application{
     {
         launch(args);
     }
+
 }
