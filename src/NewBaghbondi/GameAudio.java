@@ -30,7 +30,12 @@ public class GameAudio {
             audioClip.play();
         }
 
-
+        public void tigerKillAudio(){
+            String path="src/resources/tigerKill.mp3";
+            AudioClip audioClip=new AudioClip(Paths.get(path).toUri().toString());
+            audioClip.setVolume(0.5);
+            audioClip.play();
+        }
 
 
 }

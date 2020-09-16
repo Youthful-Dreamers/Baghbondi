@@ -8,6 +8,7 @@ public class MovementManager {
 
     Group pieceGroup;
     Stage boardStage;
+    GameAudio gameAudio=new GameAudio();
 
     TurnManager turnManager;
     Position[][] board;
@@ -61,6 +62,7 @@ public class MovementManager {
                 turnManager.changeTurn();
                 gameOverWorks.killGoat();
                 movementMade = true;
+                gameAudio.tigerKillAudio();
                 break;
         }
         if (gameOverWorks.gameOver(piece)) return false;
