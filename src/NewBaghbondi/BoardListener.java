@@ -15,7 +15,7 @@ public class BoardListener {
         this.pieceGroup = pieceGroup;
         turnManager = new TurnManager(PlayerType.GOAT, rootPane, board, languageOption);
         gameOverWorks = new GameOverWorks(boardStage, board, turnManager, languageOption);
-        movementManager = new MovementManager(board, pieceGroup, boardStage, turnManager, gameOverWorks);
+        movementManager = new MovementManager(board, pieceGroup, turnManager, gameOverWorks);
     }
 
     public void addMouseReleaseOptions(Piece piece) {

@@ -65,7 +65,7 @@ public class GameOverWorks {
     private boolean tigerWinCase() {
         if (numberOfGoat < minimumNumberOfGoats) {
             turnManager.stopTimer();
-            boardStage.setScene(gameOverScene.createGameOverScene(true));
+            setGameOverSceneAndMakeTheTigerWin(true);
             return true;
         }
         return false;

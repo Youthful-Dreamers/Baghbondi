@@ -15,47 +15,44 @@ public class GameScene {
     private TextArea messages;
     private TextField input;
 
-    private Pane paneOfGame;
+    private Pane paneOfBoard = new Pane();
+    private Pane paneOfGame = new Pane();
     private Scene sceneOfGame;
     private Stage stageOfGame;
 
     private GameBoard gameBoard;
 
-    protected GameScene(Stage stage, int languageOption){
+    protected GameScene(Stage stageOfGame, int languageOption){
         this.languageOption = languageOption;
+        this.stageOfGame = stageOfGame;
         gameBoard = new GameBoard();
 
-        stageOfGame = stage;
-        paneOfGame = new Pane();
-        sceneOfGame = createSceneOfGame();
+        createContent();
+        createSceneOfGame();
     }
 
-    private Parent createContent() {
+    private void createContent() {
+
         paneOfGame.setPrefSize(950, 650);
         getMessagesInputFromChatBox();
 
-        Pane gamePane = createGamePane();
-        paneOfGame.getChildren().addAll(gamePane, messages, input);
+        createPaneOfBoard();
+        paneOfGame.getChildren().addAll(paneOfBoard, messages, input);
         paneOfGame.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
 
         gameBoard.createBoardListenerAndAddPieceToPosition(stageOfGame, paneOfGame, languageOption);
-        return paneOfGame;
     }
 
-    private Pane createGamePane() {
-        Pane gamePane = new Pane();
+    private void createPaneOfBoard() {
         gameBoard.drawBoardAndBoardLine();
-        gamePane.getChildren().addAll(gameBoard.getPositionGroup(), gameBoard.getPieceGroup(), gameBoard.getBoardLineGroup());
-        gamePane.setPrefSize(500, 500);
-        gamePane.setLayoutX(100);
-        gamePane.setLayoutY(100);
-        return gamePane;
+        paneOfBoard.getChildren().addAll(gameBoard.getPositionGroup(), gameBoard.getPieceGroup(), gameBoard.getBoardLineGroup());
+        paneOfBoard.setPrefSize(500, 500);
+        paneOfBoard.setLayoutX(100);
+        paneOfBoard.setLayoutY(100);
     }
 
-    public Scene createSceneOfGame() {
-        sceneOfGame = new Scene(createContent());
-        stageOfGame.setScene(sceneOfGame);
-        return sceneOfGame;
+    public void createSceneOfGame() {
+        sceneOfGame = new Scene(paneOfGame);
     }
 
     private void getMessagesInputFromChatBox(){
@@ -64,12 +61,12 @@ public class GameScene {
         input = chatBox.getInput();
     }
 
-    private Background setBackgroundPicture(String string){
+    protected Background setBackgroundPicture(String string){
         Image image = new Image(string, 950, 650, false, false, true);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         return new Background(backgroundImage);
     }
 
-    protected Scene getSceneOfGame() { return sceneOfGame; }
+    protected Scene getSceneOfGame() { return this.sceneOfGame; }
 }
 
