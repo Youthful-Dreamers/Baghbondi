@@ -11,7 +11,6 @@ public class Goat extends Piece {
         definePiece(pieceCircle,pieceColor);
     }
 
-    @Override
     public PlayerType getPieceType() {
         return type;
     }

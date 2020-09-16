@@ -13,9 +13,9 @@ public class TurnManager {
     private Clock tigerClock;
     private int languageOption;
     private Turn turn;
-    PlayerType playerType;
+    protected PlayerType playerType;
 
-    TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board, int languageOption) {
+    protected TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board, int languageOption) {
         this.languageOption = languageOption;
         this.playerType = firstTurn;
         createTurn(firstTurn);
@@ -60,36 +60,35 @@ public class TurnManager {
                 runGoatTurn() : runTigerTurn();
     }
 
-    Turn runGoatTurn() {
+    protected Turn runGoatTurn() {
         tigerClock.cancel();
         goatClock.start();
         return goatTurn;
     }
 
-    Turn runTigerTurn() {
+    protected Turn runTigerTurn() {
         goatClock.cancel();
         tigerClock.start();
         return tigerTurn;
     }
 
-
     private void startTimer() {
         goatClock.start();
     }
+
     public void stopTimer(){
         goatClock.cancel();
         tigerClock.cancel();
     }
 
-
     public PlayerType getPlayerType() {
         return turn.getType();
     }
-
     public boolean timerUp() {
         return turn.timeUp();
     }
 }
+
 
 interface Turn {
     PlayerType getType();

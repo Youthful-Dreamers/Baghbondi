@@ -31,16 +31,16 @@ public class GameOverWorks {
         Clock goatClock = turnManager.getGoatClock();
         goatClock.setTask(() -> {
             if (goatClock.getRemainingTime() <= 0) {
-                setGameOverSceneAndMakeTheTigerWin(true);
                 turnManager.stopTimer();
+                setGameOverSceneAndMakeTheTigerWin(true);
             }
         });
 
         Clock tigerClock = turnManager.getTigerClock();
         tigerClock.setTask(() -> {
             if (tigerClock.getRemainingTime() <= 0) {
-                setGameOverSceneAndMakeTheTigerWin(false);
                 turnManager.stopTimer();
+                setGameOverSceneAndMakeTheTigerWin(false);
             }
         });
     }
@@ -51,7 +51,8 @@ public class GameOverWorks {
 
     private boolean goatWinCase(Piece piece) {
         if (endTigerGame(piece)) {
-            boardStage.setScene(gameOverScene.createGameOverScene(false));
+            turnManager.stopTimer();
+            setGameOverSceneAndMakeTheTigerWin(false);
             return true;
         }
         return false;
@@ -63,6 +64,7 @@ public class GameOverWorks {
 
     private boolean tigerWinCase() {
         if (numberOfGoat < minimumNumberOfGoats) {
+            turnManager.stopTimer();
             boardStage.setScene(gameOverScene.createGameOverScene(true));
             return true;
         }
@@ -71,7 +73,7 @@ public class GameOverWorks {
 
     private boolean endTigerGame(Piece piece) {
         int i, j, horizontal, vertical, vertical0, horizontal0;
-        boolean k = true, k1 = true;
+        boolean k = true;
         horizontal = (int) piece.getOldHorizontal() / 100;
         vertical = (int) piece.getOldVertical() / 100;
 
@@ -114,8 +116,7 @@ public class GameOverWorks {
                 }
 
                 k = (board[horizontal0][vertical0].hasPiece() && board[2][vertical].hasPiece()) && board[2][2].hasPiece();
-                if (horizontal == 4) horizontal0 = 0;
-                else horizontal0 = 0;
+                horizontal0 = 0;
                 k = k && board[horizontal0][vertical].hasPiece();
                 return k;
             }
@@ -143,8 +144,14 @@ public class GameOverWorks {
         if(goatWinCase(piece)) return true;
         if(tigerWinCase()) return true;
         if (turnManager.timerUp()) {
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) boardStage.setScene(gameOverScene.createGameOverScene(false));
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) boardStage.setScene(gameOverScene.createGameOverScene(true));
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) {
+                turnManager.stopTimer();
+                setGameOverSceneAndMakeTheTigerWin(false);
+            }
+            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) {
+                turnManager.stopTimer();
+                setGameOverSceneAndMakeTheTigerWin(true);
+            }
         }
         return false;
     }

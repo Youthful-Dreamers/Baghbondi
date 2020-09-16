@@ -10,7 +10,7 @@ public class Tiger extends Piece{
         super(PlayerType.TIGER,vertical,horizontal);
         definePiece(pieceCircle,pieceColor);
     }
-    @Override
+
     public PlayerType getPieceType() {
         return type;
     }

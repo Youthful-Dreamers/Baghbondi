@@ -10,7 +10,6 @@ public class Position extends Circle {
     private Piece piece;
     private int horizontal, vertical;
 
-
     public Position(int vertical ,int horizontal )
     {
         this.horizontal =horizontal;
@@ -27,7 +26,6 @@ public class Position extends Circle {
     public int getVertical() {
         return vertical;
     }
-
 
     boolean hasPiece() {
         return piece != null;

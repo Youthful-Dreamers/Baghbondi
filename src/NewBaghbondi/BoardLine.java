@@ -57,7 +57,7 @@ public class BoardLine {
         line.setStartY(circle1.getLayoutY());
         line.setEndX(circle2.getLayoutX());
         line.setEndY(circle2.getLayoutY());
-        line.setFill(Color.BLACK);
+        line.setFill(Color.LIGHTGREEN);
         return line;
     }
 }

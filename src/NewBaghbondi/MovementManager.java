@@ -6,13 +6,12 @@ import javafx.stage.Stage;
 
 public class MovementManager {
 
-    TurnManager turnManager;
-    Position[][] board;
     Group pieceGroup;
     Stage boardStage;
-    GameOverWorks gameOverWorks;
-    int positionSize = 50;
 
+    TurnManager turnManager;
+    Position[][] board;
+    GameOverWorks gameOverWorks;
 
     MovementManager(Position[][] board,
                     Group pieceGroup,

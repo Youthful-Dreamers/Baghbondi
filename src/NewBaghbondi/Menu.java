@@ -16,8 +16,7 @@ public class Menu {
         this.stage = stage;
     }
     
-    public Scene createMenuScene(int languageOption)
-    {
+    public Scene createMenuScene(int languageOption) {
         String welcomeLabelString = determineMenuString(languageOption, "স্বাগতম!","Welcome!");
         String buttonForDefaultGameString = determineMenuString(languageOption, "ডিফল্ট গেম", "Default Game");
         String buttonForLanGameString = determineMenuString(languageOption,"ল্যান হেম", "LAN Game");
@@ -30,8 +29,7 @@ public class Menu {
         return new Scene(layout, 950,650);
     }
 
-    public Scene createSceneLanguageOption()
-    {
+    public Scene createSceneLanguageOption() {
         Label label= createLabel("ভাষা পছন্দ করুনঃ\nSelect a language:");
         Button button1 = createLanguageOptionButton("বাংলা", 1);
         Button button2 = createLanguageOptionButton("English", 2);

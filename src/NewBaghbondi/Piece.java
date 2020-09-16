@@ -6,17 +6,15 @@ import javafx.scene.shape.Circle;
 
 
 public abstract class Piece extends StackPane {
-    protected double fromMouseVertical, fromMouseHorizontal;
-    protected double oldVertical, oldHorizontal;
+
+    protected double fromMouseVertical;
+    protected double fromMouseHorizontal;
+    protected double oldVertical;
+    protected double oldHorizontal;
 
     private PlayerType type;
     private int offset = 30;
-    Circle pieceCircle = new Circle();
-
-
-    public PlayerType getPieceTypeEnum() {
-        return type;
-    }
+    protected Circle pieceCircle = new Circle();
 
     public Piece(PlayerType type, int vertical, int horizontal) {
         this.type=type;
@@ -31,8 +29,7 @@ public abstract class Piece extends StackPane {
         pieceCircle.setRadius(20);
     }
 
-    public void move(int horizontal, int vertical)
-    {
+    public void move(int horizontal, int vertical) {
         oldHorizontal=horizontal*Position.positionSize*2;
         oldVertical =vertical*Position.positionSize*2;
         pieceRelocate(oldHorizontal,oldVertical);
@@ -56,6 +53,9 @@ public abstract class Piece extends StackPane {
                 e.getSceneY() - fromMouseVertical + oldVertical));
     }
 
+    public PlayerType getPieceTypeEnum() {
+        return type;
+    }
     public double getOldHorizontal() {
         return oldHorizontal;
     }
@@ -66,6 +66,5 @@ public abstract class Piece extends StackPane {
     {
         pieceRelocate(oldHorizontal,oldVertical);
     }
-
     abstract PlayerType getPieceType();
 }
