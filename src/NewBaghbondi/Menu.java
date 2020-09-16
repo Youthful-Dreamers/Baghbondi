@@ -16,6 +16,7 @@ public class Menu {
 
     Stage stage;
     int languageOption;
+    GameAudio gameAudio=new GameAudio();
     Menu(Stage stage){
         this.stage = stage;
     }
@@ -64,6 +65,7 @@ public class Menu {
         button.setOnAction( e-> {
             stage.setScene(createMenuScene(optionNo));
             languageOption = optionNo;
+            gameAudio.buttonClickedAudio();
         });
         return button;
     }
@@ -84,7 +86,7 @@ public class Menu {
         button.setOnAction( e-> {
             GameScene gameScene = new GameScene(stage, languageOption);
             stage.setScene(gameScene.getSceneOfGame());
-
+            gameAudio.buttonClickedAudio();
         });
         return button;
     }

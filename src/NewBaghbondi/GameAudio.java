@@ -1,6 +1,6 @@
-// have to change....just wrote shameless green
 package NewBaghbondi;
 
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -22,8 +22,16 @@ public class GameAudio {
                 });
                 mediaPlayer.setVolume(0.5);
                 mediaPlayer.play();
-                System.out.println(mediaPlayer.isMute());
         }
+
+        public void buttonClickedAudio(){
+            String path="src/resources/buttonClicked.mp3";
+            AudioClip audioClip=new AudioClip(Paths.get(path).toUri().toString());
+            audioClip.play();
+        }
+
+
+
 
 }
 
