@@ -6,42 +6,64 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class SceneBuilder {
 
-    Label label;
+    Label labelOne;
+    Label labelTwo;
     Button buttonOne;
     Button buttonTwo;
     VBox vBox;
 
-    protected void createMenuSceneElements(int space){
-        label = createLabel();
+    protected void createMenuVBox(int space){
+        labelOne = createLabel(23);
+        labelOne.setTextFill(Color.web("#003300", 1));
         buttonOne = createButton();
         buttonTwo = createButton();
-        vBox = createVBox(label, space, buttonOne, buttonTwo);
+        vBox = createVBox(labelOne, null, space, buttonOne, buttonTwo, true);
+    }
+
+    protected void createGameOverVBox(){
+        labelOne = createLabel(25);
+        labelOne.setTextFill(Color.web("#003300"));
+        labelTwo = createLabel(25);
+        vBox = createVBox(labelOne, labelTwo, 5, null,null, false);
     }
 
     protected Scene createScene(){
         return new Scene(vBox, 950, 650);
     }
 
-    private Label createLabel(){
-        Label label= new Label();
-        label.setFont(new Font("Arial", 14));
-        return label;
-    }
 
-    protected VBox createVBox(Label label, int space, Button buttonOne, Button buttonTwo){
+    protected VBox createVBox(Label labelOne, Label labelTwo, int space, Button buttonOne, Button buttonTwo, boolean menuIndicator){
         VBox vBox= new VBox(space);
         vBox.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
         vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(label, buttonOne, buttonTwo);
+        getVBoxChildren(vBox, labelOne, labelTwo, buttonOne, buttonTwo, menuIndicator);
         return vBox;
     }
 
+    protected void getVBoxChildren(VBox vBox, Label labelOne, Label labelTwo, Button buttonOne, Button buttonTwo, boolean menuIndicator){
+        if(menuIndicator){
+            vBox.getChildren().addAll(labelOne, buttonOne, buttonTwo);
+        } else {
+            vBox.getChildren().addAll(labelOne, labelTwo);
+        }
+    }
+
+    private Label createLabel(int fontSize){
+        Label label= new Label();
+        label.setFont(Font.font("Arial", FontWeight.BOLD, fontSize));
+        return label;
+    }
+
     protected Button createButton(){
-        return new Button();
+        Button button = new Button();
+        button.setStyle("-fx-font-size:14; -fx-background-color: #006400; -fx-text-fill: white; -fx-font-weight: bold;");
+        return button;
     }
 
     protected Background setBackgroundPicture(String string){

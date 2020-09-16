@@ -9,13 +9,23 @@ public class BoardListener {
     TurnManager turnManager;
     GameOverWorks gameOverWorks;
     MovementManager movementManager;
-    Group pieceGroup;
+    GameBoard gameBoard;
 
-    BoardListener(Stage boardStage, Position[][] board, Group pieceGroup, Pane rootPane, int languageOption) {
-        this.pieceGroup = pieceGroup;
-        turnManager = new TurnManager(PlayerType.GOAT, rootPane, board, languageOption);
-        gameOverWorks = new GameOverWorks(boardStage, board, turnManager, languageOption);
-        movementManager = new MovementManager(board, pieceGroup, turnManager, gameOverWorks);
+    private Piece[] pieceArray;
+
+    BoardListener(Stage boardStage, GameBoard gameBoard, Pane rootPane, int languageOption) {
+        this.gameBoard = gameBoard;
+        this.pieceArray = gameBoard.getPieceArray();
+        addMouseEventToPiece();
+        turnManager = new TurnManager(PlayerType.GOAT, rootPane, gameBoard.getPositions(), languageOption);
+        gameOverWorks = new GameOverWorks(boardStage, gameBoard.getPositions(), turnManager, languageOption);
+        movementManager = new MovementManager(gameBoard.getPositions(), gameBoard.getPieceGroup(), turnManager, gameOverWorks);
+    }
+
+    private void addMouseEventToPiece(){
+        for(int i=0; i<gameBoard.getPieceCount(); i++){
+            addMouseReleaseOptions(pieceArray[i]);
+        }
     }
 
     public void addMouseReleaseOptions(Piece piece) {

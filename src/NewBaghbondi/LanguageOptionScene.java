@@ -19,7 +19,7 @@ public class LanguageOptionScene {
     }
 
     protected void createLanguageOptionScene() {
-        sceneBuilder.createMenuSceneElements(5);
+        sceneBuilder.createMenuVBox(5);
         setLabelText();
         setButtonOneText();
         setButtonTwoText();
@@ -34,7 +34,7 @@ public class LanguageOptionScene {
     }
 
     protected void setLabelText() {
-        sceneBuilder.label.setText("ভাষা পছন্দ করুনঃ\nSelect a language:");
+        sceneBuilder.labelOne.setText("ভাষা পছন্দ করুনঃ\nSelect a language:");
     }
 
     protected void setButtonOneText() {
@@ -46,22 +46,17 @@ public class LanguageOptionScene {
     }
 
     protected void buttonOneEventWorks() {
-        sceneBuilder.buttonOne.setOnAction(e -> {
-            gameOptionScene.languageBasedWorks(1);
-            stage.setScene(gameOptionScene.getLanguageOptionScene());
-            gameOptionScene.initializeEventWorks();
-            GameScene gameScene = new GameScene(stage, 1);
-            gameOptionScene.setGameScene(gameScene.getSceneOfGame());
-        });
+        sceneBuilder.buttonOne.setOnAction(e -> buttonEventWorks(1));
     }
 
     protected void buttonTwoEventWorks() {
-        sceneBuilder.buttonTwo.setOnAction(e -> {
-            gameOptionScene.languageBasedWorks(2);
-            stage.setScene(gameOptionScene.getLanguageOptionScene());
-            gameOptionScene.initializeEventWorks();
-            GameScene gameScene = new GameScene(stage, 2);
-            gameOptionScene.setGameScene(gameScene.getSceneOfGame());
-        });
+        sceneBuilder.buttonTwo.setOnAction(e -> buttonEventWorks(2));
+    }
+
+    private void buttonEventWorks(int languageOption){
+        gameOptionScene.languageBasedWorks(languageOption);
+        stage.setScene(gameOptionScene.getLanguageOptionScene());
+        GameScene gameScene = new GameScene();
+        gameOptionScene.initializeButtonEventWorks(gameScene);
     }
 }

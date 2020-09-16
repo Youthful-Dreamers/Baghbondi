@@ -18,29 +18,23 @@ public class GameScene {
     private Pane paneOfBoard = new Pane();
     private Pane paneOfGame = new Pane();
     private Scene sceneOfGame;
-    private Stage stageOfGame;
 
     private GameBoard gameBoard;
 
-    protected GameScene(Stage stageOfGame, int languageOption){
-        this.languageOption = languageOption;
-        this.stageOfGame = stageOfGame;
+    protected GameScene(){
         gameBoard = new GameBoard();
-
         createContent();
         createSceneOfGame();
     }
 
     private void createContent() {
-
         paneOfGame.setPrefSize(950, 650);
         getMessagesInputFromChatBox();
 
         createPaneOfBoard();
         paneOfGame.getChildren().addAll(paneOfBoard, messages, input);
         paneOfGame.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
-
-        gameBoard.createBoardListenerAndAddPieceToPosition(stageOfGame, paneOfGame, languageOption);
+        gameBoard.addPieceToPosition();
     }
 
     private void createPaneOfBoard() {
@@ -67,6 +61,8 @@ public class GameScene {
         return new Background(backgroundImage);
     }
 
-    protected Scene getSceneOfGame() { return this.sceneOfGame; }
+    protected Scene getSceneOfGame(){ return this.sceneOfGame; }
+    protected Pane getPaneOfGame(){ return  paneOfGame; }
+    protected GameBoard getGameBoard(){ return gameBoard; }
 }
 

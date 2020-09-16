@@ -1,13 +1,13 @@
 package NewBaghbondi;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GameOptionScene {
 
     int languageOption;
     Stage stage;
-    Scene gameScene;
     Scene gameOptionScene;
     SceneBuilder sceneBuilder;
 
@@ -18,7 +18,7 @@ public class GameOptionScene {
     }
 
     protected void createGameOptionScene(){
-        sceneBuilder.createMenuSceneElements(5);
+        sceneBuilder.createMenuVBox(5);
         gameOptionScene = sceneBuilder.createScene();
     }
 
@@ -29,14 +29,9 @@ public class GameOptionScene {
         setButtonTwoText();
     }
 
-    protected void initializeEventWorks(){
-        buttonOneEventWorks();
-        buttonTwoEventWorks();
-    }
-
     protected void setLabelText(){
-        if(languageOption == 1) sceneBuilder.label.setText("স্বাগতম!");
-        else sceneBuilder.label.setText("Welcome!");
+        if(languageOption == 1) sceneBuilder.labelOne.setText("স্বাগতম!");
+        else sceneBuilder.labelOne.setText("Welcome!");
     }
 
     protected void setButtonOneText(){
@@ -45,24 +40,21 @@ public class GameOptionScene {
     }
 
     protected void setButtonTwoText(){
-        if(languageOption == 1) sceneBuilder.buttonTwo.setText("ল্যান হেম");
+        if(languageOption == 1) sceneBuilder.buttonTwo.setText("ল্যান গেম");
         else sceneBuilder.buttonTwo.setText("LAN Game");
     }
 
-    protected void buttonOneEventWorks(){
-        sceneBuilder.buttonOne.setOnAction( e-> stage.setScene(gameScene));
+    protected void initializeButtonEventWorks(GameScene gameScene){
+        sceneBuilder.buttonOne.setOnAction( e-> stage.setScene(gameScene.getSceneOfGame()));
+        sceneBuilder.buttonTwo.setOnAction( e-> stage.setScene(gameScene.getSceneOfGame()));
+        callingBoardListener(gameScene.getGameBoard(), gameScene.getPaneOfGame());
     }
 
-    protected void buttonTwoEventWorks(){
-       sceneBuilder.buttonTwo.setOnAction( e-> stage.setScene(gameScene));
+    private void callingBoardListener(GameBoard gameBoard, Pane rootPane){
+        BoardListener boardListener = new BoardListener(stage, gameBoard, rootPane, languageOption);
     }
 
     protected Scene getLanguageOptionScene(){
         return gameOptionScene;
     }
-
-    protected void setGameScene(Scene scene){
-        this.gameScene = scene;
-    }
-
 }

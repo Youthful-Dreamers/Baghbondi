@@ -38,14 +38,6 @@ public class TurnManager {
         goatClock.setTimer(80);
         goatClock.setColor(Color.YELLOW);
         goatClock.drawClock();
-
-    }
-
-    public Clock getGoatClock() {
-        return goatClock;
-    }
-    public Clock getTigerClock() {
-        return tigerClock;
     }
 
     void createTurn(PlayerType type) {
@@ -72,7 +64,7 @@ public class TurnManager {
         return tigerTurn;
     }
 
-    private void startTimer() {
+    protected void startTimer() {
         goatClock.start();
     }
 
@@ -86,6 +78,13 @@ public class TurnManager {
     }
     public boolean timerUp() {
         return turn.timeUp();
+    }
+
+    public Clock getGoatClock() {
+        return goatClock;
+    }
+    public Clock getTigerClock() {
+        return tigerClock;
     }
 }
 
