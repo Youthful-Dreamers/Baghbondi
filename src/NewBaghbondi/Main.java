@@ -16,28 +16,15 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage){
         Menu mainMenu = new Menu(primaryStage);
+        GameAudio gameAudio=new GameAudio();
         primaryStage.setScene(mainMenu.createSceneLanguageOption());
         primaryStage.setTitle("BaghBondi");
-        introAudio();
+        gameAudio.introAudio(0);
         primaryStage.show();
     }
 
     public static void main(String[] args)
     {
         launch(args);
-    }
-
-
-    public void introAudio(){
-      String path="src/resources/gameIntroMusic.mp3";
-      Media media=new Media(new File(path).toURI().toString());
-       MediaPlayer mediaPlayer=new MediaPlayer(media);
-        mediaPlayer.setOnEndOfMedia(new Runnable() {
-            @Override
-            public void run() {
-                mediaPlayer.seek(Duration.ZERO);
-            }
-        });
-        mediaPlayer.play();
     }
 }

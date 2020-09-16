@@ -5,13 +5,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class Menu {
 
     Stage stage;
     int languageOption;
+    GameAudio gameAudio;
     Menu(Stage stage){
         this.stage = stage;
     }
@@ -80,6 +85,7 @@ public class Menu {
         button.setOnAction( e-> {
             GameScene gameScene = new GameScene(stage, languageOption);
             stage.setScene(gameScene.getSceneOfGame());
+
         });
         return button;
     }
