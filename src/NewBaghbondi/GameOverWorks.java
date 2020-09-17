@@ -31,7 +31,6 @@ public class GameOverWorks {
         Clock goatClock = turnManager.getGoatClock();
         goatClock.setTask(() -> {
             if (goatClock.getRemainingTime() <= 0) {
-                turnManager.stopTimer();
                 setGameOverSceneAndMakeTheTigerWin(true);
             }
         });
@@ -39,19 +38,18 @@ public class GameOverWorks {
         Clock tigerClock = turnManager.getTigerClock();
         tigerClock.setTask(() -> {
             if (tigerClock.getRemainingTime() <= 0) {
-                turnManager.stopTimer();
                 setGameOverSceneAndMakeTheTigerWin(false);
             }
         });
     }
 
     private void setGameOverSceneAndMakeTheTigerWin(boolean b) {
+        turnManager.stopTimer();
         Platform.runLater(() -> boardStage.setScene(gameOverScene.createGameOverScene(b)));
     }
 
     private boolean goatWinCase(Piece piece) {
         if (endTigerGame(piece)) {
-            turnManager.stopTimer();
             setGameOverSceneAndMakeTheTigerWin(false);
             return true;
         }
@@ -64,8 +62,7 @@ public class GameOverWorks {
 
     private boolean tigerWinCase() {
         if (numberOfGoat < minimumNumberOfGoats) {
-            turnManager.stopTimer();
-            boardStage.setScene(gameOverScene.createGameOverScene(true));
+            setGameOverSceneAndMakeTheTigerWin(true);
             return true;
         }
         return false;
@@ -145,11 +142,9 @@ public class GameOverWorks {
         if(tigerWinCase()) return true;
         if (turnManager.timerUp()) {
             if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) {
-                turnManager.stopTimer();
                 setGameOverSceneAndMakeTheTigerWin(false);
             }
             if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) {
-                turnManager.stopTimer();
                 setGameOverSceneAndMakeTheTigerWin(true);
             }
         }

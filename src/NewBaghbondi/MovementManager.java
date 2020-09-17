@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 public class MovementManager {
 
     Group pieceGroup;
-    Stage boardStage;
     GameAudio gameAudio=new GameAudio();
 
     TurnManager turnManager;
@@ -16,12 +15,10 @@ public class MovementManager {
 
     MovementManager(Position[][] board,
                     Group pieceGroup,
-                    Stage boardStage,
                     TurnManager turnManager,
                     GameOverWorks gameOverWorks) {
         this.board = board;
         this.pieceGroup = pieceGroup;
-        this.boardStage = boardStage;
         this.gameOverWorks = gameOverWorks;
         this.turnManager = turnManager;
     }

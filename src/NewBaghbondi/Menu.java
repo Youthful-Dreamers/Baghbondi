@@ -91,7 +91,7 @@ public class Menu {
         Button button = new Button();
         button.setText(string);
         button.setOnAction( e-> {
-            GameScene gameScene = new GameScene(stage, languageOption);
+            GameScene gameScene = new GameScene();
             stage.setScene(gameScene.getSceneOfGame());
             gameAudio.buttonClickedAudio();
         });

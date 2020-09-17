@@ -1,8 +1,6 @@
 package NewBaghbondi;
 
 import javafx.scene.Group;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class GameBoard {
 
@@ -12,9 +10,10 @@ public class GameBoard {
     private Group positionGroup = new Group();
     private Group boardLineGroup = new Group();
     private Position[][] positions = new Position[5][5];
+    private Piece[] pieceArray  = new Piece[30];
+    private int pieceCount = 0;
 
     private BoardLine boardLine;
-    private BoardListener boardListener;
 
     protected GameBoard(){
         boardLine = new BoardLine();
@@ -25,12 +24,6 @@ public class GameBoard {
         drawLineInBoard();
         boardLineGroup = boardLine.createLineGroup();
     }
-
-    protected void createBoardListenerAndAddPieceToPosition(Stage stageOfGame, Pane paneOfGame, int languageOption){
-        boardListener = new BoardListener(stageOfGame, positions, pieceGroup, paneOfGame, languageOption);
-        addPieceToPosition();
-    }
-
 
     protected void drawLineInBoard() {
         boardLine.setHorizontalLine1(positions[0][0], positions[4][0]);
@@ -68,11 +61,12 @@ public class GameBoard {
             piece = new Tiger(vertical, horizontal);
         else
             piece = new Goat(vertical, horizontal);
-        boardListener.addMouseReleaseOptions(piece);
+        pieceArray[pieceCount] = piece;
+        pieceCount++;
         return piece;
     }
 
-    private void addPieceToPosition() {
+    protected void addPieceToPosition() {
         for (int i = 0; i < verticalLine; i++){
             for (int j = 0; j < horizontalLine; j++) {
                 Position position = positions[i][j];
@@ -94,4 +88,7 @@ public class GameBoard {
     protected Group getPieceGroup(){ return pieceGroup; }
     protected Group getPositionGroup(){ return positionGroup; }
     protected Group getBoardLineGroup(){ return boardLineGroup; }
+    protected Position[][] getPositions(){ return positions; }
+    protected Piece[] getPieceArray(){ return pieceArray; }
+    protected int getPieceCount(){ return pieceCount; }
 }

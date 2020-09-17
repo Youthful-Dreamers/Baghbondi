@@ -2,8 +2,6 @@ package NewBaghbondi;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.Timer;
@@ -11,25 +9,29 @@ import java.util.TimerTask;
 
 public class Clock {
 
-    private int timer;
-    private double layoutX;
-    private double layoutY;
-    private Task task;
-    private Color color;
     private int playerIndicator;
     private int languageOption;
-    private TimerTask timerTask;
-    private Text clockText = new Text();
-    private Group clockGroup = new Group();
-    private Timer clockTimer = new Timer();
-    private Translator translator;
 
-    public Clock(double layoutX, double layoutY, int languageOption, int playerIndicator) {
+    private int timer;
+    private Task task;
+    private Timer clockTimer;
+    private TimerTask timerTask;
+
+    private Translator translator;
+    private DrawClock drawClock;
+    private Text clockText;
+
+
+    public Clock(Timer clockTimer, int languageOption, int playerIndicator) {
+        this.clockTimer = clockTimer;
         this.languageOption = languageOption;
         this.playerIndicator = playerIndicator;
         translator = new Translator();
-        setLayoutX(layoutX);
-        setLayoutY(layoutY);
+    }
+
+    protected void drawClock(double layoutX, double layoutY, Color clockColor){
+        drawClock = new DrawClock(languageOption, playerIndicator, layoutX, layoutY, clockColor);
+        this.clockText = drawClock.getClockText();
     }
 
     public void setClockTime(int time, int languageOption) {
@@ -46,27 +48,6 @@ public class Clock {
         clockText.setText(clockTime);
     }
 
-    private void configClockInterface() {
-        clockText.setFont(Font.font("Agency FB", FontWeight.BOLD, 28));
-        clockText.setFill(color);
-    }
-
-    public void drawClock() {
-        configClockInterface();
-        clockText.setLayoutX(getLayoutX());
-        clockText.setLayoutY(getLayoutY());
-
-        if (languageOption == 1){
-            if(playerIndicator==1) clockText.setText("বাঘঃ"+"লিমিটেড");
-            else clockText.setText("ছাগলঃ"+"লিমিটেড");
-        }
-        else {
-            if(playerIndicator==1) clockText.setText("Tiger:"+"Limited");
-            else clockText.setText("Goat:"+"Limited");
-        }
-        clockGroup.getChildren().addAll(clockText);
-    }
-
     public void start() {
         clockTimer = new Timer();
         timerTask = new TimerTask() {
@@ -76,35 +57,19 @@ public class Clock {
                 setClockTime(timer, languageOption);
                 if (task != null)
                     task.performWhenClockRuns();
-
             }
         };
         clockTimer.schedule(timerTask, 1000, 1000);
     }
 
-    public void cancel() {
-        if(timerTask!=null)
-        timerTask.cancel();
+    public void cancelTimer() {
+        if(timerTask!=null) timerTask.cancel();
         clockTimer.cancel();
+        clockTimer.purge();
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-    public void setLayoutX(double layoutX) {
-        this.layoutX = layoutX;
-    }
-    public void setLayoutY(double layoutY) {
-        this.layoutY = layoutY;
-    }
-    public double getLayoutX() {
-        return layoutX;
-    }
-    public double getLayoutY() {
-        return layoutY;
-    }
     public Group getClockGroup() {
-        return clockGroup;
+        return drawClock.getClockGroup();
     }
     public void setTimer(int timer) {
         this.timer = timer;
