@@ -9,11 +9,13 @@ public class GameOptionScene {
     Stage stage;
     Scene gameOptionScene;
     SceneBuilder sceneBuilder;
+    GameAudio gameAudio;
 
     protected GameOptionScene(Stage stage){
         this.stage = stage;
         sceneBuilder = new SceneBuilder();
         createGameOptionScene();
+        gameAudio=new GameAudio();
     }
 
     protected void createGameOptionScene(){
@@ -52,6 +54,7 @@ public class GameOptionScene {
     }
 
     private void setSceneAndCallBoardListener(GameScene gameScene){
+        gameAudio.buttonClickedAudio();
         stage.setScene(gameScene.getSceneOfGame());
         BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
     }
