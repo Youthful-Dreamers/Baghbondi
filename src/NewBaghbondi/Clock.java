@@ -2,8 +2,6 @@ package NewBaghbondi;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.Timer;
@@ -56,7 +54,6 @@ public class Clock {
             @Override
             public void run() {
                 timer--;
-                System.out.println(timer);
                 setClockTime(timer, languageOption);
                 if (task != null)
                     task.performWhenClockRuns();
