@@ -1,25 +1,16 @@
 package NewBaghbondi;
 
 import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import java.io.File;
-import java.nio.file.Paths;
 
 public class Main extends Application{
 
 
     @Override
     public void start(Stage primaryStage){
-        Menu mainMenu = new Menu(primaryStage);
-        GameAudio gameAudio=new GameAudio();
-        primaryStage.setScene(mainMenu.createSceneLanguageOption());
+        LanguageOptionScene mainLanguageOptionScene = new LanguageOptionScene(primaryStage);
+        primaryStage.setScene(mainLanguageOptionScene.getLanguageOptionScene());
         primaryStage.setTitle("BaghBondi");
-        gameAudio.inGameAudio();
         primaryStage.show();
     }
 
@@ -27,5 +18,4 @@ public class Main extends Application{
     {
         launch(args);
     }
-
 }

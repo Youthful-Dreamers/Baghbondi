@@ -3,6 +3,8 @@ package NewBaghbondi;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+import java.util.Timer;
+
 public class TurnManager {
 
     int maximumTime = 100;
@@ -14,6 +16,7 @@ public class TurnManager {
     private int languageOption;
     private Turn turn;
     protected PlayerType playerType;
+    protected Timer timer = new Timer();
 
     protected TurnManager(PlayerType firstTurn, Pane rootPane, Position[][] board, int languageOption) {
         this.languageOption = languageOption;
@@ -27,25 +30,15 @@ public class TurnManager {
     }
 
     private void manageTigerClock(Position[][] board) {
-        tigerClock = new Clock( 115, 45, languageOption, 1);
+        tigerClock = new Clock(timer, languageOption, 1);
+        tigerClock.drawClock(115,45, Color.WHITE);
         tigerClock.setTimer(50);
-        tigerClock.setColor(Color.WHITE);
-        tigerClock.drawClock();
     }
 
     private void manageGoatClock(Position[][] board) {
-        goatClock = new Clock(365, 45, languageOption, 2);
+        goatClock = new Clock(timer, languageOption, 2);
+        goatClock.drawClock(365, 45, Color.YELLOW);
         goatClock.setTimer(80);
-        goatClock.setColor(Color.YELLOW);
-        goatClock.drawClock();
-
-    }
-
-    public Clock getGoatClock() {
-        return goatClock;
-    }
-    public Clock getTigerClock() {
-        return tigerClock;
     }
 
     void createTurn(PlayerType type) {
@@ -61,24 +54,24 @@ public class TurnManager {
     }
 
     protected Turn runGoatTurn() {
-        tigerClock.cancel();
+        tigerClock.cancelTimer();
         goatClock.start();
         return goatTurn;
     }
 
     protected Turn runTigerTurn() {
-        goatClock.cancel();
+        goatClock.cancelTimer();
         tigerClock.start();
         return tigerTurn;
     }
 
-    private void startTimer() {
+    protected void startTimer() {
         goatClock.start();
     }
 
     public void stopTimer(){
-        goatClock.cancel();
-        tigerClock.cancel();
+        goatClock.cancelTimer();
+        tigerClock.cancelTimer();
     }
 
     public PlayerType getPlayerType() {
@@ -87,39 +80,17 @@ public class TurnManager {
     public boolean timerUp() {
         return turn.timeUp();
     }
-}
 
-
-interface Turn {
-    PlayerType getType();
-    boolean timeUp();
-}
-
-class GoatTurn implements Turn {
-    int time;
-    PlayerType type = PlayerType.GOAT;
-
-    GoatTurn(int time) { this.time = time; }
-    public boolean timeUp() {
-        return (time <= 0);
+    public Clock getGoatClock() {
+        return goatClock;
     }
-    public PlayerType getType() {
-        return type;
+    public Clock getTigerClock() {
+        return tigerClock;
     }
 }
 
-class TigerTurn implements Turn {
-    int time;
-    PlayerType type = PlayerType.TIGER;
 
-    TigerTurn(int time) { this.time = time; }
-    public boolean timeUp() {
-        return (time <= 0);
-    }
-    public PlayerType getType() {
-        return type;
-    }
-}
+
 
 
 
