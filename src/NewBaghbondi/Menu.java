@@ -2,20 +2,22 @@ package NewBaghbondi;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.File;
+import java.util.Stack;
 
 public class Menu {
 
     Stage stage;
     int languageOption;
+    GameScene gameScene;
     GameAudio gameAudio=new GameAudio();
     Menu(Stage stage){
         this.stage = stage;
@@ -40,7 +42,12 @@ public class Menu {
         Button button2 = createLanguageOptionButton("English", 2);
         VBox vBox= createVBox(label, 5, button1, button2);
 
-        return new Scene(vBox, 950,650);
+        StackPane root=new StackPane();
+        root.setId("ui");
+        root.getChildren().add(vBox);
+        Scene gameOpening=new Scene(root,950,650);
+        gameOpening.getStylesheets().addAll(this.getClass().getResource("/CSS/style.css").toExternalForm());
+        return gameOpening;
     }
 
 
@@ -48,7 +55,7 @@ public class Menu {
 
     private Label createLabel(String string){
         Label label= new Label(string);
-        label.setFont(new Font("Arial", 14));
+        label.setFont(new Font("Arial", 24));
         return label;
     }
 
@@ -97,4 +104,12 @@ public class Menu {
         button.setOnAction( e->System.out.println("Not developed yet"));
         return button;
     }
+    public Scene getOpeningScene(){
+        Pane pane=new Pane();
+        pane.setId("ui");
+        Scene scene=new Scene(pane,950,650);
+        scene.getStylesheets().addAll(this.getClass().getResource("/CSS/style.css").toExternalForm());
+        return scene;
+    }
+
 }

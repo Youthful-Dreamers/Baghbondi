@@ -51,6 +51,7 @@ public class MovementManager {
                 board[newHorizontal][newVertical].setPiece(piece);
                 turnManager.changeTurn();
                 movementMade = true;
+                gameAudio.buttonClickedAudio();
                 break;
             case KILL:
                 piece.move(newHorizontal, newVertical);
