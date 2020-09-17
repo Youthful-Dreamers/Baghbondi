@@ -44,8 +44,11 @@ public class GameOptionScene {
     }
 
     protected void initializeButtonEventWorks(GameScene gameScene){
-        sceneBuilder.buttonOne.setOnAction( e->  setSceneAndCallBoardListener(gameScene));
-
+        sceneBuilder.buttonOne.setOnAction( e->  {
+            gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getMessages(), gameScene.getInput());
+            setSceneAndCallBoardListener(gameScene);
+        });
+        sceneBuilder.buttonTwo.setOnAction( e-> setSceneAndCallBoardListener(gameScene));
     }
 
     private void setSceneAndCallBoardListener(GameScene gameScene){
