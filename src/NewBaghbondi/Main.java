@@ -8,8 +8,10 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage){
-        LanguageOptionScene mainLanguageOptionScene = new LanguageOptionScene(primaryStage);
-        primaryStage.setScene(mainLanguageOptionScene.getLanguageOptionScene());
+       LanguageOptionScene languageOptionScene=new LanguageOptionScene(primaryStage);
+        GameAudio gameAudio=new GameAudio();
+        gameAudio.inGameAudio();
+        primaryStage.setScene(languageOptionScene.getLanguageOptionScene());
         primaryStage.setTitle("BaghBondi");
         primaryStage.show();
     }

@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 public class MovementManager {
 
     Group pieceGroup;
+    GameAudio gameAudio=new GameAudio();
 
     TurnManager turnManager;
     Position[][] board;
@@ -47,6 +48,7 @@ public class MovementManager {
                 board[newHorizontal][newVertical].setPiece(piece);
                 turnManager.changeTurn();
                 movementMade = true;
+                gameAudio.buttonClickedAudio();
                 break;
             case KILL:
                 piece.move(newHorizontal, newVertical);
@@ -58,6 +60,7 @@ public class MovementManager {
                 turnManager.changeTurn();
                 gameOverWorks.killGoat();
                 movementMade = true;
+                gameAudio.tigerKillAudio();
                 break;
         }
         if (gameOverWorks.gameOver(piece)) return false;

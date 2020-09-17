@@ -9,6 +9,7 @@ public class LanguageOptionScene {
     Scene languageOptionScene;
     SceneBuilder sceneBuilder;
     GameOptionScene gameOptionScene;
+    GameAudio gameAudio;
 
 
     LanguageOptionScene(Stage stage) {
@@ -16,6 +17,7 @@ public class LanguageOptionScene {
         sceneBuilder = new SceneBuilder();
         createLanguageOptionScene();
         this.gameOptionScene = new GameOptionScene(stage);
+        gameAudio=new GameAudio();
     }
 
     protected void createLanguageOptionScene() {
@@ -57,6 +59,7 @@ public class LanguageOptionScene {
         gameOptionScene.languageBasedWorks(languageOption);
         stage.setScene(gameOptionScene.getLanguageOptionScene());
         GameScene gameScene = new GameScene();
+        gameAudio.buttonClickedAudio();
         gameOptionScene.initializeButtonEventWorks(gameScene);
     }
 }
