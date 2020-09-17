@@ -36,7 +36,5 @@ public class GameAudio {
             audioClip.setVolume(0.5);
             audioClip.play();
         }
-
-
 }
 
