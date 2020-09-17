@@ -20,6 +20,7 @@ public class BoardListener {
         turnManager = new TurnManager(PlayerType.GOAT, rootPane, gameBoard.getPositions(), languageOption);
         gameOverWorks = new GameOverWorks(boardStage, gameBoard.getPositions(), turnManager, languageOption);
         movementManager = new MovementManager(gameBoard.getPositions(), gameBoard.getPieceGroup(), turnManager, gameOverWorks);
+        boardStage.setOnCloseRequest(e -> turnManager.stopTimer());
     }
 
     private void addMouseEventToPiece(){

@@ -22,7 +22,7 @@ public class GameOverScene {
         sceneBuilder.labelOne.setText(labelOneString);
         sceneBuilder.labelTwo.setText(labelTwoString);
         if(tigerWin) sceneBuilder.labelTwo.setTextFill(Color.web("#ffffff", 1));
-        else sceneBuilder.labelTwo.setTextFill(Color.web("#9b870c", 1));
+        else sceneBuilder.labelTwo.setTextFill(Color.web("#ffff00", 1));
         return gameOverScene;
     }
 

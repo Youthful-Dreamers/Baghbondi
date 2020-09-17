@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 public class GameScene {
 
-    private int languageOption;
     private TextArea messages;
     private TextField input;
 

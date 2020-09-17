@@ -1,7 +1,6 @@
 package NewBaghbondi;
 
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GameOptionScene {
@@ -45,13 +44,13 @@ public class GameOptionScene {
     }
 
     protected void initializeButtonEventWorks(GameScene gameScene){
-        sceneBuilder.buttonOne.setOnAction( e-> stage.setScene(gameScene.getSceneOfGame()));
-        sceneBuilder.buttonTwo.setOnAction( e-> stage.setScene(gameScene.getSceneOfGame()));
-        callingBoardListener(gameScene.getGameBoard(), gameScene.getPaneOfGame());
+        sceneBuilder.buttonOne.setOnAction( e->  setSceneAndCallBoardListener(gameScene));
+
     }
 
-    private void callingBoardListener(GameBoard gameBoard, Pane rootPane){
-        BoardListener boardListener = new BoardListener(stage, gameBoard, rootPane, languageOption);
+    private void setSceneAndCallBoardListener(GameScene gameScene){
+        stage.setScene(gameScene.getSceneOfGame());
+        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
     }
 
     protected Scene getLanguageOptionScene(){

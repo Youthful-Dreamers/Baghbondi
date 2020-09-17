@@ -28,7 +28,7 @@ public class SceneBuilder {
 
     protected void createGameOverVBox(){
         labelOne = createLabel(25);
-        labelOne.setTextFill(Color.web("#003300"));
+        labelOne.setTextFill(Color.web("#006400"));
         labelTwo = createLabel(25);
         vBox = createVBox(labelOne, labelTwo, 5, null,null, false);
     }
