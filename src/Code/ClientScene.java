@@ -31,12 +31,12 @@ public class ClientScene{
         else notice.setText("Please Get IP of the server from your friend");
         notice.setLayoutX(200);
         notice.setLayoutY(300);
-        notice.setTextFill(Color.web("#003300"));
+        notice.setTextFill(Color.web("#004400"));
     }
 
     private void createIPText(){
         ipText = sceneBuilder.createLabel(20);
-        ipText.setTextFill(Color.web("#003300"));
+        ipText.setTextFill(Color.web("#004400"));
         if(languageOption == 1) {
             ipText.setText("আইপিঃ");
             ipText.setLayoutX(380);

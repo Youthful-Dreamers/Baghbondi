@@ -2,7 +2,6 @@ package code;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.net.UnknownHostException;
 
 public class GameOptionScene {

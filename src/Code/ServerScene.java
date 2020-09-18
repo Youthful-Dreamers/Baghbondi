@@ -1,6 +1,5 @@
 package code;
 
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,11 +31,11 @@ public class ServerScene {
 
     private void createLabels(){
         notice = sceneBuilder.createLabel(30);
-        notice.setTextFill(Color.web("#00ff00"));
+        notice.setTextFill(Color.web("#004400"));
         if(languageOption == 1) notice.setText("নিচের আইপি অ্যাড্রেসটি আপনার বন্ধুর সাথে শেয়ার করুন");
         else notice.setText("Share the shown IP Address with your friend");
         ipAddressNotification = sceneBuilder.createLabel(30);
-        ipAddressNotification.setTextFill(Color.web("#003300"));
+        ipAddressNotification.setTextFill(Color.web("#004400"));
         ipAddressNotification.setText(getIP.getIP());
     }
 

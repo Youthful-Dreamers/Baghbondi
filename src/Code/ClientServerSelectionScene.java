@@ -33,7 +33,7 @@ public class ClientServerSelectionScene {
         label = sceneBuilder.createLabel(30);
         label.setLayoutX(435);
         label.setLayoutY(300);
-        label.setTextFill(Color.web("#003300", 1));
+        label.setTextFill(Color.web("#004400", 1));
         if(languageOption == 1) label.setText("নিচে থেকে একটি পছন্দ করুনঃ");
         else label.setText("Choose one from below:");
     }
