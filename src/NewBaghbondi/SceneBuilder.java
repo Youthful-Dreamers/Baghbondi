@@ -19,18 +19,19 @@ public class SceneBuilder {
     VBox vBox;
 
     protected void createMenuVBox(int space){
-        labelOne = createLabel(23);
+        labelOne = createLabel(30);
         labelOne.setTextFill(Color.web("#003300", 1));
+//        labelOne.setTextFill(Color.BROWN);
         buttonOne = createButton();
         buttonTwo = createButton();
         vBox = createVBox(labelOne, null, space, buttonOne, buttonTwo, true);
     }
 
     protected void createGameOverVBox(){
-        labelOne = createLabel(25);
+        labelOne = createLabel(40);
         labelOne.setTextFill(Color.web("#006400"));
-        labelTwo = createLabel(25);
-        vBox = createVBox(labelOne, labelTwo, 5, null,null, false);
+        labelTwo = createLabel(40);
+        vBox = createVBox(labelOne, labelTwo, 10, null,null, false);
     }
 
     protected Scene createScene(){
@@ -40,7 +41,7 @@ public class SceneBuilder {
 
     protected VBox createVBox(Label labelOne, Label labelTwo, int space, Button buttonOne, Button buttonTwo, boolean menuIndicator){
         VBox vBox= new VBox(space);
-        vBox.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
+        vBox.setBackground(setBackgroundPicture("resources/gameStartScene.png"));
         vBox.setAlignment(Pos.CENTER);
         getVBoxChildren(vBox, labelOne, labelTwo, buttonOne, buttonTwo, menuIndicator);
         return vBox;
@@ -62,7 +63,7 @@ public class SceneBuilder {
 
     protected Button createButton(){
         Button button = new Button();
-        button.setStyle("-fx-font-size:14; -fx-background-color: #006400; -fx-text-fill: white; -fx-font-weight: bold;");
+        button.setStyle("-fx-font-size:20; -fx-background-color: #006400; -fx-text-fill: white; -fx-font-weight: bold;");
         return button;
     }
 
