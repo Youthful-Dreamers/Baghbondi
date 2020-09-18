@@ -1,5 +1,3 @@
-package NewBaghbondi;
-
 public interface Turn {
     PlayerType getType();
     boolean timeUp();

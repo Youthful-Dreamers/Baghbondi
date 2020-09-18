@@ -1,5 +1,3 @@
-package NewBaghbondi;
-
 import javafx.scene.paint.Color;
 
 public class Goat extends Piece {

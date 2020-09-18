@@ -1,5 +1,3 @@
-package NewBaghbondi;
-
 public class MoveResult {
 
     private MoveType type;

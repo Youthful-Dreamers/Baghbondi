@@ -1,5 +1,3 @@
-package NewBaghbondi;
-
 public class Translator {
 
     protected String getStringInBengali(String string) {

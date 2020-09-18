@@ -1,7 +1,3 @@
-package NewBaghbondi;
-
-import javafx.scene.paint.Color;
-
 public class Tiger extends Piece{
     private Color pieceColor = Color.RED;
     private PlayerType type = PlayerType.TIGER;

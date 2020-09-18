@@ -1,5 +1,3 @@
-package NewBaghbondi;
-
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

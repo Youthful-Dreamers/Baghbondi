@@ -1,5 +1,3 @@
-package NewBaghbondi;
-
 import javafx.scene.Group;
 
 public class GameBoard {
