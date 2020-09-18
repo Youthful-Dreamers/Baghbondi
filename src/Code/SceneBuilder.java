@@ -71,4 +71,8 @@ public class SceneBuilder {
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         return new Background(backgroundImage);
     }
+
+    protected VBox getVBox(){
+        return vBox;
+    }
 }

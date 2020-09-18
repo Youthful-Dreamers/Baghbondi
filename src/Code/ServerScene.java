@@ -21,12 +21,14 @@ public class ServerScene {
 
     private SceneBuilder sceneBuilder;
     private int languageOption;
+    private GameAudio gameAudio;
 
     protected ServerScene(int languageOption) throws UnknownHostException {
         this.languageOption = languageOption;
         getIP = new GetIP();
         sceneBuilder = new SceneBuilder();
         createServerScene();
+        gameAudio = new GameAudio();
     }
 
     private void createLabels(){
@@ -45,10 +47,11 @@ public class ServerScene {
         else gameButton.setText("Enter Game");
     }
 
-    protected void gameButtonEventHandler(Stage stage, GameScene gameScene){
+    protected void gameButtonEventHandler(Stage stage, GameScene gameScene, GameOptionScene gameOptionScene){
        gameButton.setOnAction(e-> {
            stage.setScene(gameScene.getSceneOfGame());
-           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
+           gameAudio.buttonClickedAudio();
+           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene);
        });
     }
 

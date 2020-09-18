@@ -18,11 +18,13 @@ public class ClientScene{
     private String ip;
 
     private SceneBuilder sceneBuilder;
+    GameAudio gameAudio;
 
     protected ClientScene(int languageOption){
         this.languageOption = languageOption;
         sceneBuilder = new SceneBuilder();
         createClientScene();
+        gameAudio = new GameAudio();
     }
 
     private void createNoticeLabel(){
@@ -54,11 +56,12 @@ public class ClientScene{
         ipField.setLayoutY(335);
     }
 
-    protected void ipFieldEventHandler(Stage stage, GameScene gameScene){
+    protected void ipFieldEventHandler(Stage stage, GameScene gameScene, GameOptionScene gameOptionScene){
         ipField.setOnAction(e-> {
             ip = ipField.getText();
             stage.setScene(gameScene.getSceneOfGame());
-            BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
+            gameAudio.buttonClickedAudio();
+            BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene);
         });
     }
 

@@ -11,6 +11,7 @@ public class GameOptionScene {
     Scene gameOptionScene;
     SceneBuilder sceneBuilder;
     GameAudio gameAudio;
+    private int count=0;
 
     protected GameOptionScene(Stage stage){
         this.stage = stage;
@@ -51,27 +52,32 @@ public class GameOptionScene {
             buttonOneEventWorks(gameScene);
         });
         sceneBuilder.buttonTwo.setOnAction( e-> {
-            stage.setScene(clientServerSelectionScene.getClientServerSelectionScene());
-            ClientScene clientScene = new ClientScene(languageOption);
-            clientScene.ipFieldEventHandler(stage, gameScene);
-            try {
-                ServerScene serverScene = new ServerScene(languageOption);
-                serverScene.gameButtonEventHandler(stage, gameScene);
-                clientServerSelectionScene.buttonEventHandler(stage, clientScene, serverScene);
-            } catch (UnknownHostException ex) {
-                System.out.println("Error in getting ip address: "+e);
-            }
+            buttonTwoEventWorks(gameScene, clientServerSelectionScene);
         });
+    }
+
+    private void buttonTwoEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene){
+        stage.setScene(clientServerSelectionScene.getClientServerSelectionScene());
+        gameAudio.buttonClickedAudio();
+        ClientScene clientScene = new ClientScene(languageOption);
+        clientScene.ipFieldEventHandler(stage, gameScene,this);
+        try {
+            ServerScene serverScene = new ServerScene(languageOption);
+            serverScene.gameButtonEventHandler(stage, gameScene,this);
+            clientServerSelectionScene.buttonEventHandler(stage, clientScene, serverScene);
+        } catch (UnknownHostException ex) {
+            System.out.println("Error in getting ip address: "+ex);
+        }
     }
 
     private void buttonOneEventWorks(GameScene gameScene){
         gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getMessages(), gameScene.getInput());
         stage.setScene(gameScene.getSceneOfGame());
-        //gameAudio.buttonClickedAudio();
-        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
+        gameAudio.buttonClickedAudio();
+        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this);
     }
 
-    protected Scene getLanguageOptionScene(){
+    protected Scene getGameOptionScene(){
         return gameOptionScene;
     }
 }

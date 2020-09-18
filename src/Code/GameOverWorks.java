@@ -1,14 +1,10 @@
 package code;
 
-import code.GameOverScene;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameOverWorks {
 
@@ -19,11 +15,14 @@ public class GameOverWorks {
 
     private TurnManager turnManager;
     private GameOverScene gameOverScene;
+    private GameOptionScene gameOptionScene;
+    private int secondSToWaitToAddRestartButton;
 
-    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption) {
+    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption, GameOptionScene gameOptionScene) {
         this.boardStage = boardStage;
         this.board = board;
         this.turnManager = turnManager;
+        this.gameOptionScene = gameOptionScene;
         gameOverScene = new GameOverScene(languageOption);
         onTimeUp();
     }
@@ -46,7 +45,11 @@ public class GameOverWorks {
 
     private void setGameOverSceneAndMakeTheTigerWin(boolean b) {
         turnManager.stopTimer();
-        Platform.runLater(() -> boardStage.setScene(gameOverScene.createGameOverScene(b)));
+        Platform.runLater(() ->{
+            boardStage.setScene(gameOverScene.createGameOverScene(b));
+            gameOverScene.buttonEventWorks(boardStage, gameOptionScene);
+            setRestartButtonToGameOverScene();
+        });
     }
 
     private boolean goatWinCase(Piece piece) {
@@ -150,5 +153,22 @@ public class GameOverWorks {
             }
         }
         return false;
+    }
+
+    private void setRestartButtonToGameOverScene(){
+        secondSToWaitToAddRestartButton = 5;
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                secondSToWaitToAddRestartButton--;
+                if(secondSToWaitToAddRestartButton == 0) {
+                    Platform.runLater(() -> gameOverScene.getGameOverSceneVBox().getChildren().add(gameOverScene.getRestartButton()));
+                    timer.cancel();
+                    timer.purge();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(timerTask, 1000, 1000);
     }
 }
