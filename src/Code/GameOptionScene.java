@@ -3,6 +3,8 @@ package code;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.net.UnknownHostException;
+
 public class GameOptionScene {
 
     int languageOption;
@@ -47,13 +49,19 @@ public class GameOptionScene {
 
     protected void initializeButtonEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene){
         sceneBuilder.buttonOne.setOnAction( e->  {
-
             buttonOneEventWorks(gameScene);
         });
         sceneBuilder.buttonTwo.setOnAction( e-> {
             stage.setScene(clientServerSelectionScene.getClientServerSelectionScene());
             ClientScene clientScene = new ClientScene(languageOption);
-            clientServerSelectionScene.buttonEventHandler(stage, clientScene);
+            clientScene.ipFieldEventHandler(stage, gameScene);
+            try {
+                ServerScene serverScene = new ServerScene(languageOption);
+                serverScene.gameButtonEventHandler(stage, gameScene);
+                clientServerSelectionScene.buttonEventHandler(stage, clientScene, serverScene);
+            } catch (UnknownHostException ex) {
+                System.out.println("Error in getting ip address: "+e);
+            }
         });
     }
 

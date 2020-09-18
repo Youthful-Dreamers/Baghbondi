@@ -1,11 +1,11 @@
 package code;
 
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ClientScene{
 
@@ -54,8 +54,12 @@ public class ClientScene{
         ipField.setLayoutY(335);
     }
 
-    private void ipFieldEventHandler(){
-        Platform.runLater(()-> ipField.setOnAction(e-> ip = ipField.getText()));
+    protected void ipFieldEventHandler(Stage stage, GameScene gameScene){
+        ipField.setOnAction(e-> {
+            ip = ipField.getText();
+            stage.setScene(gameScene.getSceneOfGame());
+            BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
+        });
     }
 
     private void creatPane(){
@@ -69,7 +73,6 @@ public class ClientScene{
     }
 
     private void createClientScene(){
-        ipFieldEventHandler();
         creatPane();
         clientScene = new Scene(clientScenePane);
     }

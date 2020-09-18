@@ -1,13 +1,12 @@
 package code;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
-
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class GameScene {
 
@@ -17,6 +16,8 @@ public class GameScene {
     private Pane paneOfBoard = new Pane();
     private Pane paneOfGame = new Pane();
     private Scene sceneOfGame;
+    private Rectangle clockTiger;
+    private Rectangle clockGoat;
 
     private GameBoard gameBoard;
 
@@ -31,7 +32,8 @@ public class GameScene {
         getMessagesInputFromChatBox();
 
         createPaneOfBoard();
-        paneOfGame.getChildren().addAll(paneOfBoard, messages, input);
+        createRectangles();
+        paneOfGame.getChildren().addAll(paneOfBoard, messages, input, clockGoat, clockTiger);
         paneOfGame.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
         gameBoard.addPieceToPosition();
     }
@@ -42,6 +44,15 @@ public class GameScene {
         paneOfBoard.setPrefSize(500, 500);
         paneOfBoard.setLayoutX(100);
         paneOfBoard.setLayoutY(100);
+    }
+
+    private void createRectangles(){
+        clockTiger = new Rectangle(110, 12, 235, 45);
+        clockTiger.setFill(Color.LIGHTGREEN);
+        clockTiger.setOpacity(0.7);
+        clockGoat = new Rectangle(360,12,  245, 45);
+        clockGoat.setFill(Color.LIGHTGREEN);
+        clockGoat.setOpacity(0.7);
     }
 
     public void createSceneOfGame() {

@@ -1,7 +1,9 @@
 package code;
 
 import javafx.scene.Group;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -12,6 +14,7 @@ public class DrawClock {
     private int languageOption;
 
     private Text clockText;
+    private StackPane clockStackPane;
     private Group clockGroup = new Group();
 
     public DrawClock(int languageOption, int playerIndicator, double layoutX, double layoutY, Color clockColor) {
