@@ -1,3 +1,5 @@
+package code;
+
 public class MoveResult {
 
     private MoveType type;

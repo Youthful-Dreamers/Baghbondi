@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.Group;
 
 public class GameBoard {
@@ -5,7 +7,7 @@ public class GameBoard {
     private int verticalLine = 5;
     private int horizontalLine = 5;
     private Group pieceGroup = new Group();
-    private Group positionGroup = new Group();
+private Group positionGroup = new Group();
     private Group boardLineGroup = new Group();
     private Position[][] positions = new Position[5][5];
     private Piece[] pieceArray  = new Piece[30];

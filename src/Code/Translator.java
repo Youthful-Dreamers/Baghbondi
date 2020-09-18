@@ -1,3 +1,5 @@
+package code;
+
 public class Translator {
 
     protected String getStringInBengali(String string) {

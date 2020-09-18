@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 

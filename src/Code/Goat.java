@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.paint.Color;
 
 public class Goat extends Piece {

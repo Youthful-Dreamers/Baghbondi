@@ -1,3 +1,5 @@
+package code;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,7 +55,7 @@ public class SceneBuilder {
         }
     }
 
-    private Label createLabel(int fontSize){
+    public Label createLabel(int fontSize){
         Label label= new Label();
         label.setFont(Font.font("Arial", FontWeight.BOLD, fontSize));
         return label;

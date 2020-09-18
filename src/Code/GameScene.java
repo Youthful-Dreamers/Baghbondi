@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
@@ -58,10 +60,10 @@ public class GameScene {
         return new Background(backgroundImage);
     }
 
-    protected TextArea getMessages(){ return messages; }
-    protected TextField getInput(){ return input; }
     protected Scene getSceneOfGame(){ return this.sceneOfGame; }
     protected Pane getPaneOfGame(){ return  paneOfGame; }
     protected GameBoard getGameBoard(){ return gameBoard; }
+    protected TextField getInput(){ return input; }
+    protected TextArea getMessages(){ return messages; }
 }
 

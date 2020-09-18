@@ -1,3 +1,6 @@
+package code;
+
+import code.GameOverScene;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -139,10 +142,10 @@ public class GameOverWorks {
         if(goatWinCase(piece)) return true;
         if(tigerWinCase()) return true;
         if (turnManager.timerUp()) {
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.TIGER) {
+            if (turnManager.getPlayerType() == PlayerType.TIGER) {
                 setGameOverSceneAndMakeTheTigerWin(false);
             }
-            if (turnManager.getPlayerType() == NewBaghbondi.PlayerType.GOAT) {
+            if (turnManager.getPlayerType() == PlayerType.GOAT) {
                 setGameOverSceneAndMakeTheTigerWin(true);
             }
         }

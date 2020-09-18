@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 

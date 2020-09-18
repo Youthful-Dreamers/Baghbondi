@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.Group;
 import javafx.stage.Stage;
 
@@ -46,7 +48,7 @@ public class MovementManager {
                 board[newHorizontal][newVertical].setPiece(piece);
                 turnManager.changeTurn();
                 movementMade = true;
-                gameAudio.buttonClickedAudio();
+                //gameAudio.buttonClickedAudio();
                 break;
             case KILL:
                 piece.move(newHorizontal, newVertical);
@@ -58,7 +60,7 @@ public class MovementManager {
                 turnManager.changeTurn();
                 gameOverWorks.killGoat();
                 movementMade = true;
-                gameAudio.tigerKillAudio();
+                //gameAudio.tigerKillAudio();
                 break;
         }
         if (gameOverWorks.gameOver(piece)) return false;

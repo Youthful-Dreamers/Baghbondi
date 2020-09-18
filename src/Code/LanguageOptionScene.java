@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -8,6 +10,8 @@ public class LanguageOptionScene {
     SceneBuilder sceneBuilder;
     GameOptionScene gameOptionScene;
     GameAudio gameAudio;
+    ClientServerScene clientServerScene;
+    GameScene gameScene;
 
 
     LanguageOptionScene(Stage stage) {
@@ -15,7 +19,8 @@ public class LanguageOptionScene {
         sceneBuilder = new SceneBuilder();
         createLanguageOptionScene();
         this.gameOptionScene = new GameOptionScene(stage);
-        gameAudio=new GameAudio();
+        gameAudio = new GameAudio();
+        gameScene = new GameScene();
     }
 
     protected void createLanguageOptionScene() {
@@ -56,8 +61,8 @@ public class LanguageOptionScene {
     private void buttonEventWorks(int languageOption){
         gameOptionScene.languageBasedWorks(languageOption);
         stage.setScene(gameOptionScene.getLanguageOptionScene());
-        GameScene gameScene = new GameScene();
-        gameAudio.buttonClickedAudio();
-        gameOptionScene.initializeButtonEventWorks(gameScene);
+        //gameAudio.buttonClickedAudio();
+        clientServerScene = new ClientServerScene(languageOption);
+        gameOptionScene.initializeButtonEventWorks(gameScene, clientServerScene);
     }
 }

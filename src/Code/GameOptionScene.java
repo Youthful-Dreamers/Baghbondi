@@ -1,3 +1,5 @@
+package code;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -43,17 +45,20 @@ public class GameOptionScene {
         else sceneBuilder.buttonTwo.setText("LAN Game");
     }
 
-    protected void initializeButtonEventWorks(GameScene gameScene){
+    protected void initializeButtonEventWorks(GameScene gameScene, ClientServerScene clientServerScene){
         sceneBuilder.buttonOne.setOnAction( e->  {
             gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getMessages(), gameScene.getInput());
+            stage.setScene(gameScene.getSceneOfGame());
             setSceneAndCallBoardListener(gameScene);
         });
-        sceneBuilder.buttonTwo.setOnAction( e-> setSceneAndCallBoardListener(gameScene));
+        sceneBuilder.buttonTwo.setOnAction( e-> {
+            stage.setScene(clientServerScene.getClientServerSelectionScene());
+            setSceneAndCallBoardListener(gameScene);
+        });
     }
 
     private void setSceneAndCallBoardListener(GameScene gameScene){
-        gameAudio.buttonClickedAudio();
-        stage.setScene(gameScene.getSceneOfGame());
+        //gameAudio.buttonClickedAudio();
         BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
     }
 

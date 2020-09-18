@@ -1,3 +1,5 @@
+package code;
+
 public interface Turn {
     PlayerType getType();
     boolean timeUp();
