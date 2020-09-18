@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
 # Compiled class file
+.gitignore
 *.class
 
 # Log file
@@ -25,3 +26,5 @@
 hs_err_pid*
 .idea
 *.iml
+
+out/
