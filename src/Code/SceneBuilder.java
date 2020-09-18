@@ -21,7 +21,6 @@ public class SceneBuilder {
     protected void createMenuVBox(int space){
         labelOne = createLabel(30);
         labelOne.setTextFill(Color.web("#003300", 1));
-//        labelOne.setTextFill(Color.BROWN);
         buttonOne = createButton();
         buttonTwo = createButton();
         vBox = createVBox(labelOne, null, space, buttonOne, buttonTwo, true);

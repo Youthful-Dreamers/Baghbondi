@@ -10,7 +10,7 @@ public class LanguageOptionScene {
     SceneBuilder sceneBuilder;
     GameOptionScene gameOptionScene;
     GameAudio gameAudio;
-    ClientServerScene clientServerScene;
+    ClientServerSelectionScene clientServerSelectionScene;
     GameScene gameScene;
 
 
@@ -18,9 +18,11 @@ public class LanguageOptionScene {
         this.stage = stage;
         sceneBuilder = new SceneBuilder();
         createLanguageOptionScene();
+    }
+
+    protected void executeToAvoidLag(){
         this.gameOptionScene = new GameOptionScene(stage);
         gameAudio = new GameAudio();
-        gameScene = new GameScene();
     }
 
     protected void createLanguageOptionScene() {
@@ -28,8 +30,7 @@ public class LanguageOptionScene {
         setLabelText();
         setButtonOneText();
         setButtonTwoText();
-        buttonOneEventWorks();
-        buttonTwoEventWorks();
+        buttonsEventWorks();
         languageOptionScene = sceneBuilder.createScene();
     }
 
@@ -50,11 +51,8 @@ public class LanguageOptionScene {
         sceneBuilder.buttonTwo.setText("English");
     }
 
-    protected void buttonOneEventWorks() {
+    protected void buttonsEventWorks() {
         sceneBuilder.buttonOne.setOnAction(e -> buttonEventWorks(1));
-    }
-
-    protected void buttonTwoEventWorks() {
         sceneBuilder.buttonTwo.setOnAction(e -> buttonEventWorks(2));
     }
 
@@ -62,7 +60,9 @@ public class LanguageOptionScene {
         gameOptionScene.languageBasedWorks(languageOption);
         stage.setScene(gameOptionScene.getLanguageOptionScene());
         //gameAudio.buttonClickedAudio();
-        clientServerScene = new ClientServerScene(languageOption);
-        gameOptionScene.initializeButtonEventWorks(gameScene, clientServerScene);
+        gameScene = new GameScene();
+        clientServerSelectionScene = new ClientServerSelectionScene(languageOption);
+        gameOptionScene.initializeButtonEventWorks(gameScene, clientServerSelectionScene);
+
     }
 }

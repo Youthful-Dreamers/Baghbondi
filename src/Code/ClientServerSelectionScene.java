@@ -10,8 +10,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
-public class ClientServerScene {
+public class ClientServerSelectionScene {
 
     private SceneBuilder sceneBuilder;
     private RadioButton radioButtonClient;
@@ -23,15 +24,10 @@ public class ClientServerScene {
     private Button buttonSubmit;
 
 
-    protected ClientServerScene(int languageOption){
+    protected ClientServerSelectionScene(int languageOption){
         this.languageOption = languageOption;
         sceneBuilder = new SceneBuilder();
-        createLabel();
-        createRadioButtonGroupClientServerSelection();
-        createSubmitButton();
-        createVBoxForClientServerSelection();
         creatingClientServerSelectionScene();
-        buttonEventHandler();
     }
 
 
@@ -74,19 +70,23 @@ public class ClientServerScene {
     }
 
     protected void creatingClientServerSelectionScene(){
+        createLabel();
+        createRadioButtonGroupClientServerSelection();
+        createSubmitButton();
+        createVBoxForClientServerSelection();
         clientServerSelectionScene = new Scene(vBox, 950, 650);
     }
 
-    protected void eventHandlerForRadioButton(){
+    protected void eventHandlerForRadioButton(Stage stage, ClientScene clientScene){
         if(radioButtonClient.isSelected()){
-
+            stage.setScene(clientScene.getClientScene());
         } else if(radioButtonServer.isSelected()){
 
         }
     }
 
-    protected void buttonEventHandler(){
-        buttonSubmit.setOnMouseClicked(e-> eventHandlerForRadioButton());
+    protected void buttonEventHandler(Stage stage, ClientScene clientScene){
+        buttonSubmit.setOnMouseClicked(e-> eventHandlerForRadioButton(stage, clientScene));
     }
 
     protected Scene getClientServerSelectionScene(){

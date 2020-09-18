@@ -45,19 +45,21 @@ public class GameOptionScene {
         else sceneBuilder.buttonTwo.setText("LAN Game");
     }
 
-    protected void initializeButtonEventWorks(GameScene gameScene, ClientServerScene clientServerScene){
+    protected void initializeButtonEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene){
         sceneBuilder.buttonOne.setOnAction( e->  {
-            gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getMessages(), gameScene.getInput());
-            stage.setScene(gameScene.getSceneOfGame());
-            setSceneAndCallBoardListener(gameScene);
+
+            buttonOneEventWorks(gameScene);
         });
         sceneBuilder.buttonTwo.setOnAction( e-> {
-            stage.setScene(clientServerScene.getClientServerSelectionScene());
-            setSceneAndCallBoardListener(gameScene);
+            stage.setScene(clientServerSelectionScene.getClientServerSelectionScene());
+            ClientScene clientScene = new ClientScene(languageOption);
+            clientServerSelectionScene.buttonEventHandler(stage, clientScene);
         });
     }
 
-    private void setSceneAndCallBoardListener(GameScene gameScene){
+    private void buttonOneEventWorks(GameScene gameScene){
+        gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getMessages(), gameScene.getInput());
+        stage.setScene(gameScene.getSceneOfGame());
         //gameAudio.buttonClickedAudio();
         BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption);
     }
