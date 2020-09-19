@@ -64,7 +64,7 @@ public class GameOverScene {
     protected void buttonEventWorks(Stage stage, GameOptionScene gameOptionScene){
         restartButton.setOnAction(e->{
             stage.setScene(gameOptionScene.getGameOptionScene());
-            gameAudio.buttonClickedAudio();
+            //gameAudio.buttonClickedAudio();
             workForMultipleRun(gameOptionScene);
         });
     }

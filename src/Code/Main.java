@@ -11,11 +11,12 @@ public class Main extends Application{
        LanguageOptionScene languageOptionScene=new LanguageOptionScene(primaryStage);
        languageOptionScene.executeToAvoidLag();
        GameAudio gameAudio=new GameAudio();
-        gameAudio.inGameAudio();
+        //gameAudio.inGameAudio();
         primaryStage.setScene(languageOptionScene.getLanguageOptionScene());
         primaryStage.setTitle("BaghBondi");
         primaryStage.show();
     }
+
 
     public static void main(String[] args)
     {

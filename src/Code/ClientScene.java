@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.net.UnknownHostException;
+
 public class ClientScene{
 
     private Scene clientScene;
@@ -18,10 +20,12 @@ public class ClientScene{
     private String ip;
 
     private SceneBuilder sceneBuilder;
-    GameAudio gameAudio;
+    private GameAudio gameAudio;
+    private ChatClient chatClient;
 
-    protected ClientScene(int languageOption){
+    protected ClientScene(int languageOption) throws UnknownHostException {
         this.languageOption = languageOption;
+        this.chatClient = new ChatClient();
         sceneBuilder = new SceneBuilder();
         createClientScene();
         gameAudio = new GameAudio();
@@ -60,8 +64,10 @@ public class ClientScene{
         ipField.setOnAction(e-> {
             ip = ipField.getText();
             stage.setScene(gameScene.getSceneOfGame());
-            gameAudio.buttonClickedAudio();
-            BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene);
+            //gameAudio.buttonClickedAudio();
+            chatClient.startClient(ip);
+            BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene, chatClient,null);
+            gameScene.getChatBox().inputEventHandlerClient(chatClient.getPrintWriter(), chatClient.getBufferedReader());
         });
     }
 
@@ -83,8 +89,8 @@ public class ClientScene{
     protected Scene getClientScene(){
         return clientScene;
     }
-
     protected String getIp(){
         return ip;
     }
+    protected ChatClient getChatClient(){ return chatClient; }
 }

@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 public class GameAudio {
 
-        public void inGameAudio(){
+        /*public void inGameAudio(){
             String path="src/resources/inGameAudio.mp3";
             Media media=new Media(new File(path).toURI().toString());
             MediaPlayer mediaPlayer=new MediaPlayer(media);
@@ -35,6 +35,6 @@ public class GameAudio {
             AudioClip audioClip=new AudioClip(Paths.get(path).toUri().toString());
             audioClip.setVolume(0.5);
             audioClip.play();
-        }
+        }*/
 }
 

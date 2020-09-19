@@ -52,13 +52,17 @@ public class GameOptionScene {
             buttonOneEventWorks(gameScene);
         });
         sceneBuilder.buttonTwo.setOnAction( e-> {
-            buttonTwoEventWorks(gameScene, clientServerSelectionScene);
+            try {
+                buttonTwoEventWorks(gameScene, clientServerSelectionScene);
+            } catch (UnknownHostException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 
-    private void buttonTwoEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene){
+    private void buttonTwoEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene) throws UnknownHostException {
         stage.setScene(clientServerSelectionScene.getClientServerSelectionScene());
-        gameAudio.buttonClickedAudio();
+        //gameAudio.buttonClickedAudio();
         ClientScene clientScene = new ClientScene(languageOption);
         clientScene.ipFieldEventHandler(stage, gameScene,this);
         try {
@@ -73,8 +77,8 @@ public class GameOptionScene {
     private void buttonOneEventWorks(GameScene gameScene){
         gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getMessages(), gameScene.getInput());
         stage.setScene(gameScene.getSceneOfGame());
-        gameAudio.buttonClickedAudio();
-        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this);
+        //gameAudio.buttonClickedAudio();
+        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this,null,null);
     }
 
     protected Scene getGameOptionScene(){

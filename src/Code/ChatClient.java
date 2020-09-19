@@ -1,106 +1,61 @@
 package code;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
 import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.PrintWriter;
-import java.util.Scanner;
+import java.net.UnknownHostException;
 import java.net.Socket;
 import java.net.InetAddress;
 
 
 public class ChatClient {
-    public static void main(String[] args) {
-        String destIP = "127.0.0.1"; 
-        int destPort = 8000; 
 
+    private GetIP getIP;
+    private Connection connection;
 
-        for(int i=0; i<args.length; i+=2) {
-            if(args[i].equals("--port")) {
-                destPort = Integer.parseInt(args[i+1]);
-            } else if(args[i].equals("--server")) {
-                destIP = args[i+1];
-            } else {
-                return;
-            }
-        }
+    private String destinationIP;
+    private int destinationPort;
+    private String localIP;
+    private int localPort;
+    private BufferedReader bufferedReader;
+    private PrintWriter printWriter;
 
+    InetAddress destAddress;
+    InetAddress localAddress;
 
+    Socket socket = null;
 
-        Scanner sc = new Scanner(System.in);
-        PrintStream out = System.out;
-        Socket socket = null;
+    protected ChatClient() throws UnknownHostException {
+        getIP = new GetIP();
+        connection = new Connection();
+        localIP = getIP.getIP();
+    }
 
+    public void startClient(String destinationIP) {
         try {
-            InetAddress destAddr = InetAddress.getByName(destIP);
-            String localHost = "127.0.0.1";
-            int localPort = 0; 
-            InetAddress localAddr = InetAddress.getByName(localHost);
-
-            out.println("creating client socket...");
+            destinationPort = 9811;
+            localPort = 9811;
+            this.destinationIP = destinationIP;
+            destAddress = InetAddress.getByName(destinationIP);
+            localAddress = InetAddress.getByName(localIP);
             
-            socket = new Socket(destAddr, destPort);
-            out.println("client socket is created...");
-            out.println("");
+            socket = new Socket(destAddress, destinationPort);
 
-            out.println("dest addr: " + socket.getInetAddress());
-            out.println("dest port: " + socket.getPort());
-            out.println("local addr: " + socket.getLocalAddress());
-            out.println("local port: " + socket.getLocalPort());
-            out.println("");
-
-            InputStream is = socket.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-
-            OutputStream os = socket.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os);
-            BufferedWriter bw = new BufferedWriter(osw);
-            PrintWriter pw = new PrintWriter(bw);
-
-            out.print("me :: ");
-            String reply = sc.nextLine();
-            pw.println(reply);
-            pw.flush();
-            while(!reply.equals("exit") && !reply.equals("quit")) {
-                out.print("friend :: ");
-                String message = br.readLine();
-                out.println(message);
-                if(message.equals("exit") || message.equals("quit")) {
-                    Thread.sleep(1000);
-                    break;
-                }
-
-                out.print("me :: ");
-                reply = sc.nextLine();
-                pw.println(reply);
-                pw.flush();
-            }
-            out.println("");
-            
-            br.close();
-            pw.close();
+            bufferedReader = connection.createBufferReader(socket);
+            printWriter = connection.createPrintWriter(socket);
         }
         catch(IOException e) {
             e.printStackTrace();
         }
-        catch(InterruptedException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                out.println("closing socket...");
-                socket.close();
-                out.println("socket closed...");
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
+
+    protected void closeChatClient() throws IOException {
+        bufferedReader.close();
+        printWriter.close();
+        socket.close();
+    }
+
+    protected BufferedReader getBufferedReader(){ return  bufferedReader; }
+    protected PrintWriter getPrintWriter(){return printWriter; }
 }
+

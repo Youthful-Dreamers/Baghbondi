@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 public class ServerScene {
@@ -22,10 +23,14 @@ public class ServerScene {
     private SceneBuilder sceneBuilder;
     private int languageOption;
     private GameAudio gameAudio;
+    private String localServerIP;
+    private ChatServer chatServer;
 
     protected ServerScene(int languageOption) throws UnknownHostException {
         this.languageOption = languageOption;
         getIP = new GetIP();
+        localServerIP = getIP.getIP();
+        chatServer = new ChatServer(localServerIP);
         sceneBuilder = new SceneBuilder();
         createServerScene();
         gameAudio = new GameAudio();
@@ -38,7 +43,7 @@ public class ServerScene {
         else notice.setText("Share the shown IP Address with your friend");
         ipAddressNotification = sceneBuilder.createLabel(30);
         ipAddressNotification.setTextFill(Color.web("#004400"));
-        ipAddressNotification.setText(getIP.getIP());
+        ipAddressNotification.setText(localServerIP);
     }
 
     private void createGameButton(){
@@ -50,8 +55,14 @@ public class ServerScene {
     protected void gameButtonEventHandler(Stage stage, GameScene gameScene, GameOptionScene gameOptionScene){
        gameButton.setOnAction(e-> {
            stage.setScene(gameScene.getSceneOfGame());
-           gameAudio.buttonClickedAudio();
-           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene);
+           //gameAudio.buttonClickedAudio();
+           try {
+               chatServer.startServer();
+           } catch (IOException ex) {
+               ex.printStackTrace();
+           }
+           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene,null, chatServer);
+           gameScene.getChatBox().inputEventHandlerServer(chatServer.getPrintWriter(), chatServer.getBufferedReader());
        });
     }
 

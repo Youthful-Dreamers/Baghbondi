@@ -27,7 +27,7 @@ public class ClientServerSelectionScene {
         this.languageOption = languageOption;
         sceneBuilder = new SceneBuilder();
         creatingClientServerSelectionScene();
-        gameAudio = new GameAudio();
+        //gameAudio = new GameAudio();
     }
 
 
@@ -88,7 +88,7 @@ public class ClientServerSelectionScene {
     protected void buttonEventHandler(Stage stage, ClientScene clientScene, ServerScene serverScene){
         buttonSubmit.setOnMouseClicked(e-> {
             eventHandlerForRadioButton(stage, clientScene, serverScene);
-            gameAudio.buttonClickedAudio();
+           // gameAudio.buttonClickedAudio();
         });
     }
 

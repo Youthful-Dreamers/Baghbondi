@@ -20,6 +20,7 @@ public class GameScene {
     private Rectangle clockGoat;
 
     private GameBoard gameBoard;
+    private ChatBox chatBox;
 
     protected GameScene(){
         gameBoard = new GameBoard();
@@ -60,7 +61,7 @@ public class GameScene {
     }
 
     private void getMessagesInputFromChatBox(){
-        ChatBox chatBox = new ChatBox();
+        chatBox = new ChatBox();
         messages = chatBox.getMessages();
         input = chatBox.getInput();
     }
@@ -76,5 +77,6 @@ public class GameScene {
     protected GameBoard getGameBoard(){ return gameBoard; }
     protected TextField getInput(){ return input; }
     protected TextArea getMessages(){ return messages; }
+    protected ChatBox getChatBox(){ return chatBox; }
 }
 
