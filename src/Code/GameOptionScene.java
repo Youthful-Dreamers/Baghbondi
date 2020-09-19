@@ -69,7 +69,7 @@ public class GameOptionScene {
         gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getChatBox().getMessages(), gameScene.getChatBox().getInput(), gameScene.getChatBox().getMessagesLabel(), gameScene.getChatBox().getInputLabel(), gameScene.getChatBox().getMessagesLabelBackGround(), gameScene.getChatBox().getInputLabelBackGround());
         stage.setScene(gameScene.getSceneOfGame());
         //gameAudio.buttonClickedAudio();
-        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this);
+        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this, null, false, false);
     }
 
     protected Scene getGameOptionScene(){

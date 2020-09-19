@@ -8,8 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import org.w3c.dom.css.Rect;
-
 
 public class ChatBox {
 
@@ -84,19 +82,19 @@ public class ChatBox {
     private void clientServerManagement(Client connectionClient, Server connectionServer, String message, boolean isServer){
         if(isServer){
             if(connectionServer ==null) System.out.println(true);
-            messages.appendText(messages +"\n");
+            messages.appendText(message +"\n");
             try {
                 connectionServer.send(message);
             } catch (Exception e) {
-                messages.appendText("Failed to send: "+ e);
+                messages.appendText("Failed to send! \nPlease check if both have followed the instructions properly\nOr restart both\n"+ e +"\n");
             }
         } else {
             if(connectionClient ==null) System.out.println(true);
-            messages.appendText(messages +"\n");
+            messages.appendText(message +"\n");
             try {
                 connectionClient.send(message);
             } catch (Exception e) {
-                messages.appendText("Failed to send: "+ e);
+                messages.appendText("Failed to send! \nPlease check if both have followed the instructions properly\nOr restart both\n"+ e +"\n");
             }
         }
     }

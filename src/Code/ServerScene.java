@@ -57,8 +57,9 @@ public class ServerScene {
            stage.setScene(gameScene.getSceneOfGame());
            //gameAudio.buttonClickedAudio();
            createServerConnection = new CreateConnection(true, gameScene.getChatBox(), null);
-           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene);
+           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene, createServerConnection, true, true);
            createServerConnection.getServerConnection().startConnection();
+           gameScene.getChatBox().inputEventHandlerServer(null, createServerConnection.getServerConnection(), true);
        });
     }
 

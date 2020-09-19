@@ -3,7 +3,6 @@ package code;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,12 +17,18 @@ public class GameOverWorks {
     private GameOverScene gameOverScene;
     private GameOptionScene gameOptionScene;
     private int secondSToWaitToAddRestartButton;
+    private boolean isServer;
+    private boolean lan;
+    private CreateConnection createConnection;
 
-    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption, GameOptionScene gameOptionScene) {
+    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption, GameOptionScene gameOptionScene, CreateConnection createConnection, boolean isServer, boolean lan) {
         this.boardStage = boardStage;
         this.board = board;
         this.turnManager = turnManager;
         this.gameOptionScene = gameOptionScene;
+        this.lan = lan;
+        this.isServer = isServer;
+        this.createConnection = createConnection;
         gameOverScene = new GameOverScene(languageOption);
         onTimeUp();
     }
@@ -49,8 +54,20 @@ public class GameOverWorks {
         Platform.runLater(() ->{
             boardStage.setScene(gameOverScene.createGameOverScene(b));
             gameOverScene.buttonEventWorks(boardStage, gameOptionScene);
+            checkIfItIsLan();
             setRestartButtonToGameOverScene();
         });
+    }
+
+    private void checkIfItIsLan(){
+        if(lan){
+            try {
+                if(isServer) createConnection.getServerConnection().closeConnection();
+                else createConnection.getServerConnection().closeConnection();
+            } catch (Exception ex){
+                System.out.println("Error in closing the connection");
+            }
+        }
     }
 
     private boolean goatWinCase(Piece piece) {
