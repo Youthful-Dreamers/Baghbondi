@@ -2,7 +2,6 @@ package code;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.net.UnknownHostException;
 
 public class GameOptionScene {
 
@@ -52,33 +51,25 @@ public class GameOptionScene {
             buttonOneEventWorks(gameScene);
         });
         sceneBuilder.buttonTwo.setOnAction( e-> {
-            try {
-                buttonTwoEventWorks(gameScene, clientServerSelectionScene);
-            } catch (UnknownHostException ex) {
-                ex.printStackTrace();
-            }
+            buttonTwoEventWorks(gameScene, clientServerSelectionScene);
         });
     }
 
-    private void buttonTwoEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene) throws UnknownHostException {
+    private void buttonTwoEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene) {
         stage.setScene(clientServerSelectionScene.getClientServerSelectionScene());
         //gameAudio.buttonClickedAudio();
         ClientScene clientScene = new ClientScene(languageOption);
-        clientScene.ipFieldEventHandler(stage, gameScene,this);
-        try {
-            ServerScene serverScene = new ServerScene(languageOption);
-            serverScene.gameButtonEventHandler(stage, gameScene,this);
-            clientServerSelectionScene.buttonEventHandler(stage, clientScene, serverScene);
-        } catch (UnknownHostException ex) {
-            System.out.println("Error in getting ip address: "+ex);
-        }
+        ServerScene serverScene = new ServerScene(languageOption);
+        clientServerSelectionScene.buttonEventHandler(stage, clientScene, serverScene);
+        clientScene.ipFieldEventHandler(stage, gameScene, this);
+        serverScene.gameButtonEventHandler(stage, gameScene,this);
     }
 
     private void buttonOneEventWorks(GameScene gameScene){
-        gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getMessages(), gameScene.getInput());
+        gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getChatBox().getMessages(), gameScene.getChatBox().getInput(), gameScene.getChatBox().getMessagesLabel(), gameScene.getChatBox().getInputLabel(), gameScene.getChatBox().getMessagesLabelBackGround(), gameScene.getChatBox().getInputLabelBackGround());
         stage.setScene(gameScene.getSceneOfGame());
         //gameAudio.buttonClickedAudio();
-        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this,null,null);
+        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this);
     }
 
     protected Scene getGameOptionScene(){

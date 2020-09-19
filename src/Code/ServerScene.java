@@ -4,12 +4,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.net.UnknownHostException;
 
 public class ServerScene {
 
@@ -19,18 +18,19 @@ public class ServerScene {
     private Button gameButton;
     private VBox vBox;
     private Scene serverScene;
+    private Rectangle backGround;
+    private StackPane stackPane;
 
     private SceneBuilder sceneBuilder;
     private int languageOption;
     private GameAudio gameAudio;
     private String localServerIP;
-    private ChatServer chatServer;
+    private CreateConnection createServerConnection;
 
-    protected ServerScene(int languageOption) throws UnknownHostException {
+    protected ServerScene(int languageOption){
         this.languageOption = languageOption;
         getIP = new GetIP();
         localServerIP = getIP.getIP();
-        chatServer = new ChatServer(localServerIP);
         sceneBuilder = new SceneBuilder();
         createServerScene();
         gameAudio = new GameAudio();
@@ -38,11 +38,11 @@ public class ServerScene {
 
     private void createLabels(){
         notice = sceneBuilder.createLabel(30);
-        notice.setTextFill(Color.web("#004400"));
-        if(languageOption == 1) notice.setText("নিচের আইপি অ্যাড্রেসটি আপনার বন্ধুর সাথে শেয়ার করুন");
-        else notice.setText("Share the shown IP Address with your friend");
+        notice.setTextFill(Color.web("#003300"));
+        if(languageOption == 1) notice.setText("নিচের আইপি অ্যাড্রেসটি আপনার বন্ধুর সাথে শেয়ার করুন\n         আপনাকে অবশ্যই প্রথমে খেলা শুরু করতে হবে");
+        else notice.setText("Share the shown IP Address with your friend\n            You must start the Game First");
         ipAddressNotification = sceneBuilder.createLabel(30);
-        ipAddressNotification.setTextFill(Color.web("#004400"));
+        ipAddressNotification.setTextFill(Color.web("#003300"));
         ipAddressNotification.setText(localServerIP);
     }
 
@@ -56,19 +56,14 @@ public class ServerScene {
        gameButton.setOnAction(e-> {
            stage.setScene(gameScene.getSceneOfGame());
            //gameAudio.buttonClickedAudio();
-           try {
-               chatServer.startServer();
-           } catch (IOException ex) {
-               ex.printStackTrace();
-           }
-           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene,null, chatServer);
-           gameScene.getChatBox().inputEventHandlerServer(chatServer.getPrintWriter(), chatServer.getBufferedReader());
+           createServerConnection = new CreateConnection(true, gameScene.getChatBox(), null);
+           BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene);
+           createServerConnection.getServerConnection().startConnection();
        });
     }
 
     private void createVBox(){
         vBox= new VBox(5);
-        vBox.setBackground(sceneBuilder.setBackgroundPicture("resources/gameStartScene.png"));
         vBox.setAlignment(Pos.CENTER);
         createLabels();
         createGameButton();
@@ -77,7 +72,9 @@ public class ServerScene {
 
     private void createServerScene(){
         createVBox();
-        serverScene = new Scene(vBox, 950, 650);
+        backGround = sceneBuilder.createBackground(25,200, 900, 300);
+        stackPane = sceneBuilder.createPane(backGround, vBox);
+        serverScene = new Scene(stackPane, 950, 650);
     }
 
     protected Scene getServerScene(){

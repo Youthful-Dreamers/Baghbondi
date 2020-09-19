@@ -18,16 +18,12 @@ public class GameOverWorks {
     private GameOverScene gameOverScene;
     private GameOptionScene gameOptionScene;
     private int secondSToWaitToAddRestartButton;
-    private ChatClient chatClient;
-    private ChatServer chatServer;
 
-    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption, GameOptionScene gameOptionScene, ChatClient chatClient, ChatServer chatServer) {
+    GameOverWorks(Stage boardStage, Position[][] board, TurnManager turnManager, int languageOption, GameOptionScene gameOptionScene) {
         this.boardStage = boardStage;
         this.board = board;
         this.turnManager = turnManager;
         this.gameOptionScene = gameOptionScene;
-        this.chatClient = chatClient;
-        this.chatServer = chatServer;
         gameOverScene = new GameOverScene(languageOption);
         onTimeUp();
     }
@@ -53,7 +49,6 @@ public class GameOverWorks {
         Platform.runLater(() ->{
             boardStage.setScene(gameOverScene.createGameOverScene(b));
             gameOverScene.buttonEventWorks(boardStage, gameOptionScene);
-            closeChatClientAndServer(chatClient, chatServer);
             setRestartButtonToGameOverScene();
         });
     }
@@ -176,22 +171,5 @@ public class GameOverWorks {
             }
         };
         timer.scheduleAtFixedRate(timerTask, 1000, 1000);
-    }
-
-    private void closeChatClientAndServer(ChatClient chatClient, ChatServer chatServer){
-        if(chatClient!= null) {
-            try {
-                chatClient.closeChatClient();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        if(chatServer!=null) {
-            try {
-                chatServer.closeServer();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
     }
 }

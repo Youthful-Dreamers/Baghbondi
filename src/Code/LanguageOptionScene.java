@@ -60,7 +60,7 @@ public class LanguageOptionScene {
         gameOptionScene.languageBasedWorks(languageOption);
         stage.setScene(gameOptionScene.getGameOptionScene());
         //gameAudio.buttonClickedAudio();
-        gameScene = new GameScene();
+        gameScene = new GameScene(languageOption);
         clientServerSelectionScene = new ClientServerSelectionScene(languageOption);
         gameOptionScene.initializeButtonEventWorks(gameScene, clientServerSelectionScene);
 

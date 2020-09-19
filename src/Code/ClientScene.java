@@ -5,9 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.net.UnknownHostException;
 
 public class ClientScene{
 
@@ -17,15 +16,15 @@ public class ClientScene{
     private TextField ipField;
     private Label ipText;
     private Pane clientScenePane;
+    private Rectangle backGround;
     private String ip;
 
     private SceneBuilder sceneBuilder;
     private GameAudio gameAudio;
-    private ChatClient chatClient;
+    private CreateConnection createClientConnection;
 
-    protected ClientScene(int languageOption) throws UnknownHostException {
+    protected ClientScene(int languageOption) {
         this.languageOption = languageOption;
-        this.chatClient = new ChatClient();
         sceneBuilder = new SceneBuilder();
         createClientScene();
         gameAudio = new GameAudio();
@@ -65,9 +64,9 @@ public class ClientScene{
             ip = ipField.getText();
             stage.setScene(gameScene.getSceneOfGame());
             //gameAudio.buttonClickedAudio();
-            chatClient.startClient(ip);
-            BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene, chatClient,null);
-            gameScene.getChatBox().inputEventHandlerClient(chatClient.getPrintWriter(), chatClient.getBufferedReader());
+            createClientConnection = new CreateConnection(false, gameScene.getChatBox(), ip);
+            BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene);
+            createClientConnection.getClientConnection().startConnection();
         });
     }
 
@@ -75,10 +74,11 @@ public class ClientScene{
         createNoticeLabel();
         createIPText();
         createIPTextField();
+        backGround = sceneBuilder.createBackground(200,200, 550, 250);
         clientScenePane = new Pane();
         clientScenePane.setPrefSize(950, 650);
         clientScenePane.setBackground(sceneBuilder.setBackgroundPicture("resources/gameStartScene.png"));
-        clientScenePane.getChildren().addAll(notice, ipText, ipField);
+        clientScenePane.getChildren().addAll(backGround, notice, ipText, ipField);
     }
 
     private void createClientScene(){
@@ -92,5 +92,4 @@ public class ClientScene{
     protected String getIp(){
         return ip;
     }
-    protected ChatClient getChatClient(){ return chatClient; }
 }

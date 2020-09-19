@@ -79,7 +79,7 @@ public class GameOverScene {
 
     private void workForMultipleRun(GameOptionScene gameOptionScene){
         //gameAudio.buttonClickedAudio();
-        GameScene newGameScene = new GameScene();
+        GameScene newGameScene = new GameScene(languageOption);
         ClientServerSelectionScene newClientServerSelectionScene = new ClientServerSelectionScene(languageOption);
         gameOptionScene.initializeButtonEventWorks(newGameScene, newClientServerSelectionScene);
     }

@@ -7,8 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import org.w3c.dom.css.Rect;
 
 public class SceneBuilder {
 
@@ -17,6 +19,7 @@ public class SceneBuilder {
     Button buttonOne;
     Button buttonTwo;
     VBox vBox;
+    Rectangle background;
 
     protected void createMenuVBox(int space){
         labelOne = createLabel(30);
@@ -34,13 +37,14 @@ public class SceneBuilder {
     }
 
     protected Scene createScene(){
-        return new Scene(vBox, 950, 650);
+        background = createBackground(200,200, 550, 250);
+        StackPane stackPane = createPane(background, vBox);
+        return new Scene(stackPane, 950, 650);
     }
 
 
     protected VBox createVBox(Label labelOne, Label labelTwo, int space, Button buttonOne, Button buttonTwo, boolean menuIndicator){
         VBox vBox= new VBox(space);
-        vBox.setBackground(setBackgroundPicture("resources/gameStartScene.png"));
         vBox.setAlignment(Pos.CENTER);
         getVBoxChildren(vBox, labelOne, labelTwo, buttonOne, buttonTwo, menuIndicator);
         return vBox;
@@ -70,6 +74,20 @@ public class SceneBuilder {
         Image image = new Image(string, 950, 650, false, false, true);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         return new Background(backgroundImage);
+    }
+
+    protected Rectangle createBackground(double X, double Y, double width, double height){
+        Rectangle background = new Rectangle(X, Y, width, height);
+        background.setFill(Color.LIGHTGREEN);
+        background.setOpacity(0.4);
+        return background;
+    }
+
+    protected StackPane createPane(Rectangle background, VBox vBox){
+        StackPane scenePane = new StackPane();
+        scenePane.setBackground(setBackgroundPicture("resources/gameStartScene.png"));
+        scenePane.getChildren().addAll(background, vBox);
+        return scenePane;
     }
 
     protected VBox getVBox(){

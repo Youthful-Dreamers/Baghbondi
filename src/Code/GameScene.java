@@ -1,6 +1,7 @@
 package code;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -12,6 +13,8 @@ public class GameScene {
 
     private TextArea messages;
     private TextField input;
+    private Label messagesLabel;
+    private Label inputLabel;
 
     private Pane paneOfBoard = new Pane();
     private Pane paneOfGame = new Pane();
@@ -21,8 +24,10 @@ public class GameScene {
 
     private GameBoard gameBoard;
     private ChatBox chatBox;
+    private int languageOption;
 
-    protected GameScene(){
+    protected GameScene(int languageOption){
+        this.languageOption = languageOption;
         gameBoard = new GameBoard();
         createContent();
         createSceneOfGame();
@@ -34,7 +39,7 @@ public class GameScene {
 
         createPaneOfBoard();
         createRectangles();
-        paneOfGame.getChildren().addAll(paneOfBoard, messages, input, clockGoat, clockTiger);
+        paneOfGame.getChildren().addAll(paneOfBoard, clockGoat, clockTiger);
         paneOfGame.setBackground(setBackgroundPicture("resources/backGroundPicture.png"));
         gameBoard.addPieceToPosition();
     }
@@ -61,9 +66,7 @@ public class GameScene {
     }
 
     private void getMessagesInputFromChatBox(){
-        chatBox = new ChatBox();
-        messages = chatBox.getMessages();
-        input = chatBox.getInput();
+        chatBox = new ChatBox(languageOption, paneOfGame);
     }
 
     protected Background setBackgroundPicture(String string){
@@ -75,8 +78,6 @@ public class GameScene {
     protected Scene getSceneOfGame(){ return this.sceneOfGame; }
     protected Pane getPaneOfGame(){ return  paneOfGame; }
     protected GameBoard getGameBoard(){ return gameBoard; }
-    protected TextField getInput(){ return input; }
-    protected TextArea getMessages(){ return messages; }
     protected ChatBox getChatBox(){ return chatBox; }
 }
 
