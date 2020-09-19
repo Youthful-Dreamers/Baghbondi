@@ -12,6 +12,7 @@ public class Server {
     private ConnectionThread connectionThread = new ConnectionThread();
     private Consumer<Serializable> onReceiveCallBack;
     private int port;
+    private boolean isClosed;
 
     public Server(Consumer<Serializable> onReceiveCallBack){
         this.onReceiveCallBack = onReceiveCallBack;
@@ -21,6 +22,7 @@ public class Server {
 
     public void startConnection(){
         connectionThread.start();
+        isClosed = false;
     }
 
     public void send(Serializable data) throws Exception{
@@ -28,16 +30,26 @@ public class Server {
     }
 
     public void closeConnection() throws Exception{
-        connectionThread.socket.close();
+        if(connectionThread.socketServer != null){
+            connectionThread.socketServer.close();
+            isClosed = true;
+        }
+        if(connectionThread.socket != null){
+            connectionThread.socket.close();
+            isClosed = true;
+        }
     }
 
     protected int getPort(){
         return port;
-    };
+    }
+
+    protected boolean getIsClosed() { return isClosed; }
 
     private class ConnectionThread extends Thread{
 
         protected Socket socket;
+        protected ServerSocket socketServer;
         protected ObjectOutputStream out;
 
         @Override
@@ -47,6 +59,7 @@ public class Server {
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 
+                this.socketServer = server;
                 this.socket = socket;
                 this.out = out;
                 socket.setTcpNoDelay(true);

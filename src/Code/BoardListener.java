@@ -4,8 +4,6 @@ import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class BoardListener {
 
     TurnManager turnManager;
@@ -24,13 +22,17 @@ public class BoardListener {
         movementManager = new MovementManager(gameBoard.getPositions(), gameBoard.getPieceGroup(), turnManager, gameOverWorks);
         Platform.runLater(()->boardStage.setOnCloseRequest(e -> {
             turnManager.stopTimer();
-            try {
-                if (isServer) createConnection.getServerConnection().closeConnection();
-                else createConnection.getClientConnection().closeConnection();
+            if(lan){try {
+                if (isServer) {
+                    if(!createConnection.getServerConnection().getIsClosed()) createConnection.getServerConnection().closeConnection();
+                }
+                else {
+                    if(!createConnection.getClientConnection().getIsClosed()) createConnection.getClientConnection().closeConnection();
+                }
             }catch (Exception ex){
-                System.out.println("Error in closing connection: "+e);
+                System.out.println("Error in closing connection: " + ex);
             }
-        }));
+        }}));
     }
 
     private void addMouseEventToPiece(){

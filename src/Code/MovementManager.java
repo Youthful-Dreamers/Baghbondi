@@ -13,10 +13,7 @@ public class MovementManager {
     Position[][] board;
     GameOverWorks gameOverWorks;
 
-    MovementManager(Position[][] board,
-                    Group pieceGroup,
-                    TurnManager turnManager,
-                    GameOverWorks gameOverWorks) {
+    MovementManager(Position[][] board, Group pieceGroup, TurnManager turnManager, GameOverWorks gameOverWorks) {
         this.board = board;
         this.pieceGroup = pieceGroup;
         this.gameOverWorks = gameOverWorks;
@@ -32,7 +29,6 @@ public class MovementManager {
 
         if(turnManager.getPlayerType() != piece.getPieceType()){
             piece.abortMove();
-            System.out.println(1);
             return false;
         }
 

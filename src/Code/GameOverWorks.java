@@ -60,14 +60,16 @@ public class GameOverWorks {
     }
 
     private void checkIfItIsLan(){
-        if(lan){
-            try {
-                if(isServer) createConnection.getServerConnection().closeConnection();
-                else createConnection.getServerConnection().closeConnection();
-            } catch (Exception ex){
-                System.out.println("Error in closing the connection");
+        if(lan){try {
+            if (isServer) {
+                if(!createConnection.getServerConnection().getIsClosed()) createConnection.getServerConnection().closeConnection();
             }
-        }
+            else {
+                if(!createConnection.getClientConnection().getIsClosed()) createConnection.getClientConnection().closeConnection();
+            }
+        }catch (Exception ex){
+            System.out.println("Error in closing connection: " + ex);
+        }}
     }
 
     private boolean goatWinCase(Piece piece) {

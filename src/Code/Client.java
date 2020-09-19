@@ -12,6 +12,7 @@ public class Client{
     private Consumer<Serializable> onReceiveCallBack;
     private String IPAddress;
     private int port;
+    private boolean isClosed;
 
     public Client(String IPAddress, Consumer<Serializable> onReceiveCallBack){
         this.onReceiveCallBack = onReceiveCallBack;
@@ -26,10 +27,12 @@ public class Client{
 
     public void send(Serializable data) throws Exception{
         connectionThread.out.writeObject(data);
+        isClosed =  false;
     }
 
     public void closeConnection() throws Exception{
         connectionThread.socket.close();
+        isClosed = true;
     }
 
     protected String getIP(){
@@ -38,6 +41,7 @@ public class Client{
     protected int getPort(){
         return port;
     }
+    protected boolean getIsClosed() { return isClosed; }
 
     private class ConnectionThread extends Thread{
 
