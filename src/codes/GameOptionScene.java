@@ -10,7 +10,6 @@ public class GameOptionScene {
     Scene gameOptionScene;
     SceneBuilder sceneBuilder;
     GameAudio gameAudio;
-    private int count = 0;
 
     protected GameOptionScene(Stage stage) {
         this.stage = stage;

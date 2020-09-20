@@ -25,7 +25,6 @@ public class ClientServerSelectionScene {
     private Button buttonSubmit;
     private Rectangle background;
     private StackPane scenePane;
-    private GridPane gridPane;
     private GameAudio gameAudio;
 
 
@@ -33,7 +32,7 @@ public class ClientServerSelectionScene {
         this.languageOption = languageOption;
         sceneBuilder = new SceneBuilder();
         creatingClientServerSelectionScene();
-        //gameAudio = new GameAudio();
+        gameAudio = new GameAudio();
     }
 
 

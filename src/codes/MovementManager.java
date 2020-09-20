@@ -6,7 +6,7 @@ import javafx.scene.Group;
 public class MovementManager {
 
     Group pieceGroup;
-    GameAudio gameAudio = new GameAudio();
+    GameAudio gameAudio;
 
     TurnManager turnManager;
     Position[][] board;
@@ -17,6 +17,7 @@ public class MovementManager {
         this.pieceGroup = pieceGroup;
         this.gameOverWorks = gameOverWorks;
         this.turnManager = turnManager;
+        gameAudio = new GameAudio();
     }
 
     public boolean makeMove(Piece piece) {
