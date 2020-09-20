@@ -11,11 +11,6 @@ import javafx.scene.shape.Rectangle;
 
 public class GameScene {
 
-    private TextArea messages;
-    private TextField input;
-    private Label messagesLabel;
-    private Label inputLabel;
-
     private Pane paneOfBoard = new Pane();
     private Pane paneOfGame = new Pane();
     private Scene sceneOfGame;
@@ -26,7 +21,7 @@ public class GameScene {
     private ChatBox chatBox;
     private int languageOption;
 
-    protected GameScene(int languageOption){
+    protected GameScene(int languageOption) {
         this.languageOption = languageOption;
         gameBoard = new GameBoard();
         createContent();
@@ -44,11 +39,11 @@ public class GameScene {
         gameBoard.addPieceToPosition();
     }
 
-    private void createRectangles(){
+    private void createRectangles() {
         clockTiger = new Rectangle(110, 12, 235, 45);
         clockTiger.setFill(Color.LIGHTGREEN);
         clockTiger.setOpacity(0.7);
-        clockGoat = new Rectangle(360,12,  245, 45);
+        clockGoat = new Rectangle(360, 12, 245, 45);
         clockGoat.setFill(Color.LIGHTGREEN);
         clockGoat.setOpacity(0.7);
     }
@@ -65,19 +60,30 @@ public class GameScene {
         sceneOfGame = new Scene(paneOfGame);
     }
 
-    private void getMessagesInputFromChatBox(){
+    private void getMessagesInputFromChatBox() {
         chatBox = new ChatBox(languageOption, paneOfGame);
     }
 
-    protected Background setBackgroundPicture(String string){
+    protected Background setBackgroundPicture(String string) {
         Image image = new Image(string, 950, 650, false, false, true);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         return new Background(backgroundImage);
     }
 
-    protected Scene getSceneOfGame(){ return this.sceneOfGame; }
-    protected Pane getPaneOfGame(){ return  paneOfGame; }
-    protected GameBoard getGameBoard(){ return gameBoard; }
-    protected ChatBox getChatBox(){ return chatBox; }
-}
+    protected Scene getSceneOfGame() {
+        return this.sceneOfGame;
+    }
 
+    protected Pane getPaneOfGame() {
+        return paneOfGame;
+    }
+
+    protected GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
+    protected ChatBox getChatBox() {
+        return chatBox;
+    }
+
+}

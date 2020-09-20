@@ -31,8 +31,10 @@ public class Client{
     }
 
     public void closeConnection() throws Exception{
-        connectionThread.socket.close();
-        isClosed = true;
+        if(connectionThread.socket != null){
+            connectionThread.socket.close();
+            isClosed = true;
+        }
     }
 
     protected String getIP(){
