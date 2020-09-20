@@ -82,5 +82,4 @@ public class GameScene {
     protected ChatBox getChatBox() {
         return chatBox;
     }
-
 }
