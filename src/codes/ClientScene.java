@@ -62,7 +62,7 @@ public class ClientScene {
         ipField.setOnAction(e -> {
             ip = ipField.getText();
             stage.setScene(gameScene.getSceneOfGame());
-            //gameAudio.buttonClickedAudio();
+            gameAudio.callButtonClickedAudio();
             createClientConnection = new CreateConnection(false, gameScene.getChatBox(), ip);
             BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene, createClientConnection, false, true);
             createClientConnection.getClientConnection().startConnection();

@@ -64,7 +64,7 @@ public class GameOverScene {
     protected void buttonEventWorks(Stage stage, GameOptionScene gameOptionScene) {
         restartButton.setOnAction(e -> {
             stage.setScene(gameOptionScene.getGameOptionScene());
-            //gameAudio.buttonClickedAudio();
+            gameAudio.callButtonClickedAudio();
             workForMultipleRun(gameOptionScene);
         });
     }
@@ -72,13 +72,10 @@ public class GameOverScene {
     protected Button getRestartButton() {
         return restartButton;
     }
-
     protected VBox getGameOverSceneVBox() {
         return sceneBuilder.getVBox();
     }
-
     private void workForMultipleRun(GameOptionScene gameOptionScene) {
-        //gameAudio.buttonClickedAudio();
         GameScene newGameScene = new GameScene(languageOption);
         ClientServerSelectionScene newClientServerSelectionScene = new ClientServerSelectionScene(languageOption);
         gameOptionScene.initializeButtonEventWorks(newGameScene, newClientServerSelectionScene);

@@ -55,21 +55,21 @@ public class GameOptionScene {
         });
     }
 
+    private void buttonOneEventWorks(GameScene gameScene) {
+        gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getChatBox().getMessages(), gameScene.getChatBox().getInput(), gameScene.getChatBox().getMessagesLabel(), gameScene.getChatBox().getInputLabel(), gameScene.getChatBox().getMessagesLabelBackGround(), gameScene.getChatBox().getInputLabelBackGround());
+        stage.setScene(gameScene.getSceneOfGame());
+        gameAudio.callButtonClickedAudio();
+        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this, null, false, false);
+    }
+
     private void buttonTwoEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene) {
         stage.setScene(clientServerSelectionScene.getClientServerSelectionScene());
-        //gameAudio.buttonClickedAudio();
+        gameAudio.callButtonClickedAudio();
         ClientScene clientScene = new ClientScene(languageOption);
         ServerScene serverScene = new ServerScene(languageOption);
         clientServerSelectionScene.buttonEventHandler(stage, clientScene, serverScene);
         clientScene.ipFieldEventHandler(stage, gameScene, this);
         serverScene.gameButtonEventHandler(stage, gameScene, this);
-    }
-
-    private void buttonOneEventWorks(GameScene gameScene) {
-        gameScene.getPaneOfGame().getChildren().removeAll(gameScene.getChatBox().getMessages(), gameScene.getChatBox().getInput(), gameScene.getChatBox().getMessagesLabel(), gameScene.getChatBox().getInputLabel(), gameScene.getChatBox().getMessagesLabelBackGround(), gameScene.getChatBox().getInputLabelBackGround());
-        stage.setScene(gameScene.getSceneOfGame());
-        //gameAudio.buttonClickedAudio();
-        BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, this, null, false, false);
     }
 
     protected Scene getGameOptionScene() {

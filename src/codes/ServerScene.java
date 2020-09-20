@@ -56,7 +56,7 @@ public class ServerScene {
     protected void gameButtonEventHandler(Stage stage, GameScene gameScene, GameOptionScene gameOptionScene) {
         gameButton.setOnAction(e -> {
             stage.setScene(gameScene.getSceneOfGame());
-            //gameAudio.buttonClickedAudio();
+            gameAudio.callButtonClickedAudio();
             createServerConnection = new CreateConnection(true, gameScene.getChatBox(), null);
             BoardListener boardListener = new BoardListener(stage, gameScene.getGameBoard(), gameScene.getPaneOfGame(), languageOption, gameOptionScene, createServerConnection, true, true);
             createServerConnection.getServerConnection().startConnection();

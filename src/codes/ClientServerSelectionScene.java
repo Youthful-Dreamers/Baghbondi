@@ -73,7 +73,6 @@ public class ClientServerSelectionScene {
 
     protected void createVBoxForClientServerSelection() {
         vBox = new VBox(5);
-        //vBox
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(label, radioButtonClient, radioButtonServer, buttonSubmit);
     }
@@ -100,7 +99,7 @@ public class ClientServerSelectionScene {
     protected void buttonEventHandler(Stage stage, ClientScene clientScene, ServerScene serverScene) {
         buttonSubmit.setOnMouseClicked(e -> {
             eventHandlerForRadioButton(stage, clientScene, serverScene);
-            // gameAudio.buttonClickedAudio();
+            gameAudio.callButtonClickedAudio();
         });
     }
 

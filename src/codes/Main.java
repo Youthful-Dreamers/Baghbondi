@@ -5,16 +5,17 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
+        GameAudio gameAudio = new GameAudio();
         LanguageOptionScene languageOptionScene = new LanguageOptionScene(primaryStage);
         languageOptionScene.executeToAvoidLag();
-        GameAudio gameAudio = new GameAudio();
-        //gameAudio.inGameAudio();
+        gameAudio.callInGameAudio();
         primaryStage.setScene(languageOptionScene.getLanguageOptionScene());
         primaryStage.setTitle("BaghBondi");
         primaryStage.show();

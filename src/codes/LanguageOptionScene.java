@@ -38,15 +38,12 @@ public class LanguageOptionScene {
     protected Scene getLanguageOptionScene() {
         return languageOptionScene;
     }
-
     protected void setLabelText() {
         sceneBuilder.labelOne.setText("ভাষা পছন্দ করুনঃ\nSelect a language:");
     }
-
     protected void setButtonOneText() {
         sceneBuilder.buttonOne.setText("বাংলা");
     }
-
     protected void setButtonTwoText() {
         sceneBuilder.buttonTwo.setText("English");
     }
@@ -59,10 +56,9 @@ public class LanguageOptionScene {
     private void buttonEventWorks(int languageOption) {
         gameOptionScene.languageBasedWorks(languageOption);
         stage.setScene(gameOptionScene.getGameOptionScene());
-        //gameAudio.buttonClickedAudio();
+        gameAudio.callButtonClickedAudio();
         gameScene = new GameScene(languageOption);
         clientServerSelectionScene = new ClientServerSelectionScene(languageOption);
         gameOptionScene.initializeButtonEventWorks(gameScene, clientServerSelectionScene);
-
     }
 }

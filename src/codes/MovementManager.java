@@ -43,7 +43,7 @@ public class MovementManager {
                 board[newHorizontal][newVertical].setPiece(piece);
                 turnManager.changeTurn();
                 movementMade = true;
-                //gameAudio.buttonClickedAudio();
+                gameAudio.callButtonClickedAudio();
                 break;
             case KILL:
                 piece.move(newHorizontal, newVertical);
@@ -55,11 +55,19 @@ public class MovementManager {
                 turnManager.changeTurn();
                 gameOverWorks.killGoat();
                 movementMade = true;
-                //gameAudio.tigerKillAudio();
+                gameAudio.callTigerKilAudio();
                 break;
         }
         if (gameOverWorks.gameOver(piece)) return false;
         return movementMade;
+    }
+
+    protected void callAudio(){
+        try{
+            gameAudio.buttonClickedAudio();
+        } catch(Exception ex){
+            System.out.println("Error in playing the Audion: "+ex);
+        }
     }
 
     private int pixelToBoard(double pixel) {
