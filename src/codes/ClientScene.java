@@ -34,28 +34,28 @@ public class ClientScene {
         notice = sceneBuilder.createLabel(30);
         if (languageOption == 1) notice.setText("আপনার বন্ধুর সার্ভারের আইপিটি সংগ্রহ করুন");
         else notice.setText("Please Get IP of the server from your friend");
-        notice.setLayoutX(200);
+        notice.setLayoutX(150);
         notice.setLayoutY(300);
         notice.setTextFill(Color.web("#004400"));
     }
 
     private void createIPText() {
-        ipText = sceneBuilder.createLabel(20);
+        ipText = sceneBuilder.createLabel(28);
         ipText.setTextFill(Color.web("#004400"));
         if (languageOption == 1) {
             ipText.setText("আইপিঃ");
-            ipText.setLayoutX(380);
+            ipText.setLayoutX(330);
         } else {
             ipText.setText("IP:");
-            ipText.setLayoutX(418);
+            ipText.setLayoutX(398);
         }
-        ipText.setLayoutY(335);
+        ipText.setLayoutY(345);
     }
 
     private void createIPTextField() {
         ipField = new TextField();
-        ipField.setLayoutX(465);
-        ipField.setLayoutY(335);
+        ipField.setLayoutX(445);
+        ipField.setLayoutY(350);
     }
 
     protected void ipFieldEventHandler(Stage stage, GameScene gameScene, GameOptionScene gameOptionScene) {
@@ -74,7 +74,7 @@ public class ClientScene {
         createNoticeLabel();
         createIPText();
         createIPTextField();
-        backGround = sceneBuilder.createBackground(200, 200, 550, 250);
+        backGround = sceneBuilder.createBackground(25, 200, 900, 300);
         clientScenePane = new Pane();
         clientScenePane.setPrefSize(950, 650);
         clientScenePane.setBackground(sceneBuilder.setBackgroundPicture("resources/gameStartScene.png"));
