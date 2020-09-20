@@ -56,16 +56,19 @@ public class Clock {
                 timer--;
                 setClockTime(timer, languageOption);
                 if (task != null)
-                    task.performWhenClockRuns();
+                task.performWhenClockRuns();
             }
         };
         clockTimer.schedule(timerTask, 1000, 1000);
     }
 
     public void cancelTimer() {
-        if (timerTask != null) timerTask.cancel();
+        if (timerTask != null) {
+            timerTask.cancel();
+        }
         clockTimer.cancel();
         clockTimer.purge();
+
     }
 
     public Group getClockGroup() {

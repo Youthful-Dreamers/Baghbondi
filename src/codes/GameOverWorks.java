@@ -1,7 +1,9 @@
 package codes;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,6 +33,18 @@ public class GameOverWorks {
         this.createConnection = createConnection;
         gameOverScene = new GameOverScene(languageOption);
         onTimeUp();
+        boardStage.setOnCloseRequest(removeTimerOnClose());
+        boardStage.setOnHiding(removeTimerOnClose());
+    }
+
+    private EventHandler<WindowEvent> removeTimerOnClose() {
+        return event -> {
+            System.out.println("Hello! 1");
+            turnManager.getGoatClock().cancelTimer();
+            turnManager.getTigerClock().cancelTimer();
+            Platform.exit();
+            System.exit(0);
+        };
     }
 
     private void onTimeUp() {
@@ -190,4 +204,6 @@ public class GameOverWorks {
         };
         timer.scheduleAtFixedRate(timerTask, 1000, 1000);
     }
+
+
 }
