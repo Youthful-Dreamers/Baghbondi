@@ -44,14 +44,6 @@ public class GameScene {
         gameBoard.addPieceToPosition();
     }
 
-    private void createPaneOfBoard() {
-        gameBoard.drawBoardAndBoardLine();
-        paneOfBoard.getChildren().addAll(gameBoard.getPositionGroup(), gameBoard.getPieceGroup(), gameBoard.getBoardLineGroup());
-        paneOfBoard.setPrefSize(500, 500);
-        paneOfBoard.setLayoutX(100);
-        paneOfBoard.setLayoutY(100);
-    }
-
     private void createRectangles(){
         clockTiger = new Rectangle(110, 12, 235, 45);
         clockTiger.setFill(Color.LIGHTGREEN);
@@ -59,6 +51,14 @@ public class GameScene {
         clockGoat = new Rectangle(360,12,  245, 45);
         clockGoat.setFill(Color.LIGHTGREEN);
         clockGoat.setOpacity(0.7);
+    }
+
+    private void createPaneOfBoard() {
+        gameBoard.drawBoardAndBoardLine();
+        paneOfBoard.getChildren().addAll(gameBoard.getPositionGroup(), gameBoard.getBoardLineGroup(), gameBoard.getPieceGroup());
+        paneOfBoard.setPrefSize(500, 500);
+        paneOfBoard.setLayoutX(100);
+        paneOfBoard.setLayoutY(100);
     }
 
     public void createSceneOfGame() {
