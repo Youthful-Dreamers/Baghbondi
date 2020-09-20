@@ -69,11 +69,11 @@ public class Client {
                         Serializable data = (Serializable) in.readObject();
                         onReceiveCallBack.accept(data);
                     } catch (Exception e) {
-                        System.out.println("Exception in Receiving data: " + e);
+                        //System.out.println("Exception in Receiving data: " + e);
                     }
                 }
             } catch (Exception e) {
-                onReceiveCallBack.accept("Exception in establishing connection: " + e);
+                onReceiveCallBack.accept("Please restart and let your friend\nto enter into the Game Scene first to chat\n\n");
             }
         }
     }

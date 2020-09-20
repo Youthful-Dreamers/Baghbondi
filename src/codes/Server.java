@@ -71,11 +71,11 @@ public class Server {
                         Serializable data = (Serializable) in.readObject();
                         onReceiveCallBack.accept(data);
                     } catch (Exception e) {
-                        System.out.println("Exception in Receiving data: " + e);
+                        //System.out.println("Exception in Receiving data: " + e);
                     }
                 }
             } catch (Exception e) {
-                onReceiveCallBack.accept("Exception in establishing connection: " + e);
+                onReceiveCallBack.accept("Please tell your friend to enter into Game Scene\n\n");
             }
         }
     }

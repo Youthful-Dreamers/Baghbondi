@@ -72,7 +72,8 @@ public class ChatBox {
 
     protected void inputEventHandlerServer(Client connectionClient, Server connectionServer, boolean isServer) {
         input.setOnAction(e -> {
-            String message = isServer ? "Player1: " : "Player2: ";
+            String message;
+            message = isServer ? "Player1: " : "Player2: ";
             message += input.getText();
             input.clear();
             clientServerManagement(connectionClient, connectionServer, message, isServer);
@@ -81,20 +82,18 @@ public class ChatBox {
 
     private void clientServerManagement(Client connectionClient, Server connectionServer, String message, boolean isServer) {
         if (isServer) {
-            if (connectionServer == null) System.out.println(true);
             messages.appendText(message + "\n");
             try {
                 connectionServer.send(message);
             } catch (Exception e) {
-                messages.appendText("Failed to send! \nPlease check if both have followed the instructions properly\nOr restart both\n" + e + "\n");
+                messages.appendText("Failed to send! Please tell your friend\nto enter into Game Scene\n\n");
             }
         } else {
-            if (connectionClient == null) System.out.println(true);
             messages.appendText(message + "\n");
             try {
                 connectionClient.send(message);
             } catch (Exception e) {
-                messages.appendText("Failed to send! \nPlease check if both have followed the instructions properly\nOr restart both\n" + e + "\n");
+                messages.appendText("Failed to send! Please restart and let your\nfriend to start the Game Scene first to chat\n\n");
             }
         }
     }
@@ -102,23 +101,18 @@ public class ChatBox {
     public TextArea getMessages() {
         return messages;
     }
-
     public TextField getInput() {
         return input;
     }
-
     public Label getMessagesLabel() {
         return messagesLabel;
     }
-
     public Label getInputLabel() {
         return inputLabel;
     }
-
     public Rectangle getMessagesLabelBackGround() {
         return messagesLabelBackGround;
     }
-
     public Rectangle getInputLabelBackGround() {
         return inputLabelBackGround;
     }
