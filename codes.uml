@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>codes</OriginalElement>
+  <nodes>
+    <node x="750.0" y="424.0">codes.Tiger</node>
+    <node x="1929.0" y="1659.0">codes.CreateConnection</node>
+    <node x="1140.0" y="1799.0">codes.TigerTurn</node>
+    <node x="563.0" y="424.0">codes.Goat</node>
+    <node x="0.0" y="1176.0">codes.Server.ConnectionThread</node>
+    <node x="614.0" y="2088.0">codes.GetIP</node>
+    <node x="445.0" y="2088.0">codes.MoveType</node>
+    <node x="0.0" y="0.0">codes.TurnManager</node>
+    <node x="548.0" y="627.0">codes.ServerScene</node>
+    <node x="1301.0" y="1176.0">codes.GameOptionScene</node>
+    <node x="250.0" y="725.0">codes.Clock</node>
+    <node x="0.0" y="1659.0">codes.ChatBox</node>
+    <node x="241.0" y="1360.0">codes.Server</node>
+    <node x="1015.0" y="627.0">codes.ClientScene</node>
+    <node x="1796.0" y="0.0">codes.GameBoard</node>
+    <node x="285.0" y="0.0">codes.Piece</node>
+    <node x="1328.0" y="1659.0">codes.DrawClock</node>
+    <node x="942.0" y="0.0">codes.ClientServerSelectionScene</node>
+    <node x="1453.0" y="627.0">codes.Client.ConnectionThread</node>
+    <node x="567.0" y="1176.0">codes.SceneBuilder</node>
+    <node x="970.0" y="2088.0">codes.PlayerType</node>
+    <node x="415.0" y="1659.0">codes.GameOverScene</node>
+    <node x="0.0" y="627.0">codes.Clock.Task</node>
+    <node x="777.0" y="2088.0">codes.Main</node>
+    <node x="2176.0" y="1659.0">codes.BoardListener</node>
+    <node x="1405.0" y="0.0">codes.GameOverWorks</node>
+    <node x="194.0" y="2088.0">codes.GameAudio</node>
+    <node x="1159.0" y="2088.0">codes.MoveResult</node>
+    <node x="774.0" y="1659.0">codes.Turn</node>
+    <node x="1654.0" y="1659.0">codes.MovementManager</node>
+    <node x="957.0" y="1799.0">codes.GoatTurn</node>
+    <node x="1348.0" y="2088.0">codes.Translator</node>
+    <node x="2020.0" y="627.0">codes.GameScene</node>
+    <node x="1694.0" y="789.0">codes.Client</node>
+    <node x="1010.0" y="1176.0">codes.BoardLine</node>
+    <node x="0.0" y="2088.0">codes.Position</node>
+    <node x="1781.0" y="1176.0">codes.LanguageOptionScene</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="codes.GoatTurn" target="codes.Turn">
+      <point x="0.0" y="0.0" />
+      <point x="1028.5" y="1709.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="codes.Goat" target="codes.Piece">
+      <point x="0.0" y="0.0" />
+      <point x="636.5" y="192.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="codes.Client.ConnectionThread" target="codes.Client">
+      <point x="0.0" y="0.0" />
+      <point x="1834.5" y="688.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="codes.TigerTurn" target="codes.Turn">
+      <point x="0.0" y="0.0" />
+      <point x="1211.5" y="1709.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="codes.Server.ConnectionThread" target="codes.Server">
+      <point x="0.0" y="0.0" />
+      <point x="381.5" y="1248.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="codes.Clock.Task" target="codes.Clock">
+      <point x="0.0" y="0.0" />
+      <point x="376.5" y="656.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="codes.Tiger" target="codes.Piece">
+      <point x="0.0" y="0.0" />
+      <point x="823.5" y="192.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Tree" zoom="0.27898866608544026" x="1218.0" y="1137.0" />
+  <SelectedNodes>
+    <node>codes.Piece</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
