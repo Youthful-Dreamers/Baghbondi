@@ -41,8 +41,8 @@ public class GameOptionScene {
     }
 
     protected void setButtonTwoText() {
-        if (languageOption == 1) sceneBuilder.buttonTwo.setText("ল্যান গেম");
-        else sceneBuilder.buttonTwo.setText("LAN Game");
+        if (languageOption == 1) sceneBuilder.buttonTwo.setText("গেমের সাথে ল্যানে চ্যাট");
+        else sceneBuilder.buttonTwo.setText("Game with Chatting in LAN");
     }
 
     protected void initializeButtonEventWorks(GameScene gameScene, ClientServerSelectionScene clientServerSelectionScene) {
