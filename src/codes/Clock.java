@@ -55,20 +55,16 @@ public class Clock {
             public void run() {
                 timer--;
                 setClockTime(timer, languageOption);
-                if (task != null)
-                task.performWhenClockRuns();
+                if (task != null) task.performWhenClockRuns();
             }
         };
         clockTimer.schedule(timerTask, 1000, 1000);
     }
 
     public void cancelTimer() {
-        if (timerTask != null) {
-            timerTask.cancel();
-        }
+        if (timerTask != null) timerTask.cancel();
         clockTimer.cancel();
         clockTimer.purge();
-
     }
 
     public Group getClockGroup() {
