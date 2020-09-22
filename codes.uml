@@ -3,83 +3,750 @@
   <ID>JAVA</ID>
   <OriginalElement>codes</OriginalElement>
   <nodes>
-    <node x="750.0" y="424.0">codes.Tiger</node>
-    <node x="1929.0" y="1659.0">codes.CreateConnection</node>
-    <node x="1140.0" y="1799.0">codes.TigerTurn</node>
-    <node x="563.0" y="424.0">codes.Goat</node>
-    <node x="0.0" y="1176.0">codes.Server.ConnectionThread</node>
-    <node x="614.0" y="2088.0">codes.GetIP</node>
-    <node x="445.0" y="2088.0">codes.MoveType</node>
-    <node x="0.0" y="0.0">codes.TurnManager</node>
-    <node x="548.0" y="627.0">codes.ServerScene</node>
-    <node x="1301.0" y="1176.0">codes.GameOptionScene</node>
-    <node x="250.0" y="725.0">codes.Clock</node>
-    <node x="0.0" y="1659.0">codes.ChatBox</node>
-    <node x="241.0" y="1360.0">codes.Server</node>
-    <node x="1015.0" y="627.0">codes.ClientScene</node>
-    <node x="1796.0" y="0.0">codes.GameBoard</node>
-    <node x="285.0" y="0.0">codes.Piece</node>
-    <node x="1328.0" y="1659.0">codes.DrawClock</node>
-    <node x="942.0" y="0.0">codes.ClientServerSelectionScene</node>
-    <node x="1453.0" y="627.0">codes.Client.ConnectionThread</node>
-    <node x="567.0" y="1176.0">codes.SceneBuilder</node>
-    <node x="970.0" y="2088.0">codes.PlayerType</node>
-    <node x="415.0" y="1659.0">codes.GameOverScene</node>
-    <node x="0.0" y="627.0">codes.Clock.Task</node>
-    <node x="777.0" y="2088.0">codes.Main</node>
-    <node x="2176.0" y="1659.0">codes.BoardListener</node>
-    <node x="1405.0" y="0.0">codes.GameOverWorks</node>
-    <node x="194.0" y="2088.0">codes.GameAudio</node>
-    <node x="1159.0" y="2088.0">codes.MoveResult</node>
-    <node x="774.0" y="1659.0">codes.Turn</node>
-    <node x="1654.0" y="1659.0">codes.MovementManager</node>
-    <node x="957.0" y="1799.0">codes.GoatTurn</node>
-    <node x="1348.0" y="2088.0">codes.Translator</node>
-    <node x="2020.0" y="627.0">codes.GameScene</node>
-    <node x="1694.0" y="789.0">codes.Client</node>
-    <node x="1010.0" y="1176.0">codes.BoardLine</node>
-    <node x="0.0" y="2088.0">codes.Position</node>
-    <node x="1781.0" y="1176.0">codes.LanguageOptionScene</node>
+    <node x="1370.2205943273452" y="985.0">codes.Tiger</node>
+    <node x="3058.128738601045" y="2078.0">codes.CreateConnection</node>
+    <node x="132.8212669683262" y="3236.0">codes.TigerTurn</node>
+    <node x="1203.2205943273452" y="985.0">codes.Goat</node>
+    <node x="2493.5573100296165" y="426.0">codes.Server.ConnectionThread</node>
+    <node x="2807.5174016866526" y="5359.0">codes.GetIP</node>
+    <node x="559.0630276155516" y="3610.0">codes.TurnManager</node>
+    <node x="255.64023349790477" y="3850.0">codes.MoveType</node>
+    <node x="3790.1287386010454" y="5614.0">codes.ServerScene</node>
+    <node x="3828.4682817320677" y="3125.0">codes.GameOptionScene</node>
+    <node x="463.6825965078442" y="3104.0">codes.Clock</node>
+    <node x="2268.3628222267935" y="1427.0">codes.ChatBox</node>
+    <node x="2451.176823133759" y="908.0">codes.Server</node>
+    <node x="3281.1287386010454" y="2540.0">codes.ClientScene</node>
+    <node x="1728.443991057962" y="1360.0">codes.GameBoard</node>
+    <node x="1575.2087988322144" y="306.0">codes.Piece</node>
+    <node x="465.3130276155516" y="2650.0">codes.DrawClock</node>
+    <node x="3947.8626397818907" y="6168.0">codes.ClientServerSelectionScene</node>
+    <node x="3313.5662386010454" y="437.0">codes.Client.ConnectionThread</node>
+    <node x="4072.289905560127" y="1979.0">codes.SceneBuilder</node>
+    <node x="3538.6287386010454" y="3730.0">codes.GameOverScene</node>
+    <node x="1051.4289200372557" y="53.0">codes.PlayerType</node>
+    <node x="766.3130276155516" y="2748.0">codes.Clock.Task</node>
+    <node x="2058.1485365125072" y="5304.0">codes.BoardListener</node>
+    <node x="4547.839723115225" y="7170.0">codes.Main</node>
+    <node x="2818.489323133759" y="4312.0">codes.GameOverWorks</node>
+    <node x="4508.43573889346" y="2110.0">codes.GameAudio</node>
+    <node x="1295.0134788607852" y="4531.0">codes.MoveResult</node>
+    <node x="1008.3130276155516" y="2727.0">codes.Turn</node>
+    <node x="926.3130276155516" y="3236.0">codes.GoatTurn</node>
+    <node x="1334.5134788607852" y="4930.0">codes.MovementManager</node>
+    <node x="225.31302761555162" y="2748.0">codes.Translator</node>
+    <node x="2193.569472208258" y="1968.0">codes.GameScene</node>
+    <node x="3263.5662386010454" y="886.0">codes.Client</node>
+    <node x="2738.736138874925" y="0.0">codes.Position</node>
+    <node x="1681.3649267537128" y="820.0">codes.BoardLine</node>
+    <node x="4252.8107517051885" y="6734.0">codes.LanguageOptionScene</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="codes.GoatTurn" target="codes.Turn">
-      <point x="0.0" y="0.0" />
-      <point x="1028.5" y="1709.0" />
-      <point x="0.0" y="0.0" />
+    <edge source="codes.GameOptionScene" target="codes.ClientServerSelectionScene">
+      <point x="126.875" y="182.0" />
+      <point x="4172.843281732068" y="3570.0" />
+      <point x="4222.628738601045" y="3570.0" />
+      <point x="4222.628738601045" y="6108.0" />
+      <point x="4156.862639781891" y="6108.0" />
+      <point x="0.0" y="-248.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.MoveType">
+      <point x="-88.46153846153834" y="-127.0" />
+      <point x="1361.0519403992469" y="4900.0" />
+      <point x="276.30690016457174" y="4900.0" />
+      <point x="-41.33333333333303" y="51.0" />
+    </edge>
+    <edge source="codes.ClientServerSelectionScene" target="codes.SceneBuilder">
+      <point x="46.44444444444434" y="-248.0" />
+      <point x="4203.307084226335" y="6118.0" />
+      <point x="4477.9253222267935" y="6118.0" />
+      <point x="4477.9253222267935" y="2470.0" />
+      <point x="4354.2065722267935" y="2470.0" />
+      <point x="82.91666666666652" y="215.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.GameOverWorks">
+      <point x="30.588235294117567" y="-105.0" />
+      <point x="2218.7367718066253" y="5224.0" />
+      <point x="3124.6823100296165" y="5224.0" />
+      <point x="3124.6823100296165" y="4890.0" />
+      <point x="3121.239323133759" y="4890.0" />
+      <point x="129.75" y="259.0" />
+    </edge>
+    <edge source="codes.ClientServerSelectionScene" target="codes.ClientScene">
+      <point x="-185.77777777777783" y="-248.0" />
+      <point x="3971.084862004113" y="6148.0" />
+      <point x="3444.8787386010454" y="6148.0" />
+      <point x="-32.75" y="237.0" />
+    </edge>
+    <edge source="codes.TurnManager" target="codes.Clock">
+      <point x="-10.0" y="-291.0" />
+      <point x="669.0630276155516" y="3540.0" />
+      <point x="621.8075965078442" y="3540.0" />
+      <point x="31.625" y="203.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.GameAudio">
+      <point x="88.46153846153857" y="-127.0" />
+      <point x="1537.9750173223238" y="4900.0" />
+      <point x="4601.49823889346" y="4900.0" />
+      <point x="4601.49823889346" y="2490.0" />
+      <point x="4592.12323889346" y="2490.0" />
+      <point x="-19.3125" y="84.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.MoveResult">
+      <point x="-35.38461538461547" y="-127.0" />
+      <point x="1414.1288634761697" y="4870.0" />
+      <point x="1331.0134788607852" y="4870.0" />
+      <point x="-36.0" y="40.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.Piece">
+      <point x="-53.23076923076928" y="-259.0" />
+      <point x="2938.2585539029897" y="4212.0" />
+      <point x="2025.6485365125075" y="4212.0" />
+      <point x="2025.6485365125075" y="770.0" />
+      <point x="1804.0549526783684" y="770.0" />
+      <point x="109.84615384615404" y="192.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.Piece">
+      <point x="-45.88235294117658" y="-105.0" />
+      <point x="2142.2661835713307" y="5234.0" />
+      <point x="1647.6603812991673" y="5234.0" />
+      <point x="1647.6603812991673" y="790.0" />
+      <point x="1712.5164911399067" y="790.0" />
+      <point x="18.307692307692378" y="192.0" />
+    </edge>
+    <edge source="codes.Clock" target="codes.Translator">
+      <point x="-108.42857142857144" y="-203.0" />
+      <point x="481.75402507927265" y="3074.0" />
+      <point x="280.3130276155516" y="3074.0" />
+      <point x="-55.0" y="29.0" />
+    </edge>
+    <edge source="codes.GameOptionScene" target="codes.GameAudio">
+      <point x="135.9375" y="-182.0" />
+      <point x="4181.905781732068" y="3084.0" />
+      <point x="4138.530781732067" y="3084.0" />
+      <point x="4138.530781732067" y="2520.0" />
+      <point x="4540.62323889346" y="2520.0" />
+      <point x="-70.8125" y="84.0" />
     </edge>
     <edge source="codes.Goat" target="codes.Piece">
-      <point x="0.0" y="0.0" />
-      <point x="636.5" y="192.0" />
-      <point x="0.0" y="0.0" />
+      <point x="55.125" y="-50.0" />
+      <point x="1331.8455943273452" y="730.0" />
+      <point x="1602.670337293753" y="730.0" />
+      <point x="-91.53846153846143" y="192.0" />
+    </edge>
+    <edge source="codes.GameBoard" target="codes.Goat">
+      <point x="-98.18181818181824" y="-259.0" />
+      <point x="1765.2621728761437" y="1330.0" />
+      <point x="1276.7205943273452" y="1330.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="codes.CreateConnection" target="codes.Server">
+      <point x="-37.875" y="-116.0" />
+      <point x="3121.253738601045" y="1928.0" />
+      <point x="2648.862822226793" y="1928.0" />
+      <point x="2648.862822226793" y="1300.0" />
+      <point x="2556.551823133759" y="1300.0" />
+      <point x="-35.125" y="127.0" />
+    </edge>
+    <edge source="codes.ServerScene" target="codes.BoardListener">
+      <point x="-195.92857142857156" y="-237.0" />
+      <point x="3805.200167172474" y="5594.0" />
+      <point x="2123.1485365125072" y="5594.0" />
+      <point x="-65.0" y="105.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.TurnManager">
+      <point x="-159.69230769230785" y="-259.0" />
+      <point x="2831.797015441451" y="4252.0" />
+      <point x="739.0630276155516" y="4252.0" />
+      <point x="60.0" y="291.0" />
+    </edge>
+    <edge source="codes.Client" target="codes.Client.ConnectionThread">
+      <point x="-105.375" y="-149.0" />
+      <point x="3298.6912386010454" y="800.0" />
+      <point x="3338.6912386010454" y="800.0" />
+      <point x="-75.375" y="61.0" />
     </edge>
     <edge source="codes.Client.ConnectionThread" target="codes.Client">
-      <point x="0.0" y="0.0" />
-      <point x="1834.5" y="688.0" />
-      <point x="0.0" y="0.0" />
+      <point x="75.375" y="61.0" />
+      <point x="3489.4412386010454" y="800.0" />
+      <point x="3509.4412386010454" y="800.0" />
+      <point x="105.375" y="-149.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.TurnManager">
+      <point x="-91.76470588235316" y="-105.0" />
+      <point x="2096.383830630154" y="5264.0" />
+      <point x="633.5630276155516" y="5264.0" />
+      <point x="633.5630276155516" y="4282.0" />
+      <point x="619.0630276155516" y="4282.0" />
+      <point x="-60.0" y="291.0" />
+    </edge>
+    <edge source="codes.TurnManager" target="codes.GoatTurn">
+      <point x="10.0" y="-291.0" />
+      <point x="689.0630276155516" y="3540.0" />
+      <point x="962.0630276155516" y="3540.0" />
+      <point x="-35.75" y="71.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.Clock">
+      <point x="-106.46153846153857" y="-259.0" />
+      <point x="2885.0277846722206" y="4232.0" />
+      <point x="809.5630276155516" y="4232.0" />
+      <point x="809.5630276155516" y="3530.0" />
+      <point x="685.0575965078442" y="3530.0" />
+      <point x="94.875" y="203.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.GameOverWorks">
+      <point x="53.076923076923094" y="-127.0" />
+      <point x="1502.5904019377083" y="4880.0" />
+      <point x="2861.739323133759" y="4880.0" />
+      <point x="-129.75" y="259.0" />
+    </edge>
+    <edge source="codes.ClientScene" target="codes.GameOptionScene">
+      <point x="163.75" y="237.0" />
+      <point x="3641.3787386010454" y="3034.0" />
+      <point x="4018.7807817320677" y="3034.0" />
+      <point x="-27.1875" y="-182.0" />
+    </edge>
+    <edge source="codes.ChatBox" target="codes.Client">
+      <point x="92.5" y="-192.0" />
+      <point x="2545.8628222267935" y="1340.0" />
+      <point x="3298.6912386010454" y="1340.0" />
+      <point x="-105.375" y="149.0" />
+    </edge>
+    <edge source="codes.LanguageOptionScene" target="codes.GameOptionScene">
+      <point x="-16.800000000000637" y="-193.0" />
+      <point x="4404.010751705187" y="6714.0" />
+      <point x="4386.164710303496" y="6714.0" />
+      <point x="4386.164710303496" y="3560.0" />
+      <point x="4209.093281732068" y="3560.0" />
+      <point x="163.125" y="182.0" />
+    </edge>
+    <edge source="codes.LanguageOptionScene" target="codes.GameScene">
+      <point x="-117.60000000000036" y="-193.0" />
+      <point x="4303.210751705188" y="6704.0" />
+      <point x="2047.6485365125075" y="6704.0" />
+      <point x="2047.6485365125075" y="2520.0" />
+      <point x="2250.9980436368296" y="2520.0" />
+      <point x="-76.57142857142844" y="226.0" />
+    </edge>
+    <edge source="codes.ServerScene" target="codes.GameAudio">
+      <point x="165.78571428571422" y="-237.0" />
+      <point x="4166.914452886759" y="5584.0" />
+      <point x="4623.49823889346" y="5584.0" />
+      <point x="4623.49823889346" y="2520.0" />
+      <point x="4617.87323889346" y="2520.0" />
+      <point x="6.4375" y="84.0" />
+    </edge>
+    <edge source="codes.TurnManager" target="codes.TigerTurn">
+      <point x="-70.0" y="-291.0" />
+      <point x="609.0630276155516" y="3570.0" />
+      <point x="240.0712669683262" y="3570.0" />
+      <point x="35.75" y="71.0" />
+    </edge>
+    <edge source="codes.Server" target="codes.Server.ConnectionThread">
+      <point x="-105.375" y="-127.0" />
+      <point x="2486.301823133759" y="800.0" />
+      <point x="2518.6823100296165" y="800.0" />
+      <point x="-75.375" y="72.0" />
+    </edge>
+    <edge source="codes.ServerScene" target="codes.GetIP">
+      <point x="-105.5" y="-237.0" />
+      <point x="3895.6287386010454" y="5564.0" />
+      <point x="2837.0174016866526" y="5564.0" />
+      <point x="-29.5" y="50.0" />
+    </edge>
+    <edge source="codes.Tiger" target="codes.PlayerType">
+      <point x="-18.375" y="-50.0" />
+      <point x="1425.3455943273452" y="226.0" />
+      <point x="1174.2524494490203" y="226.0" />
+      <point x="50.82352941176464" y="40.0" />
+    </edge>
+    <edge source="codes.GameBoard" target="codes.Piece">
+      <point x="49.09090909090901" y="-259.0" />
+      <point x="1912.534900148871" y="1300.0" />
+      <point x="2014.6485365125075" y="1300.0" />
+      <point x="2014.6485365125075" y="780.0" />
+      <point x="1785.747260370676" y="780.0" />
+      <point x="91.53846153846166" y="192.0" />
+    </edge>
+    <edge source="codes.Main" target="codes.LanguageOptionScene">
+      <point x="-18.5" y="-40.0" />
+      <point x="4603.339723115225" y="7140.0" />
+      <point x="4504.8107517051885" y="7140.0" />
+      <point x="84.0" y="193.0" />
+    </edge>
+    <edge source="codes.GameOptionScene" target="codes.SceneBuilder">
+      <point x="81.5625" y="-182.0" />
+      <point x="4127.530781732067" y="2490.0" />
+      <point x="4254.7065722267935" y="2490.0" />
+      <point x="-16.583333333333485" y="215.0" />
+    </edge>
+    <edge source="codes.Piece" target="codes.PlayerType">
+      <point x="-47.59999999999991" y="-192.0" />
+      <point x="1646.6087988322145" y="206.0" />
+      <point x="1191.1936259196086" y="206.0" />
+      <point x="67.76470588235293" y="40.0" />
+    </edge>
+    <edge source="codes.ServerScene" target="codes.GameOptionScene">
+      <point x="75.35714285714266" y="-237.0" />
+      <point x="4076.4858814581876" y="5554.0" />
+      <point x="4105.628996017782" y="5554.0" />
+      <point x="4105.628996017782" y="3570.0" />
+      <point x="4136.593281732068" y="3570.0" />
+      <point x="90.625" y="182.0" />
+    </edge>
+    <edge source="codes.ClientScene" target="codes.GameAudio">
+      <point x="168.42857142857156" y="-237.0" />
+      <point x="3646.057310029617" y="2510.0" />
+      <point x="4527.74823889346" y="2510.0" />
+      <point x="-83.6875" y="84.0" />
+    </edge>
+    <edge source="codes.GameScene" target="codes.ChatBox">
+      <point x="111.66666666666652" y="-226.0" />
+      <point x="2439.236138874925" y="1948.0" />
+      <point x="2453.3628222267935" y="1948.0" />
+      <point x="0.0" y="192.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.GameBoard">
+      <point x="0.0" y="-105.0" />
+      <point x="2188.1485365125072" y="5204.0" />
+      <point x="1879.7180243153307" y="5204.0" />
+      <point x="1879.7180243153307" y="1938.0" />
+      <point x="1809.443991057962" y="1938.0" />
+      <point x="-54.0" y="259.0" />
+    </edge>
+    <edge source="codes.ChatBox" target="codes.Server">
+      <point x="-92.5" y="-192.0" />
+      <point x="2360.8628222267935" y="1300.0" />
+      <point x="2486.301823133759" y="1300.0" />
+      <point x="-105.375" y="127.0" />
+    </edge>
+    <edge source="codes.GameOptionScene" target="codes.BoardListener">
+      <point x="-18.125" y="182.0" />
+      <point x="4027.8432817320677" y="3570.0" />
+      <point x="4024.3430243153307" y="3570.0" />
+      <point x="4024.3430243153307" y="5284.0" />
+      <point x="2310.501477688978" y="5284.0" />
+      <point x="122.3529411764705" y="-105.0" />
+    </edge>
+    <edge source="codes.GameOptionScene" target="codes.ServerScene">
+      <point x="18.125" y="182.0" />
+      <point x="4064.0932817320677" y="3570.0" />
+      <point x="4035.3430243153307" y="3570.0" />
+      <point x="4035.3430243153307" y="5594.0" />
+      <point x="4016.200167172474" y="5594.0" />
+      <point x="15.071428571428442" y="-237.0" />
+    </edge>
+    <edge source="codes.Clock" target="codes.Clock.Task">
+      <point x="72.28571428571433" y="-203.0" />
+      <point x="662.4683107935584" y="3064.0" />
+      <point x="871.3130276155516" y="3064.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="codes.TurnManager" target="codes.Position">
+      <point x="110.0" y="-291.0" />
+      <point x="789.0630276155516" y="3590.0" />
+      <point x="2785.989323133759" y="3590.0" />
+      <point x="2785.989323133759" y="266.0" />
+      <point x="2826.781593420379" y="266.0" />
+      <point x="13.545454545454504" y="93.0" />
+    </edge>
+    <edge source="codes.GameScene" target="codes.GameBoard">
+      <point x="-111.66666666666652" y="-226.0" />
+      <point x="2215.902805541592" y="1928.0" />
+      <point x="1863.443991057962" y="1928.0" />
+      <point x="0.0" y="259.0" />
+    </edge>
+    <edge source="codes.GameBoard" target="codes.Tiger">
+      <point x="-73.63636363636374" y="-259.0" />
+      <point x="1789.8076274215982" y="1320.0" />
+      <point x="1443.7205943273452" y="1320.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="codes.MoveResult" target="codes.Piece">
+      <point x="54.0" y="-40.0" />
+      <point x="1421.0134788607852" y="4292.0" />
+      <point x="1546.00420408614" y="4292.0" />
+      <point x="1546.00420408614" y="770.0" />
+      <point x="1675.901106524522" y="770.0" />
+      <point x="-18.307692307692378" y="192.0" />
+    </edge>
+    <edge source="codes.GameOverScene" target="codes.GameOptionScene">
+      <point x="44.85714285714266" y="-171.0" />
+      <point x="3740.4858814581876" y="3570.0" />
+      <point x="3846.5932817320677" y="3570.0" />
+      <point x="-199.375" y="182.0" />
+    </edge>
+    <edge source="codes.GameOptionScene" target="codes.GameScene">
+      <point x="-190.3125" y="-182.0" />
+      <point x="3855.6557817320677" y="3064.0" />
+      <point x="2501.177080550496" y="3064.0" />
+      <point x="2501.177080550496" y="2510.0" />
+      <point x="2404.1409007796865" y="2510.0" />
+      <point x="76.57142857142844" y="226.0" />
+    </edge>
+    <edge source="codes.Goat" target="codes.PlayerType">
+      <point x="-18.375" y="-50.0" />
+      <point x="1258.3455943273452" y="246.0" />
+      <point x="1157.311272978432" y="246.0" />
+      <point x="33.88235294117635" y="40.0" />
+    </edge>
+    <edge source="codes.CreateConnection" target="codes.ChatBox">
+      <point x="-88.375" y="-116.0" />
+      <point x="3070.753738601045" y="1948.0" />
+      <point x="2527.3628222267935" y="1948.0" />
+      <point x="74.0" y="192.0" />
+    </edge>
+    <edge source="codes.TurnManager" target="codes.Turn">
+      <point x="50.0" y="-291.0" />
+      <point x="729.0630276155516" y="3560.0" />
+      <point x="1110.0630276155516" y="3560.0" />
+      <point x="1110.0630276155516" y="3084.0" />
+      <point x="1097.6880276155516" y="3084.0" />
+      <point x="17.875" y="50.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.GameOptionScene">
+      <point x="91.76470588235293" y="-105.0" />
+      <point x="2279.9132423948604" y="5264.0" />
+      <point x="4002.3430243153307" y="5264.0" />
+      <point x="4002.3430243153307" y="3550.0" />
+      <point x="3955.3432817320677" y="3550.0" />
+      <point x="-90.625" y="182.0" />
+    </edge>
+    <edge source="codes.TigerTurn" target="codes.PlayerType">
+      <point x="-47.666666666666515" y="-71.0" />
+      <point x="156.65460030165968" y="3084.0" />
+      <point x="172.54832173319846" y="3084.0" />
+      <point x="172.54832173319846" y="246.0" />
+      <point x="1081.0759788607852" y="246.0" />
+      <point x="-42.352941176470495" y="40.0" />
+    </edge>
+    <edge source="codes.ClientScene" target="codes.CreateConnection">
+      <point x="-56.14285714285688" y="-237.0" />
+      <point x="3421.4858814581885" y="2470.0" />
+      <point x="3245.7001671724734" y="2470.0" />
+      <point x="86.57142857142844" y="116.0" />
+    </edge>
+    <edge source="codes.TurnManager" target="codes.PlayerType">
+      <point x="-110.0" y="-291.0" />
+      <point x="569.0630276155516" y="3590.0" />
+      <point x="122.3212669683262" y="3590.0" />
+      <point x="122.3212669683262" y="236.0" />
+      <point x="1072.605390625491" y="236.0" />
+      <point x="-50.82352941176464" y="40.0" />
     </edge>
     <edge source="codes.TigerTurn" target="codes.Turn">
-      <point x="0.0" y="0.0" />
-      <point x="1211.5" y="1709.0" />
-      <point x="0.0" y="0.0" />
+      <point x="47.66666666666666" y="-71.0" />
+      <point x="251.98793363499271" y="3084.0" />
+      <point x="1026.1880276155516" y="3084.0" />
+      <point x="-53.625" y="50.0" />
+    </edge>
+    <edge source="codes.Main" target="codes.GameAudio">
+      <point x="18.5" y="-40.0" />
+      <point x="4640.339723115225" y="7140.0" />
+      <point x="4689.49823889346" y="7140.0" />
+      <point x="4689.49823889346" y="2520.0" />
+      <point x="4695.12323889346" y="2520.0" />
+      <point x="83.6875" y="84.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.PlayerType">
+      <point x="-122.35294117647072" y="-105.0" />
+      <point x="2065.795595336037" y="5284.0" />
+      <point x="0.0" y="5284.0" />
+      <point x="0.0" y="216.0" />
+      <point x="1055.6642141549028" y="216.0" />
+      <point x="-67.76470588235293" y="40.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.PlayerType">
+      <point x="-79.84615384615381" y="-259.0" />
+      <point x="2911.6431692876054" y="4222.0" />
+      <point x="1184.250006092051" y="4222.0" />
+      <point x="1184.250006092051" y="276.0" />
+      <point x="1131.8995082725498" y="276.0" />
+      <point x="8.470588235294144" y="40.0" />
+    </edge>
+    <edge source="codes.GameOverScene" target="codes.GameAudio">
+      <point x="89.71428571428578" y="-171.0" />
+      <point x="3785.3430243153307" y="3580.0" />
+      <point x="4579.49823889346" y="3580.0" />
+      <point x="4579.49823889346" y="2510.0" />
+      <point x="4566.37323889346" y="2510.0" />
+      <point x="-45.0625" y="84.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.Position">
+      <point x="-26.615384615384528" y="-259.0" />
+      <point x="2964.8739385183744" y="4292.0" />
+      <point x="2970.365002337309" y="4292.0" />
+      <point x="2970.365002337309" y="286.0" />
+      <point x="2867.417957056743" y="286.0" />
+      <point x="54.181818181818244" y="93.0" />
+    </edge>
+    <edge source="codes.LanguageOptionScene" target="codes.ClientServerSelectionScene">
+      <point x="-50.400000000000546" y="-193.0" />
+      <point x="4370.410751705188" y="6684.0" />
+      <point x="4261.362639781891" y="6684.0" />
+      <point x="104.5" y="248.0" />
+    </edge>
+    <edge source="codes.LanguageOptionScene" target="codes.GameAudio">
+      <point x="117.59999999999991" y="-193.0" />
+      <point x="4538.410751705188" y="6704.0" />
+      <point x="4667.49823889346" y="6704.0" />
+      <point x="4667.49823889346" y="2520.0" />
+      <point x="4669.37323889346" y="2520.0" />
+      <point x="57.9375" y="84.0" />
+    </edge>
+    <edge source="codes.ClientScene" target="codes.SceneBuilder">
+      <point x="56.14285714285734" y="-237.0" />
+      <point x="3533.7715957439023" y="2450.0" />
+      <point x="4122.0399055601265" y="2450.0" />
+      <point x="-149.25" y="215.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.CreateConnection">
+      <point x="0.0" y="-259.0" />
+      <point x="2991.489323133759" y="2510.0" />
+      <point x="3072.5573100296165" y="2510.0" />
+      <point x="-86.57142857142844" y="116.0" />
+    </edge>
+    <edge source="codes.ClientServerSelectionScene" target="codes.ServerScene">
+      <point x="-46.44444444444434" y="-248.0" />
+      <point x="4110.418195337446" y="6118.0" />
+      <point x="4001.1287386010454" y="6118.0" />
+      <point x="0.0" y="237.0" />
+    </edge>
+    <edge source="codes.MoveResult" target="codes.MoveType">
+      <point x="-54.0" y="-40.0" />
+      <point x="1313.0134788607852" y="4272.0" />
+      <point x="317.6402334979048" y="4272.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="codes.GameOverScene" target="codes.ClientServerSelectionScene">
+      <point x="117.75" y="171.0" />
+      <point x="3813.3787386010454" y="4272.0" />
+      <point x="3779.6287386010454" y="4272.0" />
+      <point x="3779.6287386010454" y="6128.0" />
+      <point x="4063.973750893002" y="6128.0" />
+      <point x="-92.88888888888869" y="-248.0" />
+    </edge>
+    <edge source="codes.LanguageOptionScene" target="codes.SceneBuilder">
+      <point x="50.399999999999636" y="-193.0" />
+      <point x="4471.210751705188" y="6704.0" />
+      <point x="4499.9253222267935" y="6704.0" />
+      <point x="4499.9253222267935" y="2450.0" />
+      <point x="4420.5399055601265" y="2450.0" />
+      <point x="149.25" y="215.0" />
+    </edge>
+    <edge source="codes.CreateConnection" target="codes.Client">
+      <point x="63.125" y="-116.0" />
+      <point x="3222.253738601045" y="1938.0" />
+      <point x="3468.8162386010454" y="1938.0" />
+      <point x="3468.8162386010454" y="1330.0" />
+      <point x="3439.1912386010454" y="1330.0" />
+      <point x="35.125" y="149.0" />
+    </edge>
+    <edge source="codes.Clock" target="codes.DrawClock">
+      <point x="-36.14285714285711" y="-203.0" />
+      <point x="554.0397393649873" y="3074.0" />
+      <point x="535.5630276155516" y="3074.0" />
+      <point x="-70.25" y="127.0" />
+    </edge>
+    <edge source="codes.ClientScene" target="codes.GameScene">
+      <point x="-168.42857142857156" y="-237.0" />
+      <point x="3309.200167172474" y="2490.0" />
+      <point x="2442.426615065401" y="2490.0" />
+      <point x="114.85714285714266" y="226.0" />
     </edge>
     <edge source="codes.Server.ConnectionThread" target="codes.Server">
-      <point x="0.0" y="0.0" />
-      <point x="381.5" y="1248.0" />
-      <point x="0.0" y="0.0" />
+      <point x="75.375" y="72.0" />
+      <point x="2669.4323100296165" y="800.0" />
+      <point x="2697.051823133759" y="800.0" />
+      <point x="105.375" y="-127.0" />
     </edge>
-    <edge source="codes.Clock.Task" target="codes.Clock">
-      <point x="0.0" y="0.0" />
-      <point x="376.5" y="656.0" />
-      <point x="0.0" y="0.0" />
+    <edge source="codes.Piece" target="codes.Position">
+      <point x="0.0" y="-192.0" />
+      <point x="1694.2087988322144" y="206.0" />
+      <point x="2745.508866147652" y="206.0" />
+      <point x="-67.72727272727275" y="93.0" />
+    </edge>
+    <edge source="codes.ServerScene" target="codes.CreateConnection">
+      <point x="-45.21428571428578" y="-237.0" />
+      <point x="3955.914452886759" y="5544.0" />
+      <point x="3185.989323133759" y="5544.0" />
+      <point x="3185.989323133759" y="2510.0" />
+      <point x="3159.128738601045" y="2510.0" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.CreateConnection">
+      <point x="45.88235294117658" y="-105.0" />
+      <point x="2234.030889453684" y="5234.0" />
+      <point x="3174.989323133759" y="5234.0" />
+      <point x="3174.989323133759" y="2520.0" />
+      <point x="3130.2715957439023" y="2520.0" />
+      <point x="-28.857142857142662" y="116.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.Position">
+      <point x="17.692307692307622" y="-127.0" />
+      <point x="1467.2057865530928" y="4860.0" />
+      <point x="2796.989323133759" y="4860.0" />
+      <point x="2796.989323133759" y="276.0" />
+      <point x="2840.327047965834" y="276.0" />
+      <point x="27.09090909090901" y="93.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.GameOverScene">
+      <point x="106.46153846153834" y="-259.0" />
+      <point x="3097.9508615952973" y="4272.0" />
+      <point x="3656.3787386010454" y="4272.0" />
+      <point x="-39.25" y="171.0" />
+    </edge>
+    <edge source="codes.GameBoard" target="codes.PlayerType">
+      <point x="-122.72727272727275" y="-259.0" />
+      <point x="1740.7167183306892" y="1340.0" />
+      <point x="1192.7205943273452" y="1340.0" />
+      <point x="1192.7205943273452" y="266.0" />
+      <point x="1140.370096507844" y="266.0" />
+      <point x="16.94117647058829" y="40.0" />
+    </edge>
+    <edge source="codes.GameOptionScene" target="codes.ClientScene">
+      <point x="-81.5625" y="-182.0" />
+      <point x="3964.4057817320677" y="3044.0" />
+      <point x="3575.8787386010454" y="3044.0" />
+      <point x="98.25" y="237.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.Piece">
+      <point x="0.0" y="-127.0" />
+      <point x="1449.5134788607852" y="4850.0" />
+      <point x="1579.4103812991673" y="4850.0" />
+      <point x="1579.4103812991673" y="780.0" />
+      <point x="1694.2087988322144" y="780.0" />
+      <point x="0.0" y="192.0" />
     </edge>
     <edge source="codes.Tiger" target="codes.Piece">
-      <point x="0.0" y="0.0" />
-      <point x="823.5" y="192.0" />
-      <point x="0.0" y="0.0" />
+      <point x="18.375" y="-50.0" />
+      <point x="1462.0955943273452" y="740.0" />
+      <point x="1620.978029601445" y="740.0" />
+      <point x="-73.23076923076928" y="192.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.PlayerType">
+      <point x="-106.15384615384596" y="-127.0" />
+      <point x="1343.3596327069392" y="4910.0" />
+      <point x="8.4705882352946" y="4910.0" />
+      <point x="8.4705882352946" y="226.0" />
+      <point x="1064.134802390197" y="226.0" />
+      <point x="-59.29411764705878" y="40.0" />
+    </edge>
+    <edge source="codes.ServerScene" target="codes.SceneBuilder">
+      <point x="135.64285714285734" y="-237.0" />
+      <point x="4136.771595743902" y="5574.0" />
+      <point x="4466.9253222267935" y="5574.0" />
+      <point x="4466.9253222267935" y="2480.0" />
+      <point x="4321.0399055601265" y="2480.0" />
+      <point x="49.75" y="215.0" />
+    </edge>
+    <edge source="codes.GameOverWorks" target="codes.GameOptionScene">
+      <point x="133.0769230769231" y="-259.0" />
+      <point x="3124.566246210682" y="4282.0" />
+      <point x="3980.3430243153307" y="4282.0" />
+      <point x="3980.3430243153307" y="3570.0" />
+      <point x="3882.8432817320677" y="3570.0" />
+      <point x="-163.125" y="182.0" />
+    </edge>
+    <edge source="codes.GameOverScene" target="codes.GameScene">
+      <point x="-134.57142857142844" y="-171.0" />
+      <point x="3561.057310029617" y="3580.0" />
+      <point x="2339.6485365125072" y="3580.0" />
+      <point x="2339.6485365125072" y="2510.0" />
+      <point x="2327.569472208258" y="2510.0" />
+      <point x="0.0" y="226.0" />
+    </edge>
+    <edge source="codes.Position" target="codes.Piece">
+      <point x="-54.181818181818244" y="93.0" />
+      <point x="2759.0543206931065" y="216.0" />
+      <point x="1741.8087988322143" y="216.0" />
+      <point x="47.59999999999991" y="-192.0" />
+    </edge>
+    <edge source="codes.GoatTurn" target="codes.PlayerType">
+      <point x="0.0" y="-71.0" />
+      <point x="997.8130276155516" y="276.0" />
+      <point x="1106.4877435666674" y="276.0" />
+      <point x="-16.94117647058829" y="40.0" />
+    </edge>
+    <edge source="codes.GoatTurn" target="codes.Turn">
+      <point x="47.666666666666686" y="-71.0" />
+      <point x="1045.4796942822184" y="3084.0" />
+      <point x="1061.9380276155516" y="3084.0" />
+      <point x="-17.875" y="50.0" />
+    </edge>
+    <edge source="codes.ClientServerSelectionScene" target="codes.GameAudio">
+      <point x="139.33333333333303" y="-248.0" />
+      <point x="4296.195973115224" y="6138.0" />
+      <point x="4645.49823889346" y="6138.0" />
+      <point x="4645.49823889346" y="2520.0" />
+      <point x="4643.62323889346" y="2520.0" />
+      <point x="32.1875" y="84.0" />
+    </edge>
+    <edge source="codes.ClientScene" target="codes.BoardListener">
+      <point x="-98.25" y="237.0" />
+      <point x="3379.3787386010454" y="3074.0" />
+      <point x="3428.361138874925" y="3074.0" />
+      <point x="3428.361138874925" y="5254.0" />
+      <point x="2264.619124747802" y="5254.0" />
+      <point x="76.47058823529414" y="-105.0" />
+    </edge>
+    <edge source="codes.GameOverScene" target="codes.SceneBuilder">
+      <point x="0.0" y="-171.0" />
+      <point x="3695.6287386010454" y="2470.0" />
+      <point x="4188.37323889346" y="2470.0" />
+      <point x="-82.91666666666652" y="215.0" />
+    </edge>
+    <edge source="codes.Clock.Task" target="codes.Clock">
+      <point x="70.0" y="29.0" />
+      <point x="941.3130276155516" y="3074.0" />
+      <point x="698.6111679364158" y="3074.0" />
+      <point x="108.42857142857156" y="-203.0" />
+    </edge>
+    <edge source="codes.MovementManager" target="codes.TurnManager">
+      <point x="-70.76923076923072" y="-127.0" />
+      <point x="1378.7442480915545" y="4890.0" />
+      <point x="644.5630276155516" y="4890.0" />
+      <point x="644.5630276155516" y="4282.0" />
+      <point x="659.0630276155516" y="4282.0" />
+      <point x="-20.0" y="291.0" />
+    </edge>
+    <edge source="codes.ServerScene" target="codes.GameScene">
+      <point x="-135.64285714285734" y="-237.0" />
+      <point x="3865.4858814581876" y="5574.0" />
+      <point x="2328.6485365125072" y="5574.0" />
+      <point x="2328.6485365125072" y="2520.0" />
+      <point x="2289.2837579225443" y="2520.0" />
+      <point x="-38.28571428571422" y="226.0" />
+    </edge>
+    <edge source="codes.BoardListener" target="codes.MovementManager">
+      <point x="-76.47058823529414" y="-105.0" />
+      <point x="2111.6779482772135" y="5254.0" />
+      <point x="1392.0134788607852" y="5254.0" />
+      <point x="-57.5" y="127.0" />
+    </edge>
+    <edge source="codes.GameBoard" target="codes.Position">
+      <point x="98.18181818181802" y="-259.0" />
+      <point x="1961.62580923978" y="1320.0" />
+      <point x="2753.676823133759" y="1320.0" />
+      <point x="2753.676823133759" y="246.0" />
+      <point x="2799.69068432947" y="246.0" />
+      <point x="-13.545454545454504" y="93.0" />
+    </edge>
+    <edge source="codes.GameBoard" target="codes.BoardLine">
+      <point x="-49.09090909090901" y="-259.0" />
+      <point x="1814.353081967053" y="1310.0" />
+      <point x="1742.8649267537128" y="1310.0" />
+      <point x="-61.5" y="215.0" />
+    </edge>
+    <edge source="codes.Turn" target="codes.PlayerType">
+      <point x="0.0" y="-50.0" />
+      <point x="1079.8130276155516" y="286.0" />
+      <point x="1114.9583318019615" y="286.0" />
+      <point x="-8.470588235294144" y="40.0" />
     </edge>
   </edges>
-  <settings layout="Tree" zoom="0.27898866608544026" x="1218.0" y="1137.0" />
+  <settings layout="Tree" zoom="0.1" x="2996.998392282958" y="2442.8938906752414" />
   <SelectedNodes>
     <node>codes.Piece</node>
   </SelectedNodes>
