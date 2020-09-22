@@ -5,14 +5,14 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.nio.file.Paths;
+import java.net.URL;
 
 public class GameAudio {
 
-    public void inGameAudio(){
-        String path="src/resources/inGameAudio.mp3";
-        Media media=new Media(new File(path).toURI().toString());
+    public void inGameAudio() {
+        String path = "resources/inGameAudio.mp3";
+        URL audioUrl = getClass().getClassLoader().getResource(path);
+        Media media = new Media(audioUrl.toString());
         MediaPlayer mediaPlayer=new MediaPlayer(media);
         mediaPlayer.setOnEndOfMedia(new Runnable() {
             @Override
@@ -25,14 +25,18 @@ public class GameAudio {
     }
 
     public void buttonClickedAudio(){
-        String path="src/resources/buttonClicked.mp3";
-        AudioClip audioClip=new AudioClip(Paths.get(path).toUri().toString());
+        String path="resources/buttonClicked.mp3";
+        
+        URL audioUrl = getClass().getClassLoader().getResource(path);
+        AudioClip audioClip=new AudioClip(audioUrl.toString());
         audioClip.play();
     }
 
     public void tigerKillAudio(){
-        String path="src/resources/tigerKill.mp3";
-        AudioClip audioClip=new AudioClip(Paths.get(path).toUri().toString());
+        String path="resources/tigerKill.mp3";
+        URL audioUrl = getClass().getClassLoader().getResource(path);
+        AudioClip audioClip = new AudioClip(audioUrl.toString());
+        
         audioClip.setVolume(0.5);
         audioClip.play();
     }
@@ -41,7 +45,7 @@ public class GameAudio {
         try{
             this.inGameAudio();
         } catch(Exception ex){
-            System.out.println("Error in playing the Audion: "+ex);
+            ex.printStackTrace();
         }
     }
 

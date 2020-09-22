@@ -39,7 +39,6 @@ public class GameOverWorks {
 
     private EventHandler<WindowEvent> removeTimerOnClose() {
         return event -> {
-            System.out.println("Hello! 1");
             turnManager.getGoatClock().cancelTimer();
             turnManager.getTigerClock().cancelTimer();
             Platform.exit();
@@ -204,6 +203,4 @@ public class GameOverWorks {
         };
         timer.scheduleAtFixedRate(timerTask, 1000, 1000);
     }
-
-
 }
