@@ -51,7 +51,7 @@ public class GameOverScene {
             else type = "Goat";
         }
         if (languageOption == 1) labelTwoString = type + " জিতেছে!!";
-        else labelTwoString = type + " has own the game!!";
+        else labelTwoString = type + " has won the game!!";
         return labelTwoString;
     }
 
